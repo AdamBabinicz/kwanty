@@ -20,7 +20,7 @@ import {
 import { MdAccessibility } from 'react-icons/md';
 
 export default function QuantumControlPanel() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isDarkMode, toggleTheme } = useTheme();
   const { currentLanguage, setLanguage, toggleAccessibility, isAccessibilityMode, mousePosition } = useQuantumState();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
