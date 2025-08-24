@@ -21,7 +21,7 @@ export default function QuantumPortal() {
   const { currentLanguage, updateMousePosition } = useQuantumState();
 
   useEffect(() => {
-    if (i18n && i18n.changeLanguage) {
+    if (i18n && i18n.changeLanguage && i18n.language !== currentLanguage) {
       i18n.changeLanguage(currentLanguage);
     }
   }, [currentLanguage, i18n]);
