@@ -1,10 +1,15 @@
 import { useQuantumContext } from '../contexts/QuantumContext';
+import { useTranslation } from 'react-i18next';
 
 export function useQuantumState() {
   const { state, dispatch } = useQuantumContext();
+  const { i18n } = useTranslation();
 
   const setLanguage = (language: 'pl' | 'en' | 'fi') => {
     dispatch({ type: 'SET_LANGUAGE', payload: language });
+    if (i18n && i18n.changeLanguage) {
+      i18n.changeLanguage(language);
+    }
   };
 
   const toggleTheme = () => {
