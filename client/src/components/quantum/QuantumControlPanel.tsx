@@ -31,7 +31,15 @@ export default function QuantumControlPanel() {
   const navigateToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
       setIsMenuOpen(false);
       setTimeout(() => {
         orbButtonRef.current?.focus();
@@ -72,8 +80,14 @@ export default function QuantumControlPanel() {
   // Handle language change with immediate effect
   const handleLanguageChange = async (lang: 'pl' | 'en' | 'fi') => {
     try {
-      await i18n.changeLanguage(lang);
+      // First update the language in context immediately
       setLanguage(lang);
+      // Then change i18n language
+      await i18n.changeLanguage(lang);
+      // Force re-render by triggering state update
+      setTimeout(() => {
+        setLanguage(lang);
+      }, 50);
     } catch (error) {
       console.error('Error changing language:', error);
     }

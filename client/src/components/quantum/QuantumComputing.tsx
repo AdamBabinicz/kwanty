@@ -66,7 +66,7 @@ export default function QuantumComputing() {
           <h2 className="text-5xl font-bold mb-6 quantum-glow" data-testid="quantum-computing-title">
             Skok 6: Komputery Kwantowe
           </h2>
-          <p className="text-xl text-quantum-cyan mb-8" data-testid="quantum-computing-subtitle">
+          <p className="text-xl quantum-subtitle-light mb-8" data-testid="quantum-computing-subtitle">
             Przyszłość Obliczeń
           </p>
         </motion.div>

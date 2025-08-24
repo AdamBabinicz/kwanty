@@ -102,7 +102,7 @@ export default function QuantumApplications() {
                       {app.description}
                     </p>
                   </div>
-                  
+
                   <div className="text-center">
                     <Button
                       variant="ghost"
@@ -131,7 +131,7 @@ export default function QuantumApplications() {
                 {(() => {
                   const app = applications.find(a => a.id === selectedApp);
                   if (!app) return null;
-                  
+
                   return (
                     <div className="grid md:grid-cols-2 gap-8 p-8">
                       <motion.div
@@ -145,10 +145,12 @@ export default function QuantumApplications() {
                         <p className="text-lg leading-relaxed opacity-90 mb-6" data-testid="app-detail-description">
                           {app.details}
                         </p>
-                        
+
                         {/* Interactive Demo */}
                         <div className="bg-muted p-4 rounded-lg border border-quantum-cyan border-opacity-20">
-                          <h4 className="font-semibold mb-3 text-quantum-cyan">Demo Interaktywny:</h4>
+                          <h4 className="text-lg font-semibold mb-3 quantum-text-light" data-testid="quantum-advantage-title">
+                            Demo Interaktywne:
+                          </h4>
                           <div className="flex gap-2 mb-4">
                             {[...Array(5)].map((_, i) => (
                               <motion.div
@@ -174,7 +176,7 @@ export default function QuantumApplications() {
                           </p>
                         </div>
                       </motion.div>
-                      
+
                       <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
