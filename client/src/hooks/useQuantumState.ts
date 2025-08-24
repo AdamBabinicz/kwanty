@@ -1,11 +1,20 @@
 
 import { useQuantumContext } from '../contexts/QuantumContext';
+import { useTranslation } from 'react-i18next';
 
 export function useQuantumState() {
   const { state, dispatch } = useQuantumContext();
+  const { i18n } = useTranslation();
 
-  const setLanguage = (language: 'pl' | 'en' | 'fi') => {
-    dispatch({ type: 'SET_LANGUAGE', payload: language });
+  const setLanguage = async (language: 'pl' | 'en' | 'fi') => {
+    try {
+      // First change i18n language
+      await i18n.changeLanguage(language);
+      // Then update context
+      dispatch({ type: 'SET_LANGUAGE', payload: language });
+    } catch (error) {
+      console.error('Language change failed:', error);
+    }
   };
 
   const toggleTheme = () => {

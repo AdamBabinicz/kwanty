@@ -60,7 +60,7 @@ export default function QuantumPortal() {
   }, [currentLanguage]);
 
   return (
-    <div className={`min-h-screen w-full overflow-x-hidden font-sora transition-colors duration-500 ${isDarkMode ? 'dark' : ''}`}>
+    <div className={`min-h-screen w-full max-w-full overflow-x-hidden font-sora transition-colors duration-500 ${isDarkMode ? 'dark' : ''}`}>
       {/* Skip Link for Accessibility */}
       <SkipLink />
       
@@ -71,7 +71,7 @@ export default function QuantumPortal() {
       <QuantumControlPanel />
       
       {/* Main Content */}
-      <main id="main-content" className="relative z-10 w-full max-w-full" tabIndex={-1} role="main" aria-label="Główna zawartość portalu kwantowego">
+      <main id="main-content" className="relative z-10 w-full max-w-full overflow-x-hidden" tabIndex={-1} role="main" aria-label="Główna zawartość portalu kwantowego">
         {/* Hero Section - Wave Function */}
         <WaveFunctionHero />
         

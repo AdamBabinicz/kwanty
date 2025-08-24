@@ -31,19 +31,15 @@ export default function QuantumControlPanel() {
   const navigateToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerOffset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
       });
       
       setIsMenuOpen(false);
       setTimeout(() => {
         orbButtonRef.current?.focus();
-      }, 100);
+      }, 300);
     }
   };
 
@@ -77,17 +73,12 @@ export default function QuantumControlPanel() {
     return names[lang as keyof typeof names] || lang;
   };
 
-  // Handle language change with immediate effect
+  // Handle language change with proper synchronization
   const handleLanguageChange = async (lang: 'pl' | 'en' | 'fi') => {
+    if (currentLanguage === lang) return; // Prevent unnecessary changes
+    
     try {
-      // First update the language in context immediately
-      setLanguage(lang);
-      // Then change i18n language
-      await i18n.changeLanguage(lang);
-      // Force re-render by triggering state update
-      setTimeout(() => {
-        setLanguage(lang);
-      }, 50);
+      await setLanguage(lang);
     } catch (error) {
       console.error('Error changing language:', error);
     }
@@ -99,7 +90,7 @@ export default function QuantumControlPanel() {
   };
 
   return (
-    <div className="fixed top-2 right-2 sm:top-4 sm:right-4 lg:top-8 lg:right-8 z-50" style={orbStyle}>
+    <div className="fixed top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8 z-50 touch-none" style={orbStyle}>
       {/* Main Orb - Responsive sizes */}
       <motion.div
         className="relative"
@@ -138,12 +129,12 @@ export default function QuantumControlPanel() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ duration: 0.5, type: "spring" }}
-              className="absolute top-0 right-0 w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full bg-white dark:bg-gray-900 bg-opacity-95 dark:bg-opacity-95 backdrop-blur-lg border-2 border-blue-400 border-opacity-50 flex items-center justify-center shadow-2xl"
+              className="absolute top-0 right-0 w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-white dark:bg-gray-900 bg-opacity-95 dark:bg-opacity-95 backdrop-blur-lg border-2 border-blue-400 border-opacity-50 flex items-center justify-center shadow-2xl"
               role="menu"
               aria-label="Menu nawigacji kwantowej"
               data-testid="quantum-menu"
             >
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72">
+              <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72">
                 {/* Navigation Icons - positioned around the circle with better visibility */}
                 <Button
                   onClick={() => navigateToSection('observation')}
