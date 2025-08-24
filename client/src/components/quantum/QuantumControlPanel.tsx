@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/hooks/useTheme';
@@ -25,6 +25,7 @@ export default function QuantumControlPanel() {
   const { isDarkMode, toggleTheme } = useTheme();
   const { currentLanguage, setLanguage, toggleAccessibility, isAccessibilityMode, mousePosition } = useQuantumState();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLanguageChanging, setIsLanguageChanging] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const orbButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -73,16 +74,21 @@ export default function QuantumControlPanel() {
     return names[lang as keyof typeof names] || lang;
   };
 
-  // Handle language change with proper synchronization
-  const handleLanguageChange = async (lang: 'pl' | 'en' | 'fi') => {
-    if (currentLanguage === lang) return; // Prevent unnecessary changes
+  // Handle language change with loading state to prevent multiple calls
+  const handleLanguageChange = useCallback(async (lang: 'pl' | 'en' | 'fi') => {
+    if (currentLanguage === lang || isLanguageChanging) return; // Prevent unnecessary changes
     
+    setIsLanguageChanging(true);
     try {
       await setLanguage(lang);
+      // Small delay to ensure UI updates properly
+      await new Promise(resolve => setTimeout(resolve, 100));
     } catch (error) {
       console.error('Error changing language:', error);
+    } finally {
+      setIsLanguageChanging(false);
     }
-  };
+  }, [currentLanguage, setLanguage, isLanguageChanging]);
 
   // Mouse following effect
   const orbStyle = {
@@ -248,7 +254,8 @@ export default function QuantumControlPanel() {
                           <Button
                             key={lang}
                             onClick={() => handleLanguageChange(lang)}
-                            className={`w-12 sm:w-16 lg:w-20 h-5 sm:h-6 lg:h-8 text-xs font-bold rounded transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                            disabled={isLanguageChanging}
+                            className={`w-12 sm:w-16 lg:w-20 h-5 sm:h-6 lg:h-8 text-xs font-bold rounded transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:opacity-50 disabled:cursor-not-allowed ${
                               currentLanguage === lang 
                                 ? 'bg-blue-600 text-white shadow-lg border-2 border-blue-600' 
                                 : 'bg-gray-200 text-gray-800 hover:bg-blue-500 hover:text-white border border-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-blue-600'
@@ -258,7 +265,7 @@ export default function QuantumControlPanel() {
                             role="radio"
                             data-testid={`language-${lang}`}
                           >
-                            {getLanguageName(lang)}
+                            {isLanguageChanging ? '...' : getLanguageName(lang)}
                           </Button>
                         ))}
                       </div>

@@ -8,12 +8,17 @@ export function useQuantumState() {
 
   const setLanguage = async (language: 'pl' | 'en' | 'fi') => {
     try {
-      // First change i18n language
-      await i18n.changeLanguage(language);
-      // Then update context
+      // Update context first to prevent UI flickering
       dispatch({ type: 'SET_LANGUAGE', payload: language });
+      
+      // Then change i18n language if available
+      if (i18n && i18n.changeLanguage) {
+        await i18n.changeLanguage(language);
+      }
     } catch (error) {
       console.error('Language change failed:', error);
+      // Revert context change on error
+      dispatch({ type: 'SET_LANGUAGE', payload: state.currentLanguage });
     }
   };
 
