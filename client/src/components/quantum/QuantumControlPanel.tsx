@@ -4,6 +4,20 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/hooks/useTheme';
 import { useQuantumState } from '@/hooks/useQuantumState';
 import { Button } from '@/components/ui/button';
+import { 
+  FaAtom, 
+  FaEye, 
+  FaLayerGroup, 
+  FaLink, 
+  FaQuestion, 
+  FaPaperPlane, 
+  FaCat, 
+  FaMicrochip, 
+  FaRocket, 
+  FaSun, 
+  FaMoon 
+} from 'react-icons/fa';
+import { MdAccessibility } from 'react-icons/md';
 
 export default function QuantumControlPanel() {
   const { i18n } = useTranslation();
@@ -77,11 +91,12 @@ export default function QuantumControlPanel() {
           aria-haspopup="true"
           data-testid="quantum-orb-button"
         >
-          <motion.i
-            className="fas fa-atom text-xl text-white"
+          <motion.div
             animate={{ rotate: isMenuOpen ? 180 : 0 }}
             transition={{ duration: 0.5 }}
-          />
+          >
+            <FaAtom className="text-xl text-white" />
+          </motion.div>
         </Button>
 
         {/* Expanded Menu */}
@@ -107,7 +122,7 @@ export default function QuantumControlPanel() {
                   role="menuitem"
                   data-testid="nav-observation"
                 >
-                  <i className="fas fa-eye text-quantum-cyan" aria-hidden="true" />
+                  <FaEye className="text-quantum-cyan" aria-hidden="true" />
                 </Button>
 
                 <Button
@@ -117,7 +132,7 @@ export default function QuantumControlPanel() {
                   role="menuitem"
                   data-testid="nav-superposition"
                 >
-                  <i className="fas fa-layer-group text-quantum-cyan" aria-hidden="true" />
+                  <FaLayerGroup className="text-quantum-cyan" aria-hidden="true" />
                 </Button>
 
                 <Button
@@ -127,7 +142,7 @@ export default function QuantumControlPanel() {
                   role="menuitem"
                   data-testid="nav-entanglement"
                 >
-                  <i className="fas fa-link text-quantum-cyan" aria-hidden="true" />
+                  <FaLink className="text-quantum-cyan" aria-hidden="true" />
                 </Button>
 
                 <Button
@@ -137,7 +152,7 @@ export default function QuantumControlPanel() {
                   role="menuitem"
                   data-testid="nav-uncertainty"
                 >
-                  <i className="fas fa-question text-quantum-cyan" aria-hidden="true" />
+                  <FaQuestion className="text-quantum-cyan" aria-hidden="true" />
                 </Button>
 
                 <Button
@@ -147,7 +162,7 @@ export default function QuantumControlPanel() {
                   role="menuitem"
                   data-testid="nav-tunneling"
                 >
-                  <i className="fas fa-paper-plane text-quantum-cyan" aria-hidden="true" />
+                  <FaPaperPlane className="text-quantum-cyan" aria-hidden="true" />
                 </Button>
 
                 <Button
@@ -157,7 +172,7 @@ export default function QuantumControlPanel() {
                   role="menuitem"
                   data-testid="nav-schrodinger"
                 >
-                  <i className="fas fa-cat text-quantum-cyan" aria-hidden="true" />
+                  <FaCat className="text-quantum-cyan" aria-hidden="true" />
                 </Button>
 
                 <Button
@@ -167,7 +182,7 @@ export default function QuantumControlPanel() {
                   role="menuitem"
                   data-testid="nav-quantum-computing"
                 >
-                  <i className="fas fa-microchip text-quantum-cyan" aria-hidden="true" />
+                  <FaMicrochip className="text-quantum-cyan" aria-hidden="true" />
                 </Button>
 
                 <Button
@@ -177,7 +192,7 @@ export default function QuantumControlPanel() {
                   role="menuitem"
                   data-testid="nav-quantum-applications"
                 >
-                  <i className="fas fa-rocket text-quantum-cyan" aria-hidden="true" />
+                  <FaRocket className="text-quantum-cyan" aria-hidden="true" />
                 </Button>
 
                 {/* Center Controls with Labels */}
@@ -190,7 +205,11 @@ export default function QuantumControlPanel() {
                       aria-label={`Przełącz na motyw ${isDarkMode ? 'jasny' : 'ciemny'}`}
                       data-testid="theme-toggle"
                     >
-                      <i className={`fas ${isDarkMode ? 'fa-sun' : 'fa-moon'} text-white text-lg`} aria-hidden="true" />
+                      {isDarkMode ? (
+                        <FaSun className="text-white text-lg" aria-hidden="true" />
+                      ) : (
+                        <FaMoon className="text-white text-lg" aria-hidden="true" />
+                      )}
                     </Button>
                     <span className="text-xs text-foreground font-medium">
                       Motyw: {isDarkMode ? 'Ciemny' : 'Jasny'}
@@ -236,7 +255,7 @@ export default function QuantumControlPanel() {
                       aria-pressed={isAccessibilityMode}
                       data-testid="accessibility-toggle"
                     >
-                      <i className="fas fa-universal-access text-sm" aria-hidden="true" />
+                      <MdAccessibility className="text-sm" aria-hidden="true" />
                     </Button>
                     <span className="text-xs text-foreground font-medium">
                       Dostępność: {isAccessibilityMode ? 'Wł.' : 'Wył.'}
