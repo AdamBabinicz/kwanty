@@ -1,0 +1,82 @@
+{
+  "hero": {
+    "title": "Kwantowy Portal",
+    "subtitle": "Interaktywna Eksploracja Rzeczywistości",
+    "measureReality": "Zmierz Rzeczywistość"
+  },
+  "sections": {
+    "observation": {
+      "title": "Skok 1: Obserwacja",
+      "subtitle": "Od Fali do Rzeczywistości",
+      "content": {
+        "title": "Dualizm Korpuskularno-Falowy",
+        "description1": "Cząstki subatomowe wykazują podwójną naturę - mogą zachowywać się zarówno jak fale, jak i cząstki, w zależności od sposobu obserwacji. To właśnie obserwacja powoduje \"kolaps funkcji falowej\" - przejście z nieokreślonego stanu możliwości do konkretnej rzeczywistości.",
+        "description2": "Ta strona internetowa sama jest manifestacją tego zjawiska - istniała jako \"fala możliwości\" dopóki nie wykonałeś pierwszej interakcji, która spowodowała kolaps do obecnej, określonej formy.",
+        "concepts": "Kluczowe Pojęcia:",
+        "concept1": "Funkcja falowa ψ (psi)",
+        "concept2": "Kolaps funkcji falowej",
+        "concept3": "Natura obserwatora",
+        "afterCollapse": "Stan po kolapsie funkcji falowej"
+      }
+    },
+    "superposition": {
+      "title": "Skok 2: Superpozycja",
+      "subtitle": "Nieskończone Możliwości",
+      "instruction": "Kliknij na qubit aby zmierzyć jego stan. W superpozycji może być jednocześnie w stanie |0⟩ i |1⟩!",
+      "qubitState": "Stan Qubitu:",
+      "superpositionState": "Superpozycja: α|0⟩ + β|1⟩",
+      "superpositionDescription": "Qubit istnieje w superpozycji wszystkich możliwych stanów",
+      "measured0": "Stan zmierzony: |0⟩",
+      "measured1": "Stan zmierzony: |1⟩",
+      "collapse0": "Funkcja falowa skolapsowała do stanu podstawowego",
+      "collapse1": "Funkcja falowa skolapsowała do stanu wzbudzonego",
+      "statistics": "Statystyki Pomiarów",
+      "state0": "Stan |0⟩",
+      "state1": "Stan |1⟩"
+    },
+    "entanglement": {
+      "title": "Skok 3: Splątanie",
+      "subtitle": "Kosmiczne Połączenie",
+      "instruction": "Najedź kursorem na jedną z splątanych cząstek i obserwuj jak druga reaguje natychmiastowo!",
+      "particleA": "Cząstka A",
+      "particleB": "Cząstka B",
+      "connection": "Splątanie Kwantowe",
+      "principle": "Zasada Splątania",
+      "principleDescription": "Einstein nazywał to \"upiornym oddziaływaniem na odległość\". Gdy dwie cząstki są kwantowo splątane, pomiar stanu jednej z nich natychmiastowo wpływa na stan drugiej, niezależnie od dzielącej je odległości.",
+      "applications": "Zastosowania",
+      "applicationsDescription": "Splątanie kwantowe jest fundamentem dla technologii przyszłości: komputerów kwantowych, kryptografii kwantowej i teleportacji kwantowej. To podstawa rewolucji kwantowej."
+    },
+    "uncertainty": {
+      "title": "Skok 4: Nieoznaczoność",
+      "subtitle": "Granice Pewności",
+      "instruction": "Zasada nieoznaczoności Heisenberga: Im dokładniej znamy pozycję, tym mniej dokładnie możemy określić pęd!",
+      "heisenbergMeter": "Miernik Heisenberga",
+      "positionCertainty": "Pewność Pozycji:",
+      "momentumCertainty": "Pewność Pędu:",
+      "unknown": "Nieznana",
+      "precise": "Dokładna",
+      "unknownMomentum": "Nieznany",
+      "preciseMomentum": "Dokładny",
+      "limitation": "Fundamentalne Ograniczenie",
+      "limitationDescription": "Zasada nieoznaczoności nie wynika z ograniczeń naszych przyrządów pomiarowych, ale jest fundamentalną właściwością natury. Im dokładniej próbujemy zmierzyć jedną wielkość, tym mniej dokładnie możemy jednocześnie zmierzyć wielkość z nią sprzężoną. To nie jest kwestia technologii - to jest sposób, w jaki działa wszechświat na poziomie kwantowym."
+    },
+    "tunneling": {
+      "title": "Skok 5: Tunelowanie",
+      "subtitle": "Przekraczanie Barier",
+      "instruction": "W świecie kwantowym cząstki mogą \"tunelować\" przez bariery, które klasycznie byłyby nie do pokonania!",
+      "contactForm": "Formularz Kontaktowy",
+      "name": "Imię",
+      "email": "Email",
+      "message": "Wiadomość",
+      "namePlaceholder": "Twoje imię",
+      "emailPlaceholder": "twoj@email.com",
+      "messagePlaceholder": "Twoja wiadomość o mechanice kwantowej...",
+      "submit": "Wyślij przez Tunelowanie",
+      "tunnelingProbability": "Prawdopodobieństwo tunelowania:",
+      "successTitle": "Tunelowanie Zakończone Sukcesem!",
+      "successMessage": "Twoja wiadomość przekroczyła barierę kwantową",
+      "tunnelingEffect": "Efekt Tunelowy",
+      "tunnelingDescription": "Tunelowanie kwantowe pozwala cząstkom przechodzić przez bariery energetyczne, które w fizyce klasycznej byłyby nie do pokonania. To zjawisko umożliwia działanie wielu nowoczesnych technologii, od skanerów tunelowych po fuzję jądrową w gwiazdach. W naszym formularzu symbolizuje przekroczenie barier komunikacyjnych!"
+    }
+  }
+}

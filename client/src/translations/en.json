@@ -1,0 +1,82 @@
+{
+  "hero": {
+    "title": "Quantum Portal",
+    "subtitle": "Interactive Reality Exploration",
+    "measureReality": "Measure Reality"
+  },
+  "sections": {
+    "observation": {
+      "title": "Leap 1: Observation",
+      "subtitle": "From Wave to Reality",
+      "content": {
+        "title": "Wave-Particle Duality",
+        "description1": "Subatomic particles exhibit dual nature - they can behave both as waves and particles, depending on how they are observed. It is observation that causes the \"wave function collapse\" - the transition from an undetermined state of possibilities to concrete reality.",
+        "description2": "This website itself is a manifestation of this phenomenon - it existed as a \"wave of possibilities\" until you made your first interaction, which caused collapse to the present, defined form.",
+        "concepts": "Key Concepts:",
+        "concept1": "Wave function ψ (psi)",
+        "concept2": "Wave function collapse",
+        "concept3": "Observer nature",
+        "afterCollapse": "State after wave function collapse"
+      }
+    },
+    "superposition": {
+      "title": "Leap 2: Superposition",
+      "subtitle": "Infinite Possibilities",
+      "instruction": "Click on the qubit to measure its state. In superposition it can be simultaneously in state |0⟩ and |1⟩!",
+      "qubitState": "Qubit State:",
+      "superpositionState": "Superposition: α|0⟩ + β|1⟩",
+      "superpositionDescription": "Qubit exists in superposition of all possible states",
+      "measured0": "Measured state: |0⟩",
+      "measured1": "Measured state: |1⟩",
+      "collapse0": "Wave function collapsed to ground state",
+      "collapse1": "Wave function collapsed to excited state",
+      "statistics": "Measurement Statistics",
+      "state0": "State |0⟩",
+      "state1": "State |1⟩"
+    },
+    "entanglement": {
+      "title": "Leap 3: Entanglement",
+      "subtitle": "Cosmic Connection",
+      "instruction": "Hover over one of the entangled particles and observe how the other reacts instantly!",
+      "particleA": "Particle A",
+      "particleB": "Particle B",
+      "connection": "Quantum Entanglement",
+      "principle": "Entanglement Principle",
+      "principleDescription": "Einstein called it \"spooky action at a distance\". When two particles are quantum entangled, measuring the state of one instantly affects the state of the other, regardless of the distance separating them.",
+      "applications": "Applications",
+      "applicationsDescription": "Quantum entanglement is the foundation for future technologies: quantum computers, quantum cryptography, and quantum teleportation. It's the basis of the quantum revolution."
+    },
+    "uncertainty": {
+      "title": "Leap 4: Uncertainty",
+      "subtitle": "Limits of Certainty",
+      "instruction": "Heisenberg's uncertainty principle: The more precisely we know position, the less precisely we can determine momentum!",
+      "heisenbergMeter": "Heisenberg Meter",
+      "positionCertainty": "Position Certainty:",
+      "momentumCertainty": "Momentum Certainty:",
+      "unknown": "Unknown",
+      "precise": "Precise",
+      "unknownMomentum": "Unknown",
+      "preciseMomentum": "Precise",
+      "limitation": "Fundamental Limitation",
+      "limitationDescription": "The uncertainty principle does not result from limitations of our measuring instruments, but is a fundamental property of nature. The more precisely we try to measure one quantity, the less precisely we can simultaneously measure a quantity conjugate to it. This is not a matter of technology - this is how the universe works at the quantum level."
+    },
+    "tunneling": {
+      "title": "Leap 5: Tunneling",
+      "subtitle": "Crossing Barriers",
+      "instruction": "In the quantum world, particles can \"tunnel\" through barriers that would be insurmountable classically!",
+      "contactForm": "Contact Form",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "your@email.com",
+      "messagePlaceholder": "Your message about quantum mechanics...",
+      "submit": "Send via Tunneling",
+      "tunnelingProbability": "Tunneling probability:",
+      "successTitle": "Tunneling Completed Successfully!",
+      "successMessage": "Your message crossed the quantum barrier",
+      "tunnelingEffect": "Tunneling Effect",
+      "tunnelingDescription": "Quantum tunneling allows particles to pass through energy barriers that would be insurmountable in classical physics. This phenomenon enables the operation of many modern technologies, from tunnel scanners to nuclear fusion in stars. In our form, it symbolizes overcoming communication barriers!"
+    }
+  }
+}

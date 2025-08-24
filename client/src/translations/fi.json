@@ -1,0 +1,82 @@
+{
+  "hero": {
+    "title": "Kvanttisivu",
+    "subtitle": "Interaktiivinen Todellisuuden Tutkimus",
+    "measureReality": "Mittaa Todellisuus"
+  },
+  "sections": {
+    "observation": {
+      "title": "Hyppy 1: Havainto",
+      "subtitle": "Aallosta Todellisuuteen",
+      "content": {
+        "title": "Aalto-Hiukkas Dualismi",
+        "description1": "Subatomiset hiukkaset osoittavat kaksoisluonnetta - ne voivat käyttäytyä sekä aaltoina että hiukkasina riippuen siitä, miten niitä havaitaan. Juuri havainto aiheuttaa \"aaltofunktion romahduksen\" - siirtymisen määrittelemättömästä mahdollisuuksien tilasta konkreettiseen todellisuuteen.",
+        "description2": "Tämä verkkosivusto itsessään on ilmentymä tästä ilmiöstä - se oli olemassa \"mahdollisuuksien aaltona\" kunnes teit ensimmäisen vuorovaikutuksen, joka aiheutti romahduksen nykyiseen, määriteltyyn muotoon.",
+        "concepts": "Keskeiset Käsitteet:",
+        "concept1": "Aaltofunktio ψ (psi)",
+        "concept2": "Aaltofunktion romahdus",
+        "concept3": "Tarkkailijan luonne",
+        "afterCollapse": "Tila aaltofunktion romahduksen jälkeen"
+      }
+    },
+    "superposition": {
+      "title": "Hyppy 2: Superpositio",
+      "subtitle": "Äärettömät Mahdollisuudet",
+      "instruction": "Klikkaa qubittia mitataksesi sen tilan. Superpositiossa se voi olla samanaikaisesti tilassa |0⟩ ja |1⟩!",
+      "qubitState": "Qubitin Tila:",
+      "superpositionState": "Superpositio: α|0⟩ + β|1⟩",
+      "superpositionDescription": "Qubit on kaikkien mahdollisten tilojen superpositiossa",
+      "measured0": "Mitattu tila: |0⟩",
+      "measured1": "Mitattu tila: |1⟩",
+      "collapse0": "Aaltofunktio romahti perustilaan",
+      "collapse1": "Aaltofunktio romahti virittyneeseen tilaan",
+      "statistics": "Mittaustilastot",
+      "state0": "Tila |0⟩",
+      "state1": "Tila |1⟩"
+    },
+    "entanglement": {
+      "title": "Hyppy 3: Kietoutuminen",
+      "subtitle": "Kosminen Yhteys",
+      "instruction": "Vie hiiri yhden kietoutuneen hiukkasen päälle ja katso kuinka toinen reagoi välittömästi!",
+      "particleA": "Hiukkanen A",
+      "particleB": "Hiukkanen B",
+      "connection": "Kvanttikietoutuminen",
+      "principle": "Kietoutumisperiaate",
+      "principleDescription": "Einstein kutsui sitä \"aavemaiseksi vaikutukseksi etäältä\". Kun kaksi hiukkasta on kvanttikietoutuneita, yhden tilan mittaaminen vaikuttaa välittömästi toisen tilaan riippumatta niitä erottavasta etäisyydestä.",
+      "applications": "Sovellukset",
+      "applicationsDescription": "Kvanttikietoutuminen on tulevaisuuden teknologioiden perusta: kvanttitietokoneet, kvanttisalaus ja kvanttiteleportaatio. Se on kvanttivallankumouksen perusta."
+    },
+    "uncertainty": {
+      "title": "Hyppy 4: Epävarmuus",
+      "subtitle": "Varmuuden Rajat",
+      "instruction": "Heisenbergin epävarmuusperiaate: Mitä tarkemmin tunnemme sijainnin, sitä epätarkemmin voimme määrittää liikemäärän!",
+      "heisenbergMeter": "Heisenberg-mittari",
+      "positionCertainty": "Sijainnin Varmuus:",
+      "momentumCertainty": "Liikemäärän Varmuus:",
+      "unknown": "Tuntematon",
+      "precise": "Tarkka",
+      "unknownMomentum": "Tuntematon",
+      "preciseMomentum": "Tarkka",
+      "limitation": "Perustavanlaatuinen Rajoitus",
+      "limitationDescription": "Epävarmuusperiaate ei johdu mittauslaitteidemme rajoituksista, vaan on luonnon perustavanlaatuinen ominaisuus. Mitä tarkemmin yritämme mitata yhtä suuretta, sitä epätarkemmin voimme samanaikaisesti mitata siihen konjugoitua suuretta. Tämä ei ole teknologian kysymys - näin maailmankaikkeus toimii kvanttitasolla."
+    },
+    "tunneling": {
+      "title": "Hyppy 5: Tunnelointi",
+      "subtitle": "Esteiden Ylittäminen",
+      "instruction": "Kvanttimaailmassa hiukkaset voivat \"tunneloida\" esteiden läpi, jotka olisivat klassisesti ylitsepääsemättömiä!",
+      "contactForm": "Yhteydenottolomake",
+      "name": "Nimi",
+      "email": "Sähköposti",
+      "message": "Viesti",
+      "namePlaceholder": "Nimesi",
+      "emailPlaceholder": "sinun@email.com",
+      "messagePlaceholder": "Viestisi kvanttimekaniikasta...",
+      "submit": "Lähetä Tunneloinnilla",
+      "tunnelingProbability": "Tunneloinnin todennäköisyys:",
+      "successTitle": "Tunnelointi Onnistui!",
+      "successMessage": "Viestisi ylitti kvanttiestereen",
+      "tunnelingEffect": "Tunnelointiilmiö",
+      "tunnelingDescription": "Kvanttitunnelointi mahdollistaa hiukkasten kulkemisen energiaesteiden läpi, jotka olisivat klassisessa fysiikassa ylitsepääsemättömiä. Tämä ilmiö mahdollistaa monien nykyaikaisten teknologioiden toiminnan tunneliskannerista tähtien ydinfuusioon. Lomakkeessamme se symboloi viestinnän esteiden ylittämistä!"
+    }
+  }
+}

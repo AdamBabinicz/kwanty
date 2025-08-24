@@ -1,0 +1,82 @@
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useTheme } from '@/hooks/useTheme';
+import { useQuantumState } from '@/hooks/useQuantumState';
+import QuantumControlPanel from '@/components/quantum/QuantumControlPanel';
+import WaveFunctionHero from '@/components/quantum/WaveFunctionHero';
+import QuantumObservation from '@/components/quantum/QuantumObservation';
+import QuantumSuperposition from '@/components/quantum/QuantumSuperposition';
+import QuantumEntanglement from '@/components/quantum/QuantumEntanglement';
+import QuantumUncertainty from '@/components/quantum/QuantumUncertainty';
+import QuantumTunneling from '@/components/quantum/QuantumTunneling';
+
+export default function QuantumPortal() {
+  const { t, i18n } = useTranslation();
+  const { isDarkMode } = useTheme();
+  const { currentLanguage, updateMousePosition } = useQuantumState();
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLanguage);
+  }, [currentLanguage, i18n]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      updateMousePosition(e.clientX, e.clientY);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
+  }, [updateMousePosition]);
+
+  useEffect(() => {
+    // Set document language
+    document.documentElement.lang = currentLanguage;
+    
+    // Update meta description based on language
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      const descriptions = {
+        pl: 'Przełomowa strona internetowa manifestująca zasady mechaniki kwantowej przez interaktywne wizualizacje i dynamiczny interfejs.',
+        en: 'Revolutionary website manifesting quantum mechanics principles through interactive visualizations and dynamic interface.',
+        fi: 'Vallankumouksellinen verkkosivusto, joka manifestoi kvanttimekaniikan periaatteita interaktiivisten visualisointien ja dynaamisen käyttöliittymän kautta.'
+      };
+      metaDescription.setAttribute('content', descriptions[currentLanguage]);
+    }
+
+    // Update title based on language
+    const titles = {
+      pl: 'Kwantowy Portal: Interaktywna Eksploracja Rzeczywistości',
+      en: 'Quantum Portal: Interactive Reality Exploration',
+      fi: 'Kvanttisivu: Interaktiivinen Todellisuuden Tutkimus'
+    };
+    document.title = titles[currentLanguage];
+  }, [currentLanguage]);
+
+  return (
+    <div className={`min-h-screen font-sora transition-colors duration-500 ${isDarkMode ? 'dark' : ''}`}>
+      {/* Quantum Control Panel */}
+      <QuantumControlPanel />
+      
+      {/* Main Content */}
+      <main className="relative">
+        {/* Hero Section - Wave Function */}
+        <WaveFunctionHero />
+        
+        {/* Quantum Leap 1: Observation */}
+        <QuantumObservation />
+        
+        {/* Quantum Leap 2: Superposition */}
+        <QuantumSuperposition />
+        
+        {/* Quantum Leap 3: Entanglement */}
+        <QuantumEntanglement />
+        
+        {/* Quantum Leap 4: Uncertainty */}
+        <QuantumUncertainty />
+        
+        {/* Quantum Leap 5: Tunneling & Contact */}
+        <QuantumTunneling />
+      </main>
+    </div>
+  );
+}
