@@ -1,0 +1,119 @@
+Tytuł projektu: Kwantowy Portal: Interaktywna Eksploracja Rzeczywistości
+
+Cel główny: Stworzenie przełomowej, wizualnie rewolucyjnej strony internetowej, która nie tylko edukuje na temat mechaniki kwantowej w przystępny, popularnonaukowy sposób, ale sama w sobie jest manifestacją jej zasad. Strona ma odrzucić tradycyjne, statyczne layouty na rzecz dynamicznego, probabilistycznego interfejsu, gdzie treść i nawigacja podlegają kwantowym efektom. Ma to być niezapomniane doświadczenie, które zaciera granicę między obserwatorem a obserwowanym systemem, demonstrując potęgę nowoczesnych technologii webowych.
+
+1. Koncepcja i Treść (Podróż przez Kwantowe Postulaty)
+
+Strona będzie interaktywną podróżą, gdzie każda sekcja jest "Kwantowym Skokiem" do zrozumienia kolejnego fundamentalnego postulatu. Zamiast liniowego przewijania, nawigacja między skokami będzie przypominać przeskakiwanie między stanami energetycznymi.
+
+Skok 1: Obserwacja – Od Fali do Rzeczywistości.
+
+Wprowadzenie: Strona wita użytkownika nie statyczną treścią, ale "funkcją falową" – dynamiczną, płynną wizualizacją czystego potencjału. Gdy użytkownik wykonuje pierwszą interakcję (kliknięcie, scroll), następuje "kolaps funkcji falowej". Wizualizacja ustępuje miejsca pierwszej, czytelnej sekcji, która wyjaśnia dualizm korpuskularno-falowy. To sama strona jest dowodem: istniała jako fala możliwości, dopóki obserwator jej nie zmierzył.
+
+Skok 2: Superpozycja – Nieskończone Możliwości.
+
+Interakcja: Centralnym punktem jest interaktywny "Kwantowy Bit (Qubit)". Wizualnie przedstawiony jako wirująca, półprzezroczysta sfera, symbolizuje stan 0 i 1 jednocześnie. Użytkownik może "zmierzyć" qubit, klikając go. Każde kliknięcie losowo kolapsuje go do jednego ze stanów (0 lub 1), czemu towarzyszy zmiana grafiki i wyświetlenie prostego wyjaśnienia dotyczącego kota Schrödingera i mocy komputerów kwantowych.
+
+Skok 3: Splątanie – Kosmiczne Połączenie.
+
+Interakcja: Na ekranie pojawiają się dwie "splątane" cząstki (np. dwa pulsujące orby), umieszczone na przeciwległych krańcach widoku. Gdy użytkownik wejdzie w interakcję z jedną z nich (np. zmieni jej spin/kierunek obrotu za pomocą myszki), druga natychmiastowo i w sposób skorelowany zareaguje, idealnie ilustrując "upiorne oddziaływanie na odległość".
+
+Skok 4: Nieoznaczoność – Granice Pewności.
+
+Interakcja: Użytkownik staje przed "Miernikiem Heisenberga". Jest to interfejs z dwoma suwakami: jeden kontroluje "Pewność Pozycji", drugi "Pewność Pędu" cząstki na ekranie. Przesunięcie jednego suwaka w stronę 100% precyzji automatycznie powoduje, że drugi suwak przesuwa się w stronę niepewności (0%), a wizualizacja cząstki staje się odpowiednio ostra lub rozmyta. To namacalne doświadczenie zasady nieoznaczoności.
+
+Skok 5: Tunelowanie – Przekraczanie Barier.
+
+Interakcja: Sekcja kontaktowa. Formularz jest otoczony widoczną "barierą potencjału" (np. świetlistą ścianą). Przycisk "Wyślij" po kliknięciu nie znika od razu. Zamiast tego, jego animacja pokazuje "prawdopodobieństwo" przeniknięcia przez barierę. Po chwili animacja kończy się sukcesem – przycisk "tuneluje" na drugą stronę, a formularz zostaje wysłany.
+
+2. Innowacyjna Struktura UI/UX: "Panel Kontroli Kwantowej"
+
+Zamiast statycznego paska nawigacyjnego, zaimplementuj unoszący się, półprzezroczysty "orb" (kulę), który delikatnie podąża za ruchem kursora użytkownika.
+
+Interakcja: Kliknięcie na orb powoduje jego płynne rozszerzenie w okrągłe menu (jak rozchodząca się fala).
+
+Funkcje panelu:
+
+Nawigacja: Ikony reprezentujące każdy "Kwantowy Skok" z efektem drżenia przy najechaniu.
+
+Przełącznik języka: Ikony flag (PL / EN / FI).
+
+Przełącznik motywu: Ikona słońca/księżyca do zmiany motywu (jasny/ciemny niebieski).
+
+Przycisk Dostępności: Uruchamia tryb wysokiego kontrastu i uproszczonych animacji.
+
+3. Stack Technologiczny (Nowoczesny i Wydajny)
+
+Fundamentem projektu jest nowoczesny stack oparty na TypeScript dla bezpieczeństwa typów oraz TailwindCSS dla szybkiego, utility-first stylowania.
+
+Język / Framework: TypeScript + React (z Vite)
+
+Backend (formularz): Netlify Functions (napisane w TypeScript)
+
+Stylowanie: TailwindCSS
+
+Testowanie: Vitest + React Testing Library
+
+Wielojęzyczność: react-i18next
+
+SEO & Meta Tagi: react-helmet-async
+
+Animacje: framer-motion (kluczowy dla całej koncepcji)
+
+Grafika 3D/Wizualizacje: react-three-fiber (dla bardziej złożonych wizualizacji)
+
+4. Wymagania Techniczne i SEO
+
+Formularz Kontaktowy: Pełna implementacja z walidacją (np. Zod) i funkcją serverless na Netlify.
+
+Lokalizacja: Strona musi być w pełni przetłumaczona na polski (domyślny), angielski i fiński.
+
+SEO: Pełna optymalizacja: dynamiczne meta tagi, JSON-LD, kanoniczne URL, atrybuty lang.
+
+Dostępność (WCAG AA): Pełna nawigacja klawiaturą, aria-labels, zarządzanie focusem, odpowiedni kontrast kolorów w obu motywach.
+
+Wydajność: Lazy loading dla wszystkich sekcji i cięższych komponentów wizualizacyjnych.
+
+5. Struktura Projektu (Zmodularyzowana i Czysta)
+code
+Code
+download
+content_copy
+expand_less
+
+/functions/
+  └── submit-contact-form.ts
+/src/
+  ├── assets/
+  ├── components/
+  │   ├── common/
+  │   ├── layout/
+  │   └── visualizations/
+  │       ├── Qubit.tsx
+  │       └── EntanglementParticles.tsx
+  ├── sections/
+  │   ├── QuantumLeap1_Observation.tsx
+  │   └── ... (każdy skok jako osobny komponent)
+  ├── hooks/
+  ├── translations/
+  │   ├── pl.json, en.json, fi.json
+  ├── styles/
+  │   └── tailwind.css
+  ├── App.tsx
+  ├── main.tsx
+  └── i18n.ts
+6. Styl Wizualny
+
+Paleta Kolorów:
+
+Motyw Ciemny: Głęboki granat (#0A192F), atramentowy błękit (#172A45) jako tło. Jasnoniebieski/cyjan (#64FFDA) jako akcent.
+
+Motyw Jasny: Bardzo jasny, chłodny błękit (#F0F8FF) jako tło. Ciemnoniebieski (#002244) dla tekstu. Królewski błękit (#4169E1) jako akcent.
+
+Typografia: Nowoczesny, geometryczny font bezszeryfowy (np. "Sora", "Poppins").
+
+Efekty: Animacje oparte na fizyce (framer-motion). Efekty rozmycia, poświaty (glow) i cząsteczkowe, aby wzmocnić "kwantowy" nastrój.
+
+Kluczowa Dyrektywa dla Agenta:
+
+Podczas generowania kodu priorytetyzuj modularyzację. Dziel szczególnie długie pliki na mniejsze, bardziej wyspecjalizowane komponenty. Celem jest uzyskanie większej liczby krótszych, łatwiejszych w zarządzaniu plików, zamiast kilku monolitycznych. Na przykład, jeśli komponent QuantumLeap1_Observation.tsx stanie się zbyt złożony, wyodrębnij jego części do osobnych sub-komponentów w dedykowanym folderze.
