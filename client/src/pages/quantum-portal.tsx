@@ -13,6 +13,7 @@ import SchrodingerSection from '@/components/quantum/SchrodingerSection';
 import QuantumComputing from '@/components/quantum/QuantumComputing';
 import QuantumApplications from '@/components/quantum/QuantumApplications';
 import QuantumParticleField from '@/components/quantum/QuantumParticleField';
+import SkipLink from '@/components/ui/skip-link';
 
 export default function QuantumPortal() {
   const { t, i18n } = useTranslation();
@@ -58,6 +59,9 @@ export default function QuantumPortal() {
 
   return (
     <div className={`min-h-screen font-sora transition-colors duration-500 ${isDarkMode ? 'dark' : ''}`}>
+      {/* Skip Link for Accessibility */}
+      <SkipLink />
+      
       {/* Quantum Particle Field Background */}
       <QuantumParticleField />
       
@@ -65,7 +69,7 @@ export default function QuantumPortal() {
       <QuantumControlPanel />
       
       {/* Main Content */}
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10" tabIndex={-1} role="main" aria-label="Główna zawartość portalu kwantowego">
         {/* Hero Section - Wave Function */}
         <WaveFunctionHero />
         

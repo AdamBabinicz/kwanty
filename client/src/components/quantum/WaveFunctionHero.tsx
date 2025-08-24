@@ -27,10 +27,12 @@ export default function WaveFunctionHero() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
+          role="banner"
+          aria-label="Główna sekcja portalu kwantowego"
           data-testid="hero-section"
         >
           {/* Particle System Background */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0" aria-hidden="true">
             {[...Array(5)].map((_, i) => (
               <motion.div
                 key={i}
@@ -63,6 +65,8 @@ export default function WaveFunctionHero() {
           >
             <motion.h1
               className="text-6xl md:text-8xl font-bold mb-8 quantum-glow animate-float"
+              role="heading"
+              aria-level={1}
               data-testid="hero-title"
             >
               {t('hero.title')}
