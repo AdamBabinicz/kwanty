@@ -52,10 +52,10 @@ export default function QuantumControlPanel() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{ duration: 0.5, type: "spring" }}
-              className="absolute top-0 right-0 w-64 h-64 rounded-full bg-black bg-opacity-80 backdrop-blur-lg border border-quantum-cyan border-opacity-30 flex items-center justify-center"
+              className="absolute top-0 right-0 w-80 h-80 rounded-full bg-black bg-opacity-90 backdrop-blur-lg border-2 border-quantum-cyan border-opacity-50 flex items-center justify-center shadow-2xl"
               data-testid="quantum-menu"
             >
-              <div className="relative w-48 h-48">
+              <div className="relative w-64 h-64">
                 {/* Navigation Icons */}
                 <Button
                   onClick={() => navigateToSection('observation')}
@@ -97,48 +97,84 @@ export default function QuantumControlPanel() {
                   <i className="fas fa-paper-plane text-quantum-cyan" />
                 </Button>
 
-                {/* Center Controls */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
-                  {/* Theme Toggle */}
-                  <Button
-                    onClick={toggleTheme}
-                    className="w-8 h-8 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0"
-                    data-testid="theme-toggle"
-                  >
-                    <i className={`fas ${isDarkMode ? 'fa-sun' : 'fa-moon'} text-quantum-cyan text-sm`} />
-                  </Button>
+                <Button
+                  onClick={() => navigateToSection('schrodinger')}
+                  className="absolute top-4 right-4 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0"
+                  data-testid="nav-schrodinger"
+                >
+                  <i className="fas fa-cat text-quantum-cyan" />
+                </Button>
 
-                  {/* Language Toggle */}
-                  <div className="flex gap-1">
-                    {(['pl', 'en', 'fi'] as const).map((lang) => (
-                      <Button
-                        key={lang}
-                        onClick={() => setLanguage(lang)}
-                        className={`w-6 h-6 text-xs font-bold transition-colors p-0 ${
-                          currentLanguage === lang 
-                            ? 'text-white' 
-                            : 'text-quantum-cyan hover:text-white'
-                        }`}
-                        variant="ghost"
-                        data-testid={`language-${lang}`}
-                      >
-                        {lang.toUpperCase()}
-                      </Button>
-                    ))}
+                <Button
+                  onClick={() => navigateToSection('quantum-computing')}
+                  className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0"
+                  data-testid="nav-quantum-computing"
+                >
+                  <i className="fas fa-microchip text-quantum-cyan" />
+                </Button>
+
+                <Button
+                  onClick={() => navigateToSection('quantum-applications')}
+                  className="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0"
+                  data-testid="nav-quantum-applications"
+                >
+                  <i className="fas fa-rocket text-quantum-cyan" />
+                </Button>
+
+                {/* Center Controls with Labels */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-4">
+                  {/* Theme Toggle with Label */}
+                  <div className="flex flex-col items-center gap-1">
+                    <Button
+                      onClick={toggleTheme}
+                      className="w-12 h-12 rounded-full bg-gradient-to-br from-quantum-cyan to-purple-500 hover:scale-110 transition-all duration-300 p-0 shadow-lg"
+                      data-testid="theme-toggle"
+                    >
+                      <i className={`fas ${isDarkMode ? 'fa-sun' : 'fa-moon'} text-white text-lg`} />
+                    </Button>
+                    <span className="text-xs text-quantum-cyan font-medium">
+                      {isDarkMode ? 'Jasny' : 'Ciemny'}
+                    </span>
                   </div>
 
-                  {/* Accessibility */}
-                  <Button
-                    onClick={toggleAccessibility}
-                    className={`w-8 h-8 rounded-full transition-colors p-0 ${
-                      isAccessibilityMode 
-                        ? 'bg-quantum-cyan bg-opacity-40' 
-                        : 'bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40'
-                    }`}
-                    data-testid="accessibility-toggle"
-                  >
-                    <i className="fas fa-universal-access text-quantum-cyan text-sm" />
-                  </Button>
+                  {/* Language Toggle with Label */}
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="flex gap-2">
+                      {(['pl', 'en', 'fi'] as const).map((lang) => (
+                        <Button
+                          key={lang}
+                          onClick={() => setLanguage(lang)}
+                          className={`w-8 h-8 text-xs font-bold rounded-full transition-all duration-300 ${
+                            currentLanguage === lang 
+                              ? 'bg-quantum-cyan text-black shadow-lg transform scale-110' 
+                              : 'bg-quantum-cyan bg-opacity-20 text-quantum-cyan hover:bg-opacity-40 hover:scale-105'
+                          }`}
+                          data-testid={`language-${lang}`}
+                        >
+                          {lang.toUpperCase()}
+                        </Button>
+                      ))}
+                    </div>
+                    <span className="text-xs text-quantum-cyan font-medium">Język</span>
+                  </div>
+
+                  {/* Accessibility with Label */}
+                  <div className="flex flex-col items-center gap-1">
+                    <Button
+                      onClick={toggleAccessibility}
+                      className={`w-10 h-10 rounded-full transition-all duration-300 shadow-lg ${
+                        isAccessibilityMode 
+                          ? 'bg-green-500 text-white transform scale-110' 
+                          : 'bg-quantum-cyan bg-opacity-20 text-quantum-cyan hover:bg-opacity-40 hover:scale-105'
+                      }`}
+                      data-testid="accessibility-toggle"
+                    >
+                      <i className="fas fa-universal-access text-sm" />
+                    </Button>
+                    <span className="text-xs text-quantum-cyan font-medium">
+                      {isAccessibilityMode ? 'Włączone' : 'Dostępność'}
+                    </span>
+                  </div>
                 </div>
               </div>
             </motion.div>

@@ -77,6 +77,34 @@
       "successMessage": "Your message crossed the quantum barrier",
       "tunnelingEffect": "Tunneling Effect",
       "tunnelingDescription": "Quantum tunneling allows particles to pass through energy barriers that would be insurmountable in classical physics. This phenomenon enables the operation of many modern technologies, from tunnel scanners to nuclear fusion in stars. In our form, it symbolizes overcoming communication barriers!"
+    },
+    "schrodinger": {
+      "title": "Schrödinger's Experiment",
+      "subtitle": "Superposition Paradox",
+      "instruction": "Open the quantum box and check if the cat is alive or dead!",
+      "superposition": "Superposition",
+      "alive": "Cat is Alive!",
+      "dead": "Cat is Dead",
+      "explanation": "Schrödinger's thought experiment illustrates the absurdity of transferring quantum superposition to the macroscopic scale."
+    },
+    "computing": {
+      "title": "Leap 6: Quantum Computers",
+      "subtitle": "Future of Computing", 
+      "quantumProcessor": "Interactive Quantum Processor",
+      "quantumGates": "Quantum Gates",
+      "startComputation": "Start Computation",
+      "computing": "Quantum Computing...",
+      "quantumAdvantage": "Quantum Advantage",
+      "advantageDescription": "Quantum computers use superposition and entanglement to perform calculations that would be practically impossible for classical computers."
+    },
+    "applications": {
+      "title": "Leap 7: Quantum Applications",
+      "subtitle": "Quantum Revolution in Practice",
+      "cryptography": "Quantum Cryptography",
+      "teleportation": "Quantum Teleportation",
+      "sensing": "Quantum Sensors", 
+      "learnMore": "Learn more",
+      "hideDetails": "Hide details"
     }
   }
 }

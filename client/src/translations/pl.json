@@ -77,6 +77,34 @@
       "successMessage": "Twoja wiadomość przekroczyła barierę kwantową",
       "tunnelingEffect": "Efekt Tunelowy",
       "tunnelingDescription": "Tunelowanie kwantowe pozwala cząstkom przechodzić przez bariery energetyczne, które w fizyce klasycznej byłyby nie do pokonania. To zjawisko umożliwia działanie wielu nowoczesnych technologii, od skanerów tunelowych po fuzję jądrową w gwiazdach. W naszym formularzu symbolizuje przekroczenie barier komunikacyjnych!"
+    },
+    "schrodinger": {
+      "title": "Eksperyment Schrödingera",
+      "subtitle": "Paradoks Superpozycji",
+      "instruction": "Otwórz pudełko kwantowe i sprawdź czy kot jest żywy czy martwy!",
+      "superposition": "Superpozycja",
+      "alive": "Kot Żyje!",
+      "dead": "Kot Nie Żyje",
+      "explanation": "Eksperyment myślowy Schrödingera ilustruje absurd przenoszenia kwantowej superpozycji na skalę makroskopową."
+    },
+    "computing": {
+      "title": "Skok 6: Komputery Kwantowe", 
+      "subtitle": "Przyszłość Obliczeń",
+      "quantumProcessor": "Interaktywny Procesor Kwantowy",
+      "quantumGates": "Bramki Kwantowe",
+      "startComputation": "Uruchom Obliczenia",
+      "computing": "Obliczanie Kwantowe...",
+      "quantumAdvantage": "Przewaga Kwantowa",
+      "advantageDescription": "Komputery kwantowe wykorzystują superpozycję i splątanie do wykonywania obliczeń, które byłyby praktycznie niemożliwe dla komputerów klasycznych."
+    },
+    "applications": {
+      "title": "Skok 7: Zastosowania Kwantowe",
+      "subtitle": "Rewolucja Kwantowa w Praktyce",
+      "cryptography": "Kryptografia Kwantowa",
+      "teleportation": "Teleportacja Kwantowa", 
+      "sensing": "Czujniki Kwantowe",
+      "learnMore": "Poznaj szczegóły",
+      "hideDetails": "Ukryj szczegóły"
     }
   }
 }

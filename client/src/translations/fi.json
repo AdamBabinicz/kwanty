@@ -77,6 +77,34 @@
       "successMessage": "Viestisi ylitti kvanttiestereen",
       "tunnelingEffect": "Tunnelointiilmiö",
       "tunnelingDescription": "Kvanttitunnelointi mahdollistaa hiukkasten kulkemisen energiaesteiden läpi, jotka olisivat klassisessa fysiikassa ylitsepääsemättömiä. Tämä ilmiö mahdollistaa monien nykyaikaisten teknologioiden toiminnan tunneliskannerista tähtien ydinfuusioon. Lomakkeessamme se symboloi viestinnän esteiden ylittämistä!"
+    },
+    "schrodinger": {
+      "title": "Schrödingerin Koe",
+      "subtitle": "Superpositio Paradoksi", 
+      "instruction": "Avaa kvanttilaatikko ja tarkista onko kissa elossa vai kuollut!",
+      "superposition": "Superpositio",
+      "alive": "Kissa Elää!",
+      "dead": "Kissa on Kuollut",
+      "explanation": "Schrödingerin ajatuskoe havainnollistaa kvanttisuposition siirtämisen makroskooppiseen mittakaavaan liittyvää mielettömyyttä."
+    },
+    "computing": {
+      "title": "Hyppy 6: Kvanttitietokoneet",
+      "subtitle": "Laskennan Tulevaisuus",
+      "quantumProcessor": "Interaktiivinen Kvanttiprosessori", 
+      "quantumGates": "Kvanttiportit",
+      "startComputation": "Aloita Laskenta",
+      "computing": "Kvanttilaskenta...",
+      "quantumAdvantage": "Kvanttietu",
+      "advantageDescription": "Kvanttitietokoneet käyttävät superpositiota ja kietoutumista suorittaakseen laskutoimituksia, jotka olisivat käytännössä mahdottomia klassisille tietokoneille."
+    },
+    "applications": {
+      "title": "Hyppy 7: Kvanttisovellukset",
+      "subtitle": "Kvanttivallankumous Käytännössä",
+      "cryptography": "Kvanttisalaus",
+      "teleportation": "Kvanttiteleportaatio",
+      "sensing": "Kvanttisensorit",
+      "learnMore": "Lue lisää", 
+      "hideDetails": "Piilota tiedot"
     }
   }
 }

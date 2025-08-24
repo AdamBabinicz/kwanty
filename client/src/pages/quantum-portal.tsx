@@ -9,6 +9,10 @@ import QuantumSuperposition from '@/components/quantum/QuantumSuperposition';
 import QuantumEntanglement from '@/components/quantum/QuantumEntanglement';
 import QuantumUncertainty from '@/components/quantum/QuantumUncertainty';
 import QuantumTunneling from '@/components/quantum/QuantumTunneling';
+import SchrodingerSection from '@/components/quantum/SchrodingerSection';
+import QuantumComputing from '@/components/quantum/QuantumComputing';
+import QuantumApplications from '@/components/quantum/QuantumApplications';
+import QuantumParticleField from '@/components/quantum/QuantumParticleField';
 
 export default function QuantumPortal() {
   const { t, i18n } = useTranslation();
@@ -54,11 +58,14 @@ export default function QuantumPortal() {
 
   return (
     <div className={`min-h-screen font-sora transition-colors duration-500 ${isDarkMode ? 'dark' : ''}`}>
+      {/* Quantum Particle Field Background */}
+      <QuantumParticleField />
+      
       {/* Quantum Control Panel */}
       <QuantumControlPanel />
       
       {/* Main Content */}
-      <main className="relative">
+      <main className="relative z-10">
         {/* Hero Section - Wave Function */}
         <WaveFunctionHero />
         
@@ -68,6 +75,9 @@ export default function QuantumPortal() {
         {/* Quantum Leap 2: Superposition */}
         <QuantumSuperposition />
         
+        {/* Schrödinger's Cat Experiment */}
+        <SchrodingerSection />
+        
         {/* Quantum Leap 3: Entanglement */}
         <QuantumEntanglement />
         
@@ -76,6 +86,12 @@ export default function QuantumPortal() {
         
         {/* Quantum Leap 5: Tunneling & Contact */}
         <QuantumTunneling />
+        
+        {/* Quantum Leap 6: Computing */}
+        <QuantumComputing />
+        
+        {/* Quantum Leap 7: Applications */}
+        <QuantumApplications />
       </main>
     </div>
   );
