@@ -86,7 +86,13 @@ export default function QuantumControlPanel() {
           ref={orbButtonRef}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="w-16 h-16 rounded-full bg-gradient-to-br from-quantum-cyan via-quantum-blue to-purple-500 animate-pulse-glow hover:shadow-2xl transition-all duration-300 p-0 focus:outline-none focus:ring-4 focus:ring-quantum-cyan focus:ring-opacity-50"
-          aria-label={isMenuOpen ? 'Zamknij menu kwantowe' : 'Otwórz menu kwantowe'}
+          aria-label={isMenuOpen ? 
+            (currentLanguage === 'pl' ? 'Zamknij menu kwantowe' : 
+             currentLanguage === 'en' ? 'Close quantum menu' : 
+             'Sulje kvanttivalikko') : 
+            (currentLanguage === 'pl' ? 'Otwórz menu kwantowe' : 
+             currentLanguage === 'en' ? 'Open quantum menu' : 
+             'Avaa kvanttivalikko')}
           aria-expanded={isMenuOpen}
           aria-haspopup="true"
           data-testid="quantum-orb-button"
@@ -114,85 +120,85 @@ export default function QuantumControlPanel() {
               data-testid="quantum-menu"
             >
               <div className="relative w-64 h-64">
-                {/* Navigation Icons */}
+                {/* Navigation Icons - positioned around the circle */}
                 <Button
                   onClick={() => navigateToSection('observation')}
-                  className="absolute top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan"
-                  aria-label="Przejdź do sekcji obserwacji kwantowej"
+                  className="absolute top-2 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-quantum-cyan bg-opacity-30 hover:bg-opacity-50 transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan flex items-center justify-center"
+                  aria-label={`${t('sections.observation.title')} - ${t('sections.observation.subtitle')}`}
                   role="menuitem"
                   data-testid="nav-observation"
                 >
-                  <FaEye className="text-quantum-cyan" aria-hidden="true" />
+                  <FaEye className="text-quantum-cyan text-sm" aria-hidden="true" />
                 </Button>
 
                 <Button
                   onClick={() => navigateToSection('superposition')}
-                  className="absolute top-1/2 right-4 transform -translate-y-1/2 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan"
-                  aria-label="Przejdź do sekcji superpozycji kwantowej"
+                  className="absolute top-8 right-2 w-10 h-10 rounded-full bg-quantum-cyan bg-opacity-30 hover:bg-opacity-50 transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan flex items-center justify-center"
+                  aria-label={`${t('sections.superposition.title')} - ${t('sections.superposition.subtitle')}`}
                   role="menuitem"
                   data-testid="nav-superposition"
                 >
-                  <FaLayerGroup className="text-quantum-cyan" aria-hidden="true" />
+                  <FaLayerGroup className="text-quantum-cyan text-sm" aria-hidden="true" />
                 </Button>
 
                 <Button
                   onClick={() => navigateToSection('entanglement')}
-                  className="absolute bottom-4 right-1/3 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan"
-                  aria-label="Przejdź do sekcji splątania kwantowego"
+                  className="absolute top-1/2 right-2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-quantum-cyan bg-opacity-30 hover:bg-opacity-50 transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan flex items-center justify-center"
+                  aria-label={`${t('sections.entanglement.title')} - ${t('sections.entanglement.subtitle')}`}
                   role="menuitem"
                   data-testid="nav-entanglement"
                 >
-                  <FaLink className="text-quantum-cyan" aria-hidden="true" />
+                  <FaLink className="text-quantum-cyan text-sm" aria-hidden="true" />
                 </Button>
 
                 <Button
                   onClick={() => navigateToSection('uncertainty')}
-                  className="absolute bottom-4 left-1/3 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan"
-                  aria-label="Przejdź do sekcji zasady nieoznaczoności"
+                  className="absolute bottom-8 right-2 w-10 h-10 rounded-full bg-quantum-cyan bg-opacity-30 hover:bg-opacity-50 transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan flex items-center justify-center"
+                  aria-label={`${t('sections.uncertainty.title')} - ${t('sections.uncertainty.subtitle')}`}
                   role="menuitem"
                   data-testid="nav-uncertainty"
                 >
-                  <FaQuestion className="text-quantum-cyan" aria-hidden="true" />
+                  <FaQuestion className="text-quantum-cyan text-sm" aria-hidden="true" />
                 </Button>
 
                 <Button
                   onClick={() => navigateToSection('tunneling')}
-                  className="absolute top-1/2 left-4 transform -translate-y-1/2 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan"
-                  aria-label="Przejdź do sekcji tunelowania kwantowego"
+                  className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-quantum-cyan bg-opacity-30 hover:bg-opacity-50 transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan flex items-center justify-center"
+                  aria-label={`${t('sections.tunneling.title')} - ${t('sections.tunneling.subtitle')}`}
                   role="menuitem"
                   data-testid="nav-tunneling"
                 >
-                  <FaPaperPlane className="text-quantum-cyan" aria-hidden="true" />
+                  <FaPaperPlane className="text-quantum-cyan text-sm" aria-hidden="true" />
                 </Button>
 
                 <Button
                   onClick={() => navigateToSection('schrodinger')}
-                  className="absolute top-4 right-4 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan"
-                  aria-label="Przejdź do sekcji eksperymentu Schrödingera"
+                  className="absolute bottom-8 left-2 w-10 h-10 rounded-full bg-quantum-cyan bg-opacity-30 hover:bg-opacity-50 transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan flex items-center justify-center"
+                  aria-label={`${t('sections.schrodinger.title')} - ${t('sections.schrodinger.subtitle')}`}
                   role="menuitem"
                   data-testid="nav-schrodinger"
                 >
-                  <FaCat className="text-quantum-cyan" aria-hidden="true" />
+                  <FaCat className="text-quantum-cyan text-sm" aria-hidden="true" />
                 </Button>
 
                 <Button
                   onClick={() => navigateToSection('quantum-computing')}
-                  className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan"
-                  aria-label="Przejdź do sekcji komputerów kwantowych"
+                  className="absolute top-1/2 left-2 transform -translate-y-1/2 w-10 h-10 rounded-full bg-quantum-cyan bg-opacity-30 hover:bg-opacity-50 transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan flex items-center justify-center"
+                  aria-label={`${t('sections.computing.title')} - ${t('sections.computing.subtitle')}`}
                   role="menuitem"
                   data-testid="nav-quantum-computing"
                 >
-                  <FaMicrochip className="text-quantum-cyan" aria-hidden="true" />
+                  <FaMicrochip className="text-quantum-cyan text-sm" aria-hidden="true" />
                 </Button>
 
                 <Button
                   onClick={() => navigateToSection('quantum-applications')}
-                  className="absolute bottom-4 right-4 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 hover:bg-opacity-40 transition-colors p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan"
-                  aria-label="Przejdź do sekcji zastosowań kwantowych"
+                  className="absolute top-8 left-2 w-10 h-10 rounded-full bg-quantum-cyan bg-opacity-30 hover:bg-opacity-50 transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-quantum-cyan flex items-center justify-center"
+                  aria-label={`${t('sections.applications.title')} - ${t('sections.applications.subtitle')}`}
                   role="menuitem"
                   data-testid="nav-quantum-applications"
                 >
-                  <FaRocket className="text-quantum-cyan" aria-hidden="true" />
+                  <FaRocket className="text-quantum-cyan text-sm" aria-hidden="true" />
                 </Button>
 
                 {/* Center Controls with Labels */}
@@ -212,14 +218,16 @@ export default function QuantumControlPanel() {
                       )}
                     </Button>
                     <span className="text-xs text-foreground font-medium">
-                      Motyw: {isDarkMode ? 'Ciemny' : 'Jasny'}
+                      {currentLanguage === 'pl' ? 'Motyw:' : currentLanguage === 'en' ? 'Theme:' : 'Teema:'} {isDarkMode ? (currentLanguage === 'pl' ? 'Ciemny' : currentLanguage === 'en' ? 'Dark' : 'Tumma') : (currentLanguage === 'pl' ? 'Jasny' : currentLanguage === 'en' ? 'Light' : 'Vaalea')}
                     </span>
                   </div>
 
                   {/* Language Toggle with Label */}
                   <div className="flex flex-col items-center gap-2">
                     <div className="bg-card dark:bg-quantum-dark-800 p-2 rounded-lg border border-quantum-cyan border-opacity-30">
-                      <div className="text-xs text-center mb-2 font-semibold text-foreground">Język / Language</div>
+                      <div className="text-xs text-center mb-2 font-semibold text-foreground">
+                        {currentLanguage === 'pl' ? 'Język / Language / Kieli' : currentLanguage === 'en' ? 'Language / Język / Kieli' : 'Kieli / Language / Język'}
+                      </div>
                       <div className="flex flex-col gap-1">
                         {(['pl', 'en', 'fi'] as const).map((lang) => (
                           <Button
@@ -258,7 +266,7 @@ export default function QuantumControlPanel() {
                       <MdAccessibility className="text-sm" aria-hidden="true" />
                     </Button>
                     <span className="text-xs text-foreground font-medium">
-                      Dostępność: {isAccessibilityMode ? 'Wł.' : 'Wył.'}
+                      {currentLanguage === 'pl' ? 'Dostępność:' : currentLanguage === 'en' ? 'Accessibility:' : 'Saavutettavuus:'} {isAccessibilityMode ? (currentLanguage === 'pl' ? 'Wł.' : currentLanguage === 'en' ? 'On' : 'Päällä') : (currentLanguage === 'pl' ? 'Wył.' : currentLanguage === 'en' ? 'Off' : 'Pois')}
                     </span>
                   </div>
                 </div>
