@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import schrodingerImage from "@assets/generated_images/Schrödinger's_cat_superposition_paradox_ae58c587.png";
+import schrodingerImage from "@assets/generated_images/Schrödinger's_cat_superposition_paradox_ae58c587.avif";
 import GlossaryTerm from "@/components/ui/GlossaryTerm";
 
 export default function SchrodingerSection() {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import quantumComputerImage from "@assets/generated_images/Futuristic_quantum_computer_visualization_59e7c532.png";
+import quantumComputerImage from "@assets/generated_images/Futuristic_quantum_computer_visualization_59e7c532.avif";
 import GlossaryTerm from "@/components/ui/GlossaryTerm";
 
 export default function QuantumComputing() {

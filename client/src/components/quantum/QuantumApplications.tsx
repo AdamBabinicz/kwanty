@@ -2,8 +2,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import waveDualityImage from "@assets/generated_images/Quantum_wave-particle_duality_visualization_684f28dd.png";
-import entanglementImage from "@assets/generated_images/Quantum_entanglement_cosmic_connection_d8e9ab2d.png";
+import waveDualityImage from "@assets/generated_images/Quantum_wave-particle_duality_visualization_684f28dd.avif";
+import entanglementImage from "@assets/generated_images/Quantum_entanglement_cosmic_connection_d8e9ab2d.avif";
 import GlossaryTerm from "@/components/ui/GlossaryTerm";
 
 export default function QuantumApplications() {
