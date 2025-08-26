@@ -83,6 +83,11 @@
   --border: hsl(215, 25%, 15%);
   --input: hsl(215, 30%, 18%);
   --ring: hsl(174, 100%, 70%);
+  --tooltip-background-dark: hsl(
+    210,
+    67%,
+    15%
+  ); /* Zmieniamy tło na nieco jaśniejsze */
   --quantum-dark-900: hsl(210, 67%, 10%);
   --quantum-dark-800: hsl(215, 50%, 13%);
   --quantum-dark-700: hsl(215, 35%, 18%);
@@ -114,31 +119,27 @@
     font-size: 2.9rem !important;
   }
 
-  /* --- KLUCZOWA ZMIANA: Globalne, responsywne paddingi --- */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.5rem; /* 24px - padding domyślny dla mobilnych */
-    padding-right: 1.5rem; /* 24px */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
-  /* Dla tabletów i większych ekranów */
   @media (min-width: 768px) {
     .container {
-      padding-left: 10rem !important; /* 40px */
-      padding-right: 10rem !important; /* 40px */
+      padding-left: 10rem !important;
+      padding-right: 10rem !important;
     }
   }
 
-  /* Dla dużych desktopów */
   @media (min-width: 1280px) {
     .container {
-      padding-left: 5rem; /* 80px */
-      padding-right: 5rem; /* 80px */
+      padding-left: 5rem;
+      padding-right: 5rem;
     }
   }
-  /* --- KONIEC KLUCZOWEJ ZMIANY --- */
 }
 
 html.accessibility-mode {
@@ -389,4 +390,18 @@ html.accessibility-mode .border {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Poprawione style dla tooltipów i popoverów w trybie ciemnym */
+.dark .radix-tooltip-content,
+.dark .radix-popover-content,
+.dark .TooltipContent,
+.dark .PopoverContent {
+  /* Używamy zmiennej, która jest ustawiona na jaśniejsze tło */
+  background-color: var(--tooltip-background-dark) !important;
+  /* Biała ramka */
+  border: 1px solid hsl(0, 0%, 90%) !important; /* Jaśniejszy odcień bieli */
+  /* Subtelne cieniowanie dla kontrastu */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.1) !important;
+  color: hsl(0, 0%, 90%) !important; /* Jaśniejszy tekst */
 }
