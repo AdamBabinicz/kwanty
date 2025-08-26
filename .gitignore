@@ -6,6 +6,3 @@ vite.config.ts.*
 *.tar.gz
 # Ignoruj folder "pliki"
 pliki/
-
-# Ignoruj wszystkie pliki .txt w całym repozytorium
-*.txt
