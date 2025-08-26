@@ -17,7 +17,7 @@ interface SEOProps {
 }
 
 // Stałe dopasowane do projektu "Kwantowy Portal"
-const siteUrl = "https://kwantowy-portal.netlify.app"; // Zmień na swój docelowy URL
+const siteUrl = "https://kwanty.netlify.app"; // Zmień na swój docelowy URL
 const siteName = "Kwantowy Portal: Interaktywna Eksploracja Rzeczywistości";
 const defaultImage = `${siteUrl}/2.png`; // Ważne: Stwórz ten plik i umieść go w folderze /public
 const authorName = "Adam Babinicz";
