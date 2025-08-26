@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwantowy Portal: Interaktywna Eksploracja Rzeczywistości</title>
+    <meta name="description" content="Przełomowa strona internetowa manifestująca zasady mechaniki kwantowej przez interaktywne wizualizacje i dynamiczny interfejs.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sora': ['Sora', 'sans-serif'],
+                    },
+                    colors: {
+                        'quantum-dark': {
+                            900: '#0A192F',
+                            800: '#172A45',
+                            700: '#1E3A5F',
+                        },
+                        'quantum-light': {
+                            50: '#F0F8FF',
+                            100: '#E6F3FF',
+                            200: '#CCE7FF',
+                        },
+                        'quantum-cyan': '#64FFDA',
+                        'quantum-blue': '#4169E1',
+                        'quantum-navy': '#002244',
+                    },
+                    animation: {
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 4s linear infinite',
+                        'wave-collapse': 'wave-collapse 1.5s ease-out forwards',
+                        'particle-drift': 'particle-drift 8s ease-in-out infinite',
+                        'tunnel': 'tunnel 2s ease-out forwards',
+                    },
+                    keyframes: {
+                        'pulse-glow': {
+                            '0%': { boxShadow: '0 0 20px rgba(100, 255, 218, 0.3)' },
+                            '100%': { boxShadow: '0 0 40px rgba(100, 255, 218, 0.8), 0 0 80px rgba(100, 255, 218, 0.3)' }
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        'wave-collapse': {
+                            '0%': { 
+                                opacity: 0.7, 
+                                filter: 'blur(10px)', 
+                                transform: 'scale(1.1)' 
+                            },
+                            '100%': { 
+                                opacity: 1, 
+                                filter: 'blur(0px)', 
+                                transform: 'scale(1)' 
+                            }
+                        },
+                        'particle-drift': {
+                            '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                            '25%': { transform: 'translate(30px, -30px) rotate(90deg)' },
+                            '50%': { transform: 'translate(-20px, -60px) rotate(180deg)' },
+                            '75%': { transform: 'translate(-40px, -20px) rotate(270deg)' }
+                        },
+                        'tunnel': {
+                            '0%': { transform: 'translateX(0) scale(1)', opacity: 1 },
+                            '50%': { transform: 'translateX(50px) scale(0.8)', opacity: 0.3 },
+                            '100%': { transform: 'translateX(100px) scale(1)', opacity: 1 }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .quantum-glow {
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+        
+        .wave-function::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(100, 255, 218, 0.1) 50%, transparent 60%);
+            animation: wave-sweep 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave-sweep {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            100% { transform: translateX(100%) skewX(-15deg); }
+        }
+        
+        .particle-system {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #64FFDA, transparent);
+            border-radius: 50%;
+            animation: particle-drift 8s ease-in-out infinite;
+        }
+        
+        .entangled-particle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #64FFDA 30%, rgba(100, 255, 218, 0.3) 70%, transparent);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .barrier-effect {
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(100, 255, 218, 0.1) 20%, 
+                rgba(100, 255, 218, 0.3) 40%, 
+                rgba(100, 255, 218, 0.5) 50%, 
+                rgba(100, 255, 218, 0.3) 60%, 
+                rgba(100, 255, 218, 0.1) 80%, 
+                transparent 100%
+            );
+            animation: barrier-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes barrier-pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .dark .particle-system {
+            background: radial-gradient(circle, #64FFDA, transparent);
+        }
+        
+        .light .particle-system {
+            background: radial-gradient(circle, #4169E1, transparent);
+        }
+    </style>
+</head>
+<body class="font-sora bg-quantum-dark-900 text-white transition-colors duration-500" id="quantumBody">
+    
+    <!-- Quantum Control Panel Orb -->
+    <!-- @COMPONENT: QuantumControlPanel -->
+    <div id="quantumOrb" class="fixed top-8 right-8 z-50 transition-all duration-300 cursor-pointer">
+        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-quantum-cyan via-blue-400 to-purple-500 animate-pulse-glow flex items-center justify-center group hover:scale-110 transition-transform">
+            <i class="fas fa-atom text-xl text-white group-hover:rotate-180 transition-transform duration-500"></i>
+        </div>
+        
+        <!-- Expanded Menu -->
+        <div id="quantumMenu" class="absolute top-0 right-0 opacity-0 scale-0 transition-all duration-500 pointer-events-none">
+            <div class="w-64 h-64 rounded-full bg-black bg-opacity-80 backdrop-blur-lg border border-quantum-cyan border-opacity-30 flex items-center justify-center">
+                <div class="relative w-48 h-48">
+                    <!-- Navigation Icons -->
+                    <button class="absolute top-4 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 flex items-center justify-center hover:bg-opacity-40 transition-colors" data-section="observation">
+                        <i class="fas fa-eye text-quantum-cyan"></i>
+                    </button>
+                    <button class="absolute top-1/2 right-4 transform -translate-y-1/2 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 flex items-center justify-center hover:bg-opacity-40 transition-colors" data-section="superposition">
+                        <i class="fas fa-layer-group text-quantum-cyan"></i>
+                    </button>
+                    <button class="absolute bottom-4 right-1/3 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 flex items-center justify-center hover:bg-opacity-40 transition-colors" data-section="entanglement">
+                        <i class="fas fa-link text-quantum-cyan"></i>
+                    </button>
+                    <button class="absolute bottom-4 left-1/3 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 flex items-center justify-center hover:bg-opacity-40 transition-colors" data-section="uncertainty">
+                        <i class="fas fa-question text-quantum-cyan"></i>
+                    </button>
+                    <button class="absolute top-1/2 left-4 transform -translate-y-1/2 w-12 h-12 rounded-full bg-quantum-cyan bg-opacity-20 flex items-center justify-center hover:bg-opacity-40 transition-colors" data-section="tunneling">
+                        <i class="fas fa-paper-plane text-quantum-cyan"></i>
+                    </button>
+                    
+                    <!-- Center Controls -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
+                        <!-- Theme Toggle -->
+                        <button id="themeToggle" class="w-8 h-8 rounded-full bg-quantum-cyan bg-opacity-20 flex items-center justify-center hover:bg-opacity-40 transition-colors">
+                            <i class="fas fa-sun text-quantum-cyan text-sm"></i>
+                        </button>
+                        <!-- Language Toggle -->
+                        <div class="flex gap-1">
+                            <button class="w-6 h-6 text-xs font-bold text-quantum-cyan hover:text-white transition-colors" data-lang="pl">PL</button>
+                            <button class="w-6 h-6 text-xs font-bold text-quantum-cyan hover:text-white transition-colors" data-lang="en">EN</button>
+                            <button class="w-6 h-6 text-xs font-bold text-quantum-cyan hover:text-white transition-colors" data-lang="fi">FI</button>
+                        </div>
+                        <!-- Accessibility -->
+                        <button id="accessibilityToggle" class="w-8 h-8 rounded-full bg-quantum-cyan bg-opacity-20 flex items-center justify-center hover:bg-opacity-40 transition-colors">
+                            <i class="fas fa-universal-access text-quantum-cyan text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: QuantumControlPanel -->
+
+    <!-- Main Content -->
+    <main class="min-h-screen">
+        
+        <!-- Hero Section - Wave Function Introduction -->
+        <!-- @COMPONENT: WaveFunctionHero -->
+        <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden wave-function">
+            <!-- Particle System Background -->
+            <div class="absolute inset-0">
+                <div class="particle-system" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+                <div class="particle-system" style="top: 40%; left: 80%; animation-delay: 1s;"></div>
+                <div class="particle-system" style="top: 70%; left: 30%; animation-delay: 2s;"></div>
+                <div class="particle-system" style="top: 10%; left: 60%; animation-delay: 3s;"></div>
+                <div class="particle-system" style="top: 80%; left: 70%; animation-delay: 4s;"></div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="text-center z-10 max-w-4xl mx-auto px-6" id="heroContent">
+                <h1 class="text-6xl md:text-8xl font-bold mb-8 quantum-glow animate-float" data-mock="true">
+                    Kwantowy Portal
+                </h1>
+                <p class="text-xl md:text-2xl mb-12 text-quantum-cyan opacity-80" data-mock="true">
+                    Interaktywna Eksploracja Rzeczywistości
+                </p>
+                
+                <!-- Wave Function Visualization -->
+                <div class="relative w-80 h-80 mx-auto mb-12">
+                    <div class="absolute inset-0 rounded-full border-2 border-quantum-cyan border-opacity-30 animate-spin-slow"></div>
+                    <div class="absolute inset-4 rounded-full border border-quantum-cyan border-opacity-50 animate-spin-slow" style="animation-direction: reverse;"></div>
+                    <div class="absolute inset-8 rounded-full border border-quantum-cyan border-opacity-70 animate-spin-slow"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-quantum-cyan to-blue-500 animate-pulse-glow flex items-center justify-center">
+                            <i class="fas fa-wave-square text-4xl text-white"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="collapseWave" class="px-8 py-4 bg-transparent border-2 border-quantum-cyan text-quantum-cyan hover:bg-quantum-cyan hover:text-quantum-dark-900 transition-all duration-300 rounded-full font-semibold text-lg">
+                    <span data-mock="true">Zmierz Rzeczywistość</span>
+                    <i class="fas fa-arrow-down ml-2"></i>
+                </button>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: WaveFunctionHero -->
+        
+        <!-- Quantum Leap 1: Observation -->
+        <!-- @COMPONENT: QuantumObservation -->
+        <section id="observation" class="min-h-screen bg-quantum-dark-800 py-20 hidden opacity-0">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-6 quantum-glow" data-mock="true">
+                        Skok 1: Obserwacja
+                    </h2>
+                    <p class="text-xl text-quantum-cyan mb-8" data-mock="true">
+                        Od Fali do Rzeczywistości
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-semibold mb-4" data-mock="true">Dualizm Korpuskularno-Falowy</h3>
+                        <p class="text-lg leading-relaxed opacity-90" data-mock="true">
+                            Cząstki subatomowe wykazują podwójną naturę - mogą zachowywać się zarówno jak fale, jak i cząstki, w zależności od sposobu obserwacji. To właśnie obserwacja powoduje "kolaps funkcji falowej" - przejście z nieokreślonego stanu możliwości do konkretnej rzeczywistości.
+                        </p>
+                        <p class="text-lg leading-relaxed opacity-90" data-mock="true">
+                            Ta strona internetowa sama jest manifestacją tego zjawiska - istniała jako "fala możliwości" dopóki nie wykonałeś pierwszej interakcji, która spowodowała kolaps do obecnej, określonej formy.
+                        </p>
+                        
+                        <div class="bg-quantum-dark-700 p-6 rounded-xl border border-quantum-cyan border-opacity-30">
+                            <h4 class="text-lg font-semibold mb-3 text-quantum-cyan" data-mock="true">Kluczowe Pojęcia:</h4>
+                            <ul class="space-y-2" data-mock="true">
+                                <li><i class="fas fa-chevron-right text-quantum-cyan mr-2"></i>Funkcja falowa ψ (psi)</li>
+                                <li><i class="fas fa-chevron-right text-quantum-cyan mr-2"></i>Kolaps funkcji falowej</li>
+                                <li><i class="fas fa-chevron-right text-quantum-cyan mr-2"></i>Natura obserwatora</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <!-- Visualization Area -->
+                        <div class="relative w-full h-96 rounded-xl bg-gradient-to-br from-quantum-dark-700 to-quantum-dark-800 border border-quantum-cyan border-opacity-30 overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="w-32 h-32 mx-auto mb-4 relative">
+                                        <div class="absolute inset-0 rounded-full border-2 border-dashed border-quantum-cyan animate-spin-slow opacity-60"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <i class="fas fa-eye text-4xl text-quantum-cyan"></i>
+                                        </div>
+                                    </div>
+                                    <p class="text-quantum-cyan font-medium" data-mock="true">Stan po kolapsie funkcji falowej</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: QuantumObservation -->
+        
+        <!-- Quantum Leap 2: Superposition -->
+        <!-- @COMPONENT: QuantumSuperposition -->
+        <section id="superposition" class="min-h-screen py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-6 quantum-glow" data-mock="true">
+                        Skok 2: Superpozycja
+                    </h2>
+                    <p class="text-xl text-quantum-cyan mb-8" data-mock="true">
+                        Nieskończone Możliwości
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-12">
+                        <p class="text-lg mb-8" data-mock="true">
+                            Kliknij na qubit aby zmierzyć jego stan. W superpozycji może być jednocześnie w stanie |0⟩ i |1⟩!
+                        </p>
+                        
+                        <!-- Interactive Qubit -->
+                        <div class="relative inline-block">
+                            <button id="quantumQubit" class="relative w-48 h-48 rounded-full bg-gradient-to-br from-purple-500 via-blue-500 to-quantum-cyan animate-pulse-glow transform hover:scale-105 transition-all duration-300 group">
+                                <!-- Qubit Visualization -->
+                                <div class="absolute inset-4 rounded-full border-2 border-white border-opacity-30 animate-spin-slow"></div>
+                                <div class="absolute inset-8 rounded-full border border-white border-opacity-50 animate-spin-slow" style="animation-direction: reverse;"></div>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span id="qubitState" class="text-3xl font-bold text-white group-hover:scale-110 transition-transform" data-mock="true">
+                                        |ψ⟩
+                                    </span>
+                                </div>
+                                
+                                <!-- Measurement Effect -->
+                                <div id="measurementRing" class="absolute inset-0 rounded-full border-4 border-quantum-cyan opacity-0 scale-150 transition-all duration-500"></div>
+                            </button>
+                        </div>
+                        
+                        <!-- State Display -->
+                        <div id="stateDisplay" class="mt-8 p-6 bg-quantum-dark-800 rounded-xl border border-quantum-cyan border-opacity-30 inline-block">
+                            <h4 class="text-lg font-semibold mb-3 text-quantum-cyan" data-mock="true">Stan Qubitu:</h4>
+                            <p id="stateText" class="text-2xl font-bold" data-mock="true">
+                                Superpozycja: α|0⟩ + β|1⟩
+                            </p>
+                            <p id="stateDescription" class="mt-2 text-sm opacity-80" data-mock="true">
+                                Qubit istnieje w superpozycji wszystkich możliwych stanów
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Measurement Statistics -->
+                    <div class="bg-quantum-dark-700 p-8 rounded-xl border border-quantum-cyan border-opacity-30">
+                        <h3 class="text-2xl font-semibold mb-6 text-center" data-mock="true">Statystyki Pomiarów</h3>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-quantum-cyan mb-2" id="state0Count" data-mock="true">0</div>
+                                <div class="text-lg" data-mock="true">Stan |0⟩</div>
+                                <div class="w-full bg-quantum-dark-800 rounded-full h-4 mt-2">
+                                    <div id="state0Bar" class="bg-gradient-to-r from-blue-500 to-quantum-cyan h-4 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-purple-400 mb-2" id="state1Count" data-mock="true">0</div>
+                                <div class="text-lg" data-mock="true">Stan |1⟩</div>
+                                <div class="w-full bg-quantum-dark-800 rounded-full h-4 mt-2">
+                                    <div id="state1Bar" class="bg-gradient-to-r from-purple-500 to-pink-500 h-4 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: QuantumSuperposition -->
+        
+        <!-- Quantum Leap 3: Entanglement -->
+        <!-- @COMPONENT: QuantumEntanglement -->
+        <section id="entanglement" class="min-h-screen bg-quantum-dark-800 py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-6 quantum-glow" data-mock="true">
+                        Skok 3: Splątanie
+                    </h2>
+                    <p class="text-xl text-quantum-cyan mb-8" data-mock="true">
+                        Kosmiczne Połączenie
+                    </p>
+                </div>
+                
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-12">
+                        <p class="text-lg mb-8" data-mock="true">
+                            Najedź kursorem na jedną z splątanych cząstek i obserwuj jak druga reaguje natychmiastowo!
+                        </p>
+                    </div>
+                    
+                    <!-- Entangled Particles Visualization -->
+                    <div class="relative h-96 mb-12">
+                        <div class="absolute inset-0 flex items-center justify-between px-12">
+                            <!-- Particle A -->
+                            <div class="relative group cursor-pointer" id="particleA">
+                                <div class="entangled-particle group-hover:scale-125 group-hover:rotate-180"></div>
+                                <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+                                    <span class="text-sm font-medium text-quantum-cyan" data-mock="true">Cząstka A</span>
+                                </div>
+                                <!-- Spin Indicator -->
+                                <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                                    <i id="spinA" class="fas fa-arrow-up text-quantum-cyan text-2xl transition-transform duration-300"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Connection Line -->
+                            <div class="flex-1 relative mx-8">
+                                <div class="h-px bg-gradient-to-r from-quantum-cyan via-purple-500 to-quantum-cyan relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent animate-pulse"></div>
+                                </div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <span class="bg-quantum-dark-900 px-3 py-1 text-sm font-medium text-quantum-cyan border border-quantum-cyan border-opacity-30 rounded-full" data-mock="true">
+                                        Splątanie Kwantowe
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <!-- Particle B -->
+                            <div class="relative group cursor-pointer" id="particleB">
+                                <div class="entangled-particle group-hover:scale-125 group-hover:rotate-180"></div>
+                                <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+                                    <span class="text-sm font-medium text-quantum-cyan" data-mock="true">Cząstka B</span>
+                                </div>
+                                <!-- Spin Indicator -->
+                                <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                                    <i id="spinB" class="fas fa-arrow-down text-purple-400 text-2xl transition-transform duration-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Explanation -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-quantum-dark-700 p-6 rounded-xl border border-quantum-cyan border-opacity-30">
+                            <h3 class="text-xl font-semibold mb-4 text-quantum-cyan" data-mock="true">Zasada Splątania</h3>
+                            <p class="text-sm leading-relaxed opacity-90" data-mock="true">
+                                Einstein nazywał to "upiornym oddziaływaniem na odległość". Gdy dwie cząstki są kwantowo splątane, pomiar stanu jednej z nich natychmiastowo wpływa na stan drugiej, niezależnie od dzielącej je odległości.
+                            </p>
+                        </div>
+                        <div class="bg-quantum-dark-700 p-6 rounded-xl border border-quantum-cyan border-opacity-30">
+                            <h3 class="text-xl font-semibold mb-4 text-quantum-cyan" data-mock="true">Zastosowania</h3>
+                            <p class="text-sm leading-relaxed opacity-90" data-mock="true">
+                                Splątanie kwantowe jest fundamentem dla technologii przyszłości: komputerów kwantowych, kryptografii kwantowej i teleportacji kwantowej. To podstawa rewolucji kwantowej.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: QuantumEntanglement -->
+        
+        <!-- Quantum Leap 4: Uncertainty -->
+        <!-- @COMPONENT: QuantumUncertainty -->
+        <section id="uncertainty" class="min-h-screen py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-6 quantum-glow" data-mock="true">
+                        Skok 4: Nieoznaczoność
+                    </h2>
+                    <p class="text-xl text-quantum-cyan mb-8" data-mock="true">
+                        Granice Pewności
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-12">
+                        <p class="text-lg mb-8" data-mock="true">
+                            Zasada nieoznaczoności Heisenberga: Im dokładniej znamy pozycję, tym mniej dokładnie możemy określić pęd!
+                        </p>
+                    </div>
+                    
+                    <!-- Heisenberg Meter -->
+                    <div class="bg-quantum-dark-800 p-8 rounded-xl border border-quantum-cyan border-opacity-30 mb-8">
+                        <h3 class="text-2xl font-semibold mb-8 text-center" data-mock="true">Miernik Heisenberga</h3>
+                        
+                        <div class="grid md:grid-cols-2 gap-8 mb-8">
+                            <!-- Position Slider -->
+                            <div>
+                                <label class="block text-lg font-medium mb-4 text-quantum-cyan" data-mock="true">
+                                    Pewność Pozycji: <span id="positionValue">50</span>%
+                                </label>
+                                <input type="range" 
+                                       id="positionSlider" 
+                                       class="w-full h-3 bg-quantum-dark-700 rounded-lg appearance-none cursor-pointer slider"
+                                       min="0" max="100" value="50">
+                                <div class="flex justify-between text-sm mt-2 opacity-60">
+                                    <span data-mock="true">Nieznana</span>
+                                    <span data-mock="true">Dokładna</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Momentum Slider -->
+                            <div>
+                                <label class="block text-lg font-medium mb-4 text-purple-400" data-mock="true">
+                                    Pewność Pędu: <span id="momentumValue">50</span>%
+                                </label>
+                                <input type="range" 
+                                       id="momentumSlider" 
+                                       class="w-full h-3 bg-quantum-dark-700 rounded-lg appearance-none cursor-pointer slider"
+                                       min="0" max="100" value="50" disabled>
+                                <div class="flex justify-between text-sm mt-2 opacity-60">
+                                    <span data-mock="true">Nieznany</span>
+                                    <span data-mock="true">Dokładny</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Particle Visualization -->
+                        <div class="relative h-48 bg-quantum-dark-700 rounded-lg border border-quantum-cyan border-opacity-30 overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div id="uncertaintyParticle" class="relative">
+                                    <!-- Particle -->
+                                    <div class="w-8 h-8 rounded-full bg-quantum-cyan transition-all duration-300"></div>
+                                    <!-- Position Uncertainty Cloud -->
+                                    <div id="positionCloud" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-quantum-cyan to-transparent opacity-30 transition-all duration-300" style="width: 100px; height: 100px;"></div>
+                                    <!-- Momentum Vectors -->
+                                    <div id="momentumVectors" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                        <div class="absolute w-12 h-px bg-purple-400 transform -rotate-45 origin-left"></div>
+                                        <div class="absolute w-12 h-px bg-purple-400 transform rotate-45 origin-left"></div>
+                                        <div class="absolute w-12 h-px bg-purple-400 transform rotate-12 origin-left"></div>
+                                        <div class="absolute w-12 h-px bg-purple-400 transform -rotate-12 origin-left"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Uncertainty Formula -->
+                            <div class="absolute top-4 left-4">
+                                <span class="text-sm font-mono bg-black bg-opacity-50 px-2 py-1 rounded" data-mock="true">
+                                    Δx · Δp ≥ ℏ/2
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Explanation -->
+                    <div class="bg-quantum-dark-700 p-6 rounded-xl border border-quantum-cyan border-opacity-30">
+                        <h3 class="text-xl font-semibold mb-4 text-quantum-cyan" data-mock="true">Fundamentalne Ograniczenie</h3>
+                        <p class="leading-relaxed opacity-90" data-mock="true">
+                            Zasada nieoznaczoności nie wynika z ograniczeń naszych przyrządów pomiarowych, ale jest fundamentalną właściwością natury. Im dokładniej próbujemy zmierzyć jedną wielkość, tym mniej dokładnie możemy jednocześnie zmierzyć wielkość z nią sprzężoną. To nie jest kwestia technologii - to jest sposób, w jaki działa wszechświat na poziomie kwantowym.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: QuantumUncertainty -->
+        
+        <!-- Quantum Leap 5: Tunneling & Contact -->
+        <!-- @COMPONENT: QuantumTunneling -->
+        <section id="tunneling" class="min-h-screen bg-quantum-dark-800 py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-6 quantum-glow" data-mock="true">
+                        Skok 5: Tunelowanie
+                    </h2>
+                    <p class="text-xl text-quantum-cyan mb-8" data-mock="true">
+                        Przekraczanie Barier
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-12">
+                        <p class="text-lg mb-8" data-mock="true">
+                            W świecie kwantowym cząstki mogą "tunelować" przez bariery, które klasycznie byłyby nie do pokonania!
+                        </p>
+                    </div>
+                    
+                    <!-- Contact Form with Quantum Barrier -->
+                    <div class="relative">
+                        <!-- Quantum Barrier -->
+                        <div id="quantumBarrier" class="absolute inset-0 rounded-xl border-4 border-quantum-cyan barrier-effect pointer-events-none z-10"></div>
+                        
+                        <!-- Contact Form -->
+                        <form id="contactForm" class="bg-quantum-dark-700 p-8 rounded-xl border border-quantum-cyan border-opacity-30 relative">
+                            <h3 class="text-2xl font-semibold mb-6 text-center text-quantum-cyan" data-mock="true">
+                                Formularz Kontaktowy
+                            </h3>
+                            
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2" data-mock="true">Imię</label>
+                                    <input type="text" 
+                                           class="w-full px-4 py-3 bg-quantum-dark-800 border border-quantum-cyan border-opacity-30 rounded-lg focus:border-quantum-cyan focus:outline-none transition-colors" 
+                                           placeholder="Twoje imię" 
+                                           data-mock="true">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2" data-mock="true">Email</label>
+                                    <input type="email" 
+                                           class="w-full px-4 py-3 bg-quantum-dark-800 border border-quantum-cyan border-opacity-30 rounded-lg focus:border-quantum-cyan focus:outline-none transition-colors" 
+                                           placeholder="twoj@email.com" 
+                                           data-mock="true">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium mb-2" data-mock="true">Wiadomość</label>
+                                <textarea rows="4" 
+                                         class="w-full px-4 py-3 bg-quantum-dark-800 border border-quantum-cyan border-opacity-30 rounded-lg focus:border-quantum-cyan focus:outline-none transition-colors resize-none" 
+                                         placeholder="Twoja wiadomość o mechanice kwantowej..." 
+                                         data-mock="true"></textarea>
+                            </div>
+                            
+                            <!-- Tunneling Submit Button -->
+                            <div class="text-center">
+                                <button type="submit" 
+                                        id="tunnelingSubmit"
+                                        class="px-8 py-4 bg-gradient-to-r from-quantum-cyan to-blue-500 text-quantum-dark-900 font-semibold rounded-lg hover:shadow-2xl hover:shadow-quantum-cyan hover:scale-105 transition-all duration-300 relative overflow-hidden">
+                                    <span class="relative z-10" data-mock="true">Wyślij przez Tunelowanie</span>
+                                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-quantum-cyan opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                                </button>
+                                
+                                <!-- Tunneling Animation Area -->
+                                <div id="tunnelingAnimation" class="mt-4 h-16 relative overflow-hidden hidden">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="text-sm text-quantum-cyan" data-mock="true">
+                                            Prawdopodobieństwo tunelowania: <span id="tunnelingProbability">0</span>%
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-quantum-dark-800">
+                                        <div id="tunnelingProgress" class="h-full bg-gradient-to-r from-quantum-cyan to-purple-500 transition-all duration-100" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <!-- Success Message -->
+                        <div id="successMessage" class="absolute inset-0 bg-quantum-dark-700 rounded-xl border-2 border-green-400 flex items-center justify-center opacity-0 scale-95 transition-all duration-500 pointer-events-none">
+                            <div class="text-center">
+                                <i class="fas fa-check-circle text-6xl text-green-400 mb-4"></i>
+                                <h4 class="text-2xl font-bold text-green-400 mb-2" data-mock="true">Tunelowanie Zakończone Sukcesem!</h4>
+                                <p class="text-green-300" data-mock="true">Twoja wiadomość przekroczyła barierę kwantową</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tunneling Explanation -->
+                    <div class="mt-8 bg-quantum-dark-700 p-6 rounded-xl border border-quantum-cyan border-opacity-30">
+                        <h3 class="text-xl font-semibold mb-4 text-quantum-cyan" data-mock="true">Efekt Tunelowy</h3>
+                        <p class="leading-relaxed opacity-90" data-mock="true">
+                            Tunelowanie kwantowe pozwala cząstkom przechodzić przez bariery energetyczne, które w fizyce klasycznej byłyby nie do pokonania. To zjawisko umożliwia działanie wielu nowoczesnych technologii, od skanerów tunelowych po fuzję jądrową w gwiazdach. W naszym formularzu symbolizuje przekroczenie barier komunikacyjnych!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: QuantumTunneling -->
+        
+    </main>
+
+    <!-- JavaScript for Quantum Interactions -->
+    <script>
+        (function() {
+            'use strict';
+            
+            // Quantum state management
+            let currentLanguage = 'pl';
+            let isDarkMode = true;
+            let isAccessibilityMode = false;
+            let measurementCount = { state0: 0, state1: 0 };
+            
+            // DOM elements
+            const quantumOrb = document.getElementById('quantumOrb');
+            const quantumMenu = document.getElementById('quantumMenu');
+            const heroContent = document.getElementById('heroContent');
+            const collapseButton = document.getElementById('collapseWave');
+            const quantumQubit = document.getElementById('quantumQubit');
+            const body = document.getElementById('quantumBody');
+            
+            // Initialize quantum interactions
+            function initializeQuantumPortal() {
+                setupOrbNavigation();
+                setupWaveCollapse();
+                setupQubitMeasurement();
+                setupEntanglement();
+                setupUncertaintyPrinciple();
+                setupQuantumTunneling();
+                setupThemeToggle();
+                setupMouseFollowing();
+            }
+            
+            // Orb Navigation System
+            function setupOrbNavigation() {
+                let isMenuOpen = false;
+                
+                quantumOrb.addEventListener('click', () => {
+                    isMenuOpen = !isMenuOpen;
+                    const menu = quantumMenu;
+                    
+                    if (isMenuOpen) {
+                        menu.style.opacity = '1';
+                        menu.style.transform = 'scale(1)';
+                        menu.style.pointerEvents = 'auto';
+                    } else {
+                        menu.style.opacity = '0';
+                        menu.style.transform = 'scale(0)';
+                        menu.style.pointerEvents = 'none';
+                    }
+                });
+                
+                // Section navigation
+                const navButtons = document.querySelectorAll('[data-section]');
+                navButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const sectionId = button.getAttribute('data-section');
+                        navigateToSection(sectionId);
+                        // Close menu
+                        isMenuOpen = false;
+                        quantumMenu.style.opacity = '0';
+                        quantumMenu.style.transform = 'scale(0)';
+                        quantumMenu.style.pointerEvents = 'none';
+                    });
+                });
+            }
+            
+            // Wave Function Collapse
+            function setupWaveCollapse() {
+                collapseButton.addEventListener('click', () => {
+                    // Hide hero section
+                    document.getElementById('hero').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('hero').style.display = 'none';
+                        
+                        // Show observation section with collapse animation
+                        const observationSection = document.getElementById('observation');
+                        observationSection.classList.remove('hidden');
+                        setTimeout(() => {
+                            observationSection.style.opacity = '1';
+                            observationSection.classList.add('animate-wave-collapse');
+                        }, 100);
+                    }, 500);
+                });
+            }
+            
+            // Qubit Measurement
+            function setupQubitMeasurement() {
+                const qubit = document.getElementById('quantumQubit');
+                const stateText = document.getElementById('stateText');
+                const stateDescription = document.getElementById('stateDescription');
+                const measurementRing = document.getElementById('measurementRing');
+                const qubitState = document.getElementById('qubitState');
+                
+                qubit.addEventListener('click', () => {
+                    // Measurement animation
+                    measurementRing.style.opacity = '1';
+                    measurementRing.style.transform = 'scale(1)';
+                    
+                    setTimeout(() => {
+                        // Random measurement
+                        const measurement = Math.random() < 0.5 ? 0 : 1;
+                        
+                        if (measurement === 0) {
+                            measurementCount.state0++;
+                            qubitState.textContent = '|0⟩';
+                            stateText.textContent = 'Stan zmierzony: |0⟩';
+                            stateDescription.textContent = 'Funkcja falowa skolapsowała do stanu podstawowego';
+                            qubit.style.background = 'linear-gradient(135deg, #3B82F6, #64FFDA)';
+                        } else {
+                            measurementCount.state1++;
+                            qubitState.textContent = '|1⟩';
+                            stateText.textContent = 'Stan zmierzony: |1⟩';
+                            stateDescription.textContent = 'Funkcja falowa skolapsowała do stanu wzbudzonego';
+                            qubit.style.background = 'linear-gradient(135deg, #A855F7, #EC4899)';
+                        }
+                        
+                        updateMeasurementStatistics();
+                        
+                        // Reset animation
+                        measurementRing.style.opacity = '0';
+                        measurementRing.style.transform = 'scale(1.5)';
+                        
+                        // Reset to superposition after 3 seconds
+                        setTimeout(() => {
+                            qubitState.textContent = '|ψ⟩';
+                            stateText.textContent = 'Superpozycja: α|0⟩ + β|1⟩';
+                            stateDescription.textContent = 'Qubit istnieje w superpozycji wszystkich możliwych stanów';
+                            qubit.style.background = 'linear-gradient(135deg, #A855F7, #3B82F6, #64FFDA)';
+                        }, 3000);
+                        
+                    }, 300);
+                });
+            }
+            
+            function updateMeasurementStatistics() {
+                const total = measurementCount.state0 + measurementCount.state1;
+                const state0Percent = total > 0 ? (measurementCount.state0 / total) * 100 : 0;
+                const state1Percent = total > 0 ? (measurementCount.state1 / total) * 100 : 0;
+                
+                document.getElementById('state0Count').textContent = measurementCount.state0;
+                document.getElementById('state1Count').textContent = measurementCount.state1;
+                document.getElementById('state0Bar').style.width = state0Percent + '%';
+                document.getElementById('state1Bar').style.width = state1Percent + '%';
+            }
+            
+            // Quantum Entanglement
+            function setupEntanglement() {
+                const particleA = document.getElementById('particleA');
+                const particleB = document.getElementById('particleB');
+                const spinA = document.getElementById('spinA');
+                const spinB = document.getElementById('spinB');
+                
+                function entangleParticles(primaryParticle, secondaryParticle, primarySpin, secondarySpin) {
+                    primaryParticle.addEventListener('mouseenter', () => {
+                        // Primary particle response
+                        primarySpin.style.transform = 'rotate(180deg)';
+                        primarySpin.className = 'fas fa-arrow-down text-quantum-cyan text-2xl transition-transform duration-300';
+                        
+                        // Entangled response (instantaneous)
+                        setTimeout(() => {
+                            secondarySpin.style.transform = 'rotate(180deg)';
+                            secondarySpin.className = 'fas fa-arrow-up text-purple-400 text-2xl transition-transform duration-300';
+                        }, 50); // Small delay to show the "spooky action"
+                    });
+                    
+                    primaryParticle.addEventListener('mouseleave', () => {
+                        // Reset to original states
+                        primarySpin.style.transform = 'rotate(0deg)';
+                        primarySpin.className = 'fas fa-arrow-up text-quantum-cyan text-2xl transition-transform duration-300';
+                        
+                        setTimeout(() => {
+                            secondarySpin.style.transform = 'rotate(0deg)';
+                            secondarySpin.className = 'fas fa-arrow-down text-purple-400 text-2xl transition-transform duration-300';
+                        }, 50);
+                    });
+                }
+                
+                // Setup bidirectional entanglement
+                entangleParticles(particleA, particleB, spinA, spinB);
+                entangleParticles(particleB, particleA, spinB, spinA);
+            }
+            
+            // Heisenberg Uncertainty Principle
+            function setupUncertaintyPrinciple() {
+                const positionSlider = document.getElementById('positionSlider');
+                const momentumSlider = document.getElementById('momentumSlider');
+                const positionValue = document.getElementById('positionValue');
+                const momentumValue = document.getElementById('momentumValue');
+                const positionCloud = document.getElementById('positionCloud');
+                const momentumVectors = document.getElementById('momentumVectors');
+                
+                positionSlider.addEventListener('input', (e) => {
+                    const positionCertainty = parseInt(e.target.value);
+                    const momentumCertainty = 100 - positionCertainty;
+                    
+                    // Update displays
+                    positionValue.textContent = positionCertainty;
+                    momentumValue.textContent = momentumCertainty;
+                    momentumSlider.value = momentumCertainty;
+                    
+                    // Update visualization
+                    const cloudSize = 200 - positionCertainty;
+                    positionCloud.style.width = cloudSize + 'px';
+                    positionCloud.style.height = cloudSize + 'px';
+                    positionCloud.style.opacity = (100 - positionCertainty) / 200;
+                    
+                    // Update momentum vectors
+                    const vectorOpacity = momentumCertainty / 100;
+                    momentumVectors.style.opacity = 1 - vectorOpacity;
+                    
+                    // Blur effect for momentum uncertainty
+                    const blurAmount = (100 - momentumCertainty) / 10;
+                    momentumVectors.style.filter = `blur(${blurAmount}px)`;
+                });
+            }
+            
+            // Quantum Tunneling
+            function setupQuantumTunneling() {
+                const contactForm = document.getElementById('contactForm');
+                const tunnelingSubmit = document.getElementById('tunnelingSubmit');
+                const tunnelingAnimation = document.getElementById('tunnelingAnimation');
+                const tunnelingProgress = document.getElementById('tunnelingProgress');
+                const tunnelingProbability = document.getElementById('tunnelingProbability');
+                const quantumBarrier = document.getElementById('quantumBarrier');
+                const successMessage = document.getElementById('successMessage');
+                
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Start tunneling animation
+                    tunnelingAnimation.classList.remove('hidden');
+                    tunnelingSubmit.disabled = true;
+                    
+                    let progress = 0;
+                    const tunnelingInterval = setInterval(() => {
+                        progress += Math.random() * 10;
+                        
+                        if (progress >= 100) {
+                            progress = 100;
+                            clearInterval(tunnelingInterval);
+                            
+                            // Success animation
+                            setTimeout(() => {
+                                quantumBarrier.style.opacity = '0';
+                                successMessage.style.opacity = '1';
+                                successMessage.style.transform = 'scale(1)';
+                                successMessage.style.pointerEvents = 'auto';
+                                
+                                // Reset after 5 seconds
+                                setTimeout(() => {
+                                    successMessage.style.opacity = '0';
+                                    successMessage.style.transform = 'scale(0.95)';
+                                    successMessage.style.pointerEvents = 'none';
+                                    quantumBarrier.style.opacity = '1';
+                                    tunnelingAnimation.classList.add('hidden');
+                                    tunnelingSubmit.disabled = false;
+                                    contactForm.reset();
+                                }, 5000);
+                                
+                            }, 500);
+                        }
+                        
+                        tunnelingProgress.style.width = progress + '%';
+                        tunnelingProbability.textContent = Math.round(progress);
+                    }, 50);
+                });
+            }
+            
+            // Theme Toggle
+            function setupThemeToggle() {
+                const themeToggle = document.getElementById('themeToggle');
+                const themeIcon = themeToggle.querySelector('i');
+                
+                themeToggle.addEventListener('click', () => {
+                    isDarkMode = !isDarkMode;
+                    
+                    if (isDarkMode) {
+                        body.className = 'font-sora bg-quantum-dark-900 text-white transition-colors duration-500 dark';
+                        themeIcon.className = 'fas fa-sun text-quantum-cyan text-sm';
+                    } else {
+                        body.className = 'font-sora bg-quantum-light-50 text-quantum-navy transition-colors duration-500 light';
+                        themeIcon.className = 'fas fa-moon text-quantum-blue text-sm';
+                    }
+                });
+            }
+            
+            // Mouse Following Orb
+            function setupMouseFollowing() {
+                let mouseX = 0;
+                let mouseY = 0;
+                let orbX = 0;
+                let orbY = 0;
+                
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+                
+                function updateOrbPosition() {
+                    const dx = mouseX - orbX;
+                    const dy = mouseY - orbY;
+                    
+                    orbX += dx * 0.1;
+                    orbY += dy * 0.1;
+                    
+                    // Keep orb within reasonable bounds
+                    const orbRect = quantumOrb.getBoundingClientRect();
+                    if (orbX < window.innerWidth - 200 && orbY > 50) {
+                        quantumOrb.style.transform = `translate(${dx * 0.05}px, ${dy * 0.05}px)`;
+                    }
+                    
+                    requestAnimationFrame(updateOrbPosition);
+                }
+                
+                updateOrbPosition();
+            }
+            
+            // Section Navigation
+            function navigateToSection(sectionId) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Initialize everything when DOM is loaded
+            document.addEventListener('DOMContentLoaded', initializeQuantumPortal);
+            
+        })();
+    </script>
+
+</body>
+</html>

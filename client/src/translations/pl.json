@@ -4,6 +4,27 @@
     "subtitle": "Interaktywna Eksploracja Rzeczywistości",
     "measureReality": "Zmierz Rzeczywistość"
   },
+  "seo": {
+    "defaultTitle": "Kwantowy Portal: Interaktywna Eksploracja Rzeczywistości",
+    "defaultDescription": "Przełomowa strona internetowa manifestująca zasady mechaniki kwantowej przez interaktywne wizualizacje i dynamiczny interfejs."
+  },
+  "definitions": {
+    "waveParticleDuality": "Zasada mechaniki kwantowej mówiąca, że obiekty kwantowe, takie jak fotony czy elektrony, mogą wykazywać właściwości zarówno cząstek (korpuskuł), jak i fal.",
+    "waveFunction": "Matematyczny opis stanu kwantowego cząstki. Zawiera wszystkie informacje o prawdopodobieństwach jej właściwości (położenie, pęd) przed dokonaniem pomiaru.",
+    "waveFunctionCollapse": "Nagłe przejście funkcji falowej cząstki ze stanu superpozycji do jednego, określonego stanu w wyniku dokonania pomiaru (obserwacji).",
+    "qubit": "Podstawowa jednostka informacji kwantowej, odpowiednik klasycznego bitu. W przeciwieństwie do bitu, może istnieć w superpozycji stanów 0 i 1.",
+    "superposition": "Zdolność systemu kwantowego (np. qubitu) do istnienia w wielu stanach jednocześnie, dopóki nie zostanie dokonany pomiar.",
+    "quantumEntanglement": "Zjawisko, w którym dwie lub więcej cząstek kwantowych zostaje połączonych w taki sposób, że ich losy są ze sobą splecione, niezależnie od dzielącej je odległości.",
+    "spookyAction": "Fraza Alberta Einsteina opisująca paradoksalną naturę splątania, gdzie pomiar jednej cząstki natychmiastowo wpływa na drugą, nawet na ogromną odległość.",
+    "uncertaintyPrinciple": "Fundamentalna zasada głosząca, że istnieje granica precyzji, z jaką można jednocześnie poznać pewne pary właściwości fizycznych cząstki.",
+    "momentum": "Wielkość fizyczna opisująca ruch obiektu, będąca iloczynem jego masy i prędkości. W mechanice kwantowej jest jedną z par nieoznaczoności z położeniem.",
+    "conjugateVariable": "Para wielkości fizycznych (np. położenie i pęd), których jednoczesny pomiar z dowolną dokładnością jest niemożliwy z powodu zasady nieoznaczoności.",
+    "quantumTunneling": "Efekt kwantowy, w którym cząstka przenika przez barierę potencjału, której zgodnie z fizyką klasyczną nie mogłaby pokonać.",
+    "potentialBarrier": "Obszar w przestrzeni, w którym cząstka ma wyższą energię potencjalną, działający jak 'ściana' lub 'wzgórze', które klasycznie trudno jest przekroczyć.",
+    "quantumGate": "Podstawowa operacja wykonywana na jednym lub kilku qubitach. Jest kwantowym odpowiednikiem klasycznej bramki logicznej (np. NOT, AND).",
+    "quantumAdvantage": "Zdolność komputera kwantowego do rozwiązania konkretnego problemu obliczeniowego znacznie szybciej niż najszybszy istniejący superkomputer klasyczny.",
+    "quantumComputing": "Rodzaj obliczeń wykorzystujący zasady mechaniki kwantowej, takie jak superpozycja i splątanie, do przetwarzania informacji w fundamentalnie nowy sposób."
+  },
   "sections": {
     "observation": {
       "title": "Skok 1: Obserwacja",
@@ -28,8 +49,10 @@
       "superpositionDescription": "Qubit istnieje w superpozycji wszystkich możliwych stanów",
       "measured0": "Stan zmierzony: |0⟩",
       "measured1": "Stan zmierzony: |1⟩",
-      "collapse0": "Funkcja falowa skolapsowała do stanu podstawowego",
-      "collapse1": "Funkcja falowa skolapsowała do stanu wzbudzonego",
+      "collapse_part1": "Funkcja falowa",
+      "collapse_part2": " skolapsowała do stanu ",
+      "collapse_state_base": "podstawowego",
+      "collapse_state_excited": "wzbudzonego",
       "statistics": "Statystyki Pomiarów",
       "state0": "Stan |0⟩",
       "state1": "Stan |1⟩"
@@ -42,14 +65,24 @@
       "particleB": "Cząstka B",
       "connection": "Splątanie Kwantowe",
       "principle": "Zasada Splątania",
-      "principleDescription": "Einstein nazywał to \"upiornym oddziaływaniem na odległość\". Gdy dwie cząstki są kwantowo splątane, pomiar stanu jednej z nich natychmiastowo wpływa na stan drugiej, niezależnie od dzielącej je odległości.",
+      "principleDescription_part1": "Einstein nazywał to ",
+      "principleDescription_term1": "\"upiornym oddziaływaniem na odległość\"",
+      "principleDescription_part2": ". Gdy dwie cząstki są ",
+      "principleDescription_term2": "kwantowo splątane",
+      "principleDescription_part3": ", pomiar stanu jednej z nich natychmiastowo wpływa na stan drugiej, niezależnie od dzielącej je odległości.",
       "applications": "Zastosowania",
-      "applicationsDescription": "Splątanie kwantowe jest fundamentem dla technologii przyszłości: komputerów kwantowych, kryptografii kwantowej i teleportacji kwantowej. To podstawa rewolucji kwantowej."
+      "applicationsDescription_part1": "Splątanie kwantowe",
+      "applicationsDescription_part2": " jest fundamentem dla technologii przyszłości: ",
+      "applicationsDescription_term1": "komputerów kwantowych",
+      "applicationsDescription_part3": ", kryptografii kwantowej i teleportacji kwantowej. To podstawa rewolucji kwantowej."
     },
     "uncertainty": {
       "title": "Skok 4: Nieoznaczoność",
       "subtitle": "Granice Pewności",
-      "instruction": "Zasada nieoznaczoności Heisenberga: Im dokładniej znamy pozycję, tym mniej dokładnie możemy określić pęd!",
+      "instruction_part1": "Zasada nieoznaczoności Heisenberga",
+      "instruction_part2": ": Im dokładniej znamy pozycję, tym mniej dokładnie możemy określić ",
+      "instruction_term1": "pęd",
+      "instruction_part3": "!",
       "heisenbergMeter": "Miernik Heisenberga",
       "positionCertainty": "Pewność Pozycji:",
       "momentumCertainty": "Pewność Pędu:",
@@ -58,7 +91,10 @@
       "unknownMomentum": "Nieznany",
       "preciseMomentum": "Dokładny",
       "limitation": "Fundamentalne Ograniczenie",
-      "limitationDescription": "Zasada nieoznaczoności nie wynika z ograniczeń naszych przyrządów pomiarowych, ale jest fundamentalną właściwością natury. Im dokładniej próbujemy zmierzyć jedną wielkość, tym mniej dokładnie możemy jednocześnie zmierzyć wielkość z nią sprzężoną. To nie jest kwestia technologii - to jest sposób, w jaki działa wszechświat na poziomie kwantowym."
+      "limitationDescription_part1": "Zasada nieoznaczoności",
+      "limitationDescription_part2": " nie wynika z ograniczeń naszych przyrządów pomiarowych, ale jest fundamentalną właściwością natury. Im dokładniej próbujemy zmierzyć jedną wielkość, tym mniej dokładnie możemy jednocześnie zmierzyć ",
+      "limitationDescription_term1": "wielkość z nią sprzężoną",
+      "limitationDescription_part3": ". To nie jest kwestia technologii - to jest sposób, w jaki działa wszechświat na poziomie kwantowym."
     },
     "tunneling": {
       "title": "Skok 5: Tunelowanie",
@@ -76,35 +112,136 @@
       "successTitle": "Tunelowanie Zakończone Sukcesem!",
       "successMessage": "Twoja wiadomość przekroczyła barierę kwantową",
       "tunnelingEffect": "Efekt Tunelowy",
-      "tunnelingDescription": "Tunelowanie kwantowe pozwala cząstkom przechodzić przez bariery energetyczne, które w fizyce klasycznej byłyby nie do pokonania. To zjawisko umożliwia działanie wielu nowoczesnych technologii, od skanerów tunelowych po fuzję jądrową w gwiazdach. W naszym formularzu symbolizuje przekroczenie barier komunikacyjnych!"
+      "tunnelingDescription_part1": "Tunelowanie kwantowe",
+      "tunnelingDescription_part2": " pozwala cząstkom przechodzić przez ",
+      "tunnelingDescription_term1": "bariery energetyczne",
+      "tunnelingDescription_part3": ", które w fizyce klasycznej byłyby nie do pokonania. To zjawisko umożliwia działanie wielu nowoczesnych technologii, od skanerów tunelowych po fuzję jądrową w gwiazdach. W naszym formularzu symbolizuje przekroczenie barier komunikacyjnych!"
     },
     "schrodinger": {
-      "title": "Eksperyment Schrödingera",
+      "title": "Eksperyment Kota Schrödingera",
       "subtitle": "Paradoks Superpozycji",
-      "instruction": "Otwórz pudełko kwantowe i sprawdź czy kot jest żywy czy martwy!",
-      "superposition": "Superpozycja",
-      "alive": "Kot Żyje!",
-      "dead": "Kot Nie Żyje",
-      "explanation": "Eksperyment myślowy Schrödingera ilustruje absurd przenoszenia kwantowej superpozycji na skalę makroskopową."
+      "boxStateSuperposition": "Superpozycja",
+      "boxStateDescription": "Kot jest żywy I martwy",
+      "boxStateMeasuring": "Pomiar w toku...",
+      "boxStateAlive": "Kot Żyje!",
+      "boxStateDead": "Kot Nie Żyje",
+      "buttonOpen": "Otwórz Pudełko (Pomiar)",
+      "buttonMeasuring": "Pomiar w toku...",
+      "statsTitle": "Statystyki Pomiarów",
+      "statsTotal": "łącznie",
+      "statsAlive": "Żywy",
+      "statsDead": "Martwy",
+      "paradoxTitle": "Paradoks Kota Schrödingera",
+      "paradoxDescription_part1": "Eksperyment myślowy Schrödingera ilustruje absurd przenoszenia ",
+      "paradoxDescription_term1": "kwantowej superpozycji",
+      "paradoxDescription_part2": " na skalę makroskopową. Kot w pudełku jest jednocześnie żywy i martwy dopóki nie dokonamy pomiaru. To pokazuje, jak akt obserwacji wpływa na rzeczywistość kwantową."
     },
     "computing": {
-      "title": "Skok 6: Komputery Kwantowe", 
+      "title": "Skok 6: Komputery Kwantowe",
       "subtitle": "Przyszłość Obliczeń",
-      "quantumProcessor": "Interaktywny Procesor Kwantowy",
-      "quantumGates": "Bramki Kwantowe",
+      "visualizationTitle": "Quantum Computer Visualization",
+      "processorTitle": "Interaktywny Procesor Kwantowy",
+      "gatesTitle": "Bramki Kwantowe",
       "startComputation": "Uruchom Obliczenia",
       "computing": "Obliczanie Kwantowe...",
       "quantumAdvantage": "Przewaga Kwantowa",
-      "advantageDescription": "Komputery kwantowe wykorzystują superpozycję i splątanie do wykonywania obliczeń, które byłyby praktycznie niemożliwe dla komputerów klasycznych."
+      "advantageDescription_part1": "Komputery kwantowe wykorzystują ",
+      "advantageDescription_term1": "superpozycję",
+      "advantageDescription_part2": " i ",
+      "advantageDescription_term2": "splątanie",
+      "advantageDescription_part3": " do wykonywania obliczeń, które byłyby praktycznie niemożliwe dla komputerów klasycznych. Jeden ",
+      "advantageDescription_term3": "qubit",
+      "advantageDescription_part4": " może być jednocześnie w stanie |0⟩ i |1⟩, co pozwala na eksponencjalny wzrost mocy obliczeniowej z każdym dodatkowym qubitem."
     },
     "applications": {
       "title": "Skok 7: Zastosowania Kwantowe",
       "subtitle": "Rewolucja Kwantowa w Praktyce",
-      "cryptography": "Kryptografia Kwantowa",
-      "teleportation": "Teleportacja Kwantowa", 
-      "sensing": "Czujniki Kwantowe",
+      "cryptographyTitle": "Kryptografia Kwantowa",
+      "cryptographyDescriptionShort": "Niemożliwa do złamania komunikacja dzięki prawom fizyki kwantowej.",
+      "cryptographyDescriptionLong_part1": "Kryptografia kwantowa wykorzystuje ",
+      "cryptographyDescriptionLong_term1": "zasadę nieoznaczoności Heisenberga",
+      "cryptographyDescriptionLong_part2": " do tworzenia absolutnie bezpiecznych kanałów komunikacji. Każda próba podsłuchania automatycznie zostaje wykryta.",
+      "teleportationTitle": "Teleportacja Kwantowa",
+      "teleportationDescriptionShort": "Przenoszenie stanów kwantowych na duże odległości.",
+      "teleportationDescriptionLong": "Teleportacja kwantowa pozwala na przesyłanie informacji o stanie kwantowym bez fizycznego przemieszczania cząstki. To podstawa przyszłego internetu kwantowego.",
+      "sensingTitle": "Czujniki Kwantowe",
+      "sensingDescriptionShort": "Pomiary o niedostępnej wcześniej precyzji.",
+      "sensingDescriptionLong": "Czujniki kwantowe wykorzystują efekty kwantowe do osiągnięcia niespotykanych poziomów czułości, rewolucjonizując medycynę, geologię i nawigację.",
       "learnMore": "Poznaj szczegóły",
-      "hideDetails": "Ukryj szczegóły"
+      "hideDetails": "Ukryj szczegóły",
+      "interactiveDemo": "Demo Interaktywne:",
+      "cryptographyDemoText": "Klucze kwantowe generowane w czasie rzeczywistym",
+      "teleportationDemoText": "Stany kwantowe przesyłane między cząstkami",
+      "sensingDemoText": "Precyzyjne pomiary kwantowe w toku"
     }
+  },
+  "panel": {
+    "lightMode": "Tryb Jasny",
+    "darkMode": "Tryb Ciemny",
+    "language": "Język",
+    "accessibilityOn": "Włącz Dostępność",
+    "accessibilityOff": "Wyłącz Dostępność",
+    "terms": "Regulamin",
+    "privacy": "Polityka Prywatności",
+    "github": "Profil na GitHubie",
+    "twitter": "Profil na X (Twitter)",
+    "facebook": "Profil na Facebooku",
+    "scrollToTop": "Przewiń do góry"
+  },
+  "termsPage": {
+    "backButton": "Powrót",
+    "mainTitle": "Regulamin Świadczenia Usług Kwantowych",
+    "subtitle": "Ostatnia aktualizacja: kwantowa teraźniejszość",
+    "sections": [
+      {
+        "title": "1. Akceptacja Warunków Superpozycji",
+        "content": [
+          "Korzystając z Kwantowego Portalu, zgadzasz się na istnienie w superpozycji wszystkich możliwych stanów Użytkownika. Twoja interakcja powoduje kolaps funkcji falowej do jednego, określonego stanu, który jest wiążący do momentu następnej interakcji.",
+          "Zastrzegamy sobie prawo do splątania tych warunków z dowolnymi innymi warunkami we wszechświecie. Zmiany stają się obowiązujące natychmiastowo we wszystkich splątanych wszechświatach."
+        ]
+      },
+      {
+        "title": "2. Obserwacja i Pomiar Użytkownika",
+        "content": [
+          "Każda Twoja akcja w Portalu jest formą pomiaru. Zgadzasz się, że akt Twojej obserwacji może nieodwracalnie zmienić stan obserwowanego systemu. Nie ponosimy odpowiedzialności za paradoksy, które możesz przypadkowo stworzyć.",
+          "Zgodnie z zasadą nieoznaczoności, im dokładniej poznamy Twoją pozycję w Portalu, tym mniej będziemy wiedzieć o Twoim pędzie (i zamiarach). I na odwrót."
+        ]
+      },
+      {
+        "title": "3. Tunelowanie Odpowiedzialności",
+        "content": [
+          "Wszelka odpowiedzialność za ewentualne skutki uboczne podróży przez kwantowe bariery (takie jak spontaniczne istnienie w dwóch miejscach naraz) jest tunelowana bezpośrednio na Użytkownika.",
+          "Prawdopodobieństwo, że weźmiemy na siebie odpowiedzialność, jest odwrotnie proporcjonalne do wysokości bariery energetycznej problemu."
+        ]
+      }
+    ]
+  },
+  "privacyPage": {
+    "backButton": "Powrót",
+    "mainTitle": "Polityka Prywatności Cząstek Elementarnych",
+    "subtitle": "Twoje dane są bezpieczne i jednocześnie wszędzie",
+    "sections": [
+      {
+        "title": "1. Zbieranie Danych Kwantowych",
+        "content": [
+          "Zbieramy informacje o Twoim stanie kwantowym, w tym spin, pęd i położenie w przestrzeni Hilberta. Twoje dane osobowe istnieją jako chmura prawdopodobieństwa do momentu, gdy zdecydujemy się na ich pomiar.",
+          "Używamy ciasteczek (cookies), które mogą, ale nie muszą, istnieć, dopóki nie sprawdzisz folderu z ciasteczkami w swojej przeglądarce, co finalizuje ich stan."
+        ]
+      },
+      {
+        "title": "2. Splątanie Danych z Trzecimi Stronami",
+        "content": [
+          "Możemy splątać Twoje dane z danymi naszych zaufanych partnerów. Oznacza to, że pomiar ich danych natychmiastowo wpłynie na Twoje, niezależnie od odległości. Nie martw się, to 'upiorne działanie na odległość' jest w pełni zgodne z prawami fizyki.",
+          "Nie udostępniamy Twoich skolapsowanych danych stronom trzecim bez Twojej wyraźnej, deterministycznej zgody."
+        ]
+      },
+      {
+        "title": "3. Bezpieczeństwo i Paradoks Czarnej Dziury",
+        "content": [
+          "Twoje dane są przechowywane w sposób, który jest analogiczny do paradoksu informacyjnego czarnej dziury. Są one zarówno w pełni dostępne dla nas, jak i nieodwracalnie niedostępne dla świata zewnętrznego.",
+          "W przypadku naruszenia bezpieczeństwa, informacja o tym zdarzeniu dotrze do Ciebie z opóźnieniem wynikającym z dylatacji czasu."
+        ]
+      }
+    ]
   }
 }

@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function EntangledParticles() {
   const { t } = useTranslation();
@@ -27,21 +27,28 @@ export default function EntangledParticles() {
             setParticleAHovered(false);
             setParticleBHovered(false);
           }}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.2 }}
           data-testid="particle-a"
         >
           <motion.div
             className="entangled-particle"
-            animate={particleAHovered ? { 
-              scale: 1.25, 
-              rotate: 180,
-              boxShadow: "0 0 40px rgba(100, 255, 218, 0.8)"
-            } : {}}
+            animate={
+              particleAHovered
+                ? {
+                    scale: 1.25,
+                    rotate: 180,
+                    boxShadow: "0 0 40px rgba(100, 255, 218, 0.8)",
+                  }
+                : {}
+            }
             transition={{ duration: 0.3 }}
           />
           <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-            <span className="text-sm font-medium text-quantum-cyan" data-testid="particle-a-label">
-              {t('sections.entanglement.particleA')}
+            <span
+              className="text-sm font-medium text-quantum-cyan"
+              data-testid="particle-a-label"
+            >
+              {t("sections.entanglement.particleA")}
             </span>
           </div>
           {/* Spin Indicator */}
@@ -58,9 +65,14 @@ export default function EntangledParticles() {
         <div className="flex-1 relative mx-8">
           <motion.div
             className="h-px bg-gradient-to-r from-quantum-cyan via-purple-500 to-quantum-cyan relative overflow-hidden"
-            animate={particleAHovered || particleBHovered ? {
-              background: "linear-gradient(90deg, #64FFDA, #FFFFFF, #64FFDA)"
-            } : {}}
+            animate={
+              particleAHovered || particleBHovered
+                ? {
+                    background:
+                      "linear-gradient(90deg, #64FFDA, #FFFFFF, #64FFDA)",
+                  }
+                : {}
+            }
           >
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent"
@@ -71,13 +83,17 @@ export default function EntangledParticles() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <motion.span
               className="bg-background px-3 py-1 text-sm font-medium text-quantum-cyan border border-quantum-cyan border-opacity-30 rounded-full"
-              animate={particleAHovered || particleBHovered ? {
-                scale: 1.1,
-                boxShadow: "0 0 20px rgba(100, 255, 218, 0.5)"
-              } : {}}
+              animate={
+                particleAHovered || particleBHovered
+                  ? {
+                      scale: 1.1,
+                      boxShadow: "0 0 20px rgba(100, 255, 218, 0.5)",
+                    }
+                  : {}
+              }
               data-testid="connection-label"
             >
-              {t('sections.entanglement.connection')}
+              {t("sections.entanglement.connection")}
             </motion.span>
           </div>
         </div>
@@ -93,21 +109,28 @@ export default function EntangledParticles() {
             setParticleBHovered(false);
             setParticleAHovered(false);
           }}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.2 }}
           data-testid="particle-b"
         >
           <motion.div
             className="entangled-particle"
-            animate={particleBHovered ? { 
-              scale: 1.25, 
-              rotate: 180,
-              boxShadow: "0 0 40px rgba(168, 85, 247, 0.8)"
-            } : {}}
+            animate={
+              particleBHovered
+                ? {
+                    scale: 1.25,
+                    rotate: 180,
+                    boxShadow: "0 0 40px rgba(168, 85, 247, 0.8)",
+                  }
+                : {}
+            }
             transition={{ duration: 0.3 }}
           />
           <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-            <span className="text-sm font-medium text-quantum-cyan" data-testid="particle-b-label">
-              {t('sections.entanglement.particleB')}
+            <span
+              className="text-sm font-medium text-quantum-cyan"
+              data-testid="particle-b-label"
+            >
+              {t("sections.entanglement.particleB")}
             </span>
           </div>
           {/* Spin Indicator */}

@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import UncertaintyMeter from './visualizations/UncertaintyMeter';
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import UncertaintyMeter from "./visualizations/UncertaintyMeter";
+import GlossaryTerm from "@/components/ui/GlossaryTerm";
 
 export default function QuantumUncertainty() {
   const { t } = useTranslation();
@@ -23,11 +24,17 @@ export default function QuantumUncertainty() {
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl font-bold mb-6 quantum-glow" data-testid="uncertainty-title">
-            {t('sections.uncertainty.title')}
+          <h2
+            className="text-5xl font-bold mb-6 quantum-glow text-center leading-tight break-words tracking-tight"
+            data-testid="uncertainty-title"
+          >
+            {t("sections.uncertainty.title")}
           </h2>
-          <p className="text-xl text-quantum-cyan mb-8" data-testid="uncertainty-subtitle">
-            {t('sections.uncertainty.subtitle')}
+          <p
+            className="text-xl text-quantum-cyan mb-8"
+            data-testid="uncertainty-subtitle"
+          >
+            {t("sections.uncertainty.subtitle")}
           </p>
         </motion.div>
 
@@ -39,29 +46,47 @@ export default function QuantumUncertainty() {
             transition={{ duration: 1, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <p className="text-lg mb-8" data-testid="uncertainty-instruction">
-              {t('sections.uncertainty.instruction')}
-            </p>
+            <div className="text-lg mb-8" data-testid="uncertainty-instruction">
+              <GlossaryTerm definition={t("definitions.uncertaintyPrinciple")}>
+                {t("sections.uncertainty.instruction_part1")}
+              </GlossaryTerm>
+              {t("sections.uncertainty.instruction_part2")}
+              <GlossaryTerm definition={t("definitions.momentum")}>
+                {t("sections.uncertainty.instruction_term1")}
+              </GlossaryTerm>
+              {t("sections.uncertainty.instruction_part3")}
+            </div>
           </motion.div>
 
-          {/* Heisenberg Meter */}
           <UncertaintyMeter />
 
-          {/* Explanation */}
           <motion.div
             className="mt-8 bg-card p-6 rounded-xl border border-quantum-cyan border-opacity-30"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0.3 }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.05 }}
           >
-            <h3 className="text-xl font-semibold mb-4 text-quantum-cyan" data-testid="limitation-title">
-              {t('sections.uncertainty.limitation')}
+            <h3
+              className="text-xl font-semibold mb-4 text-quantum-cyan"
+              data-testid="limitation-title"
+            >
+              {t("sections.uncertainty.limitation")}
             </h3>
-            <p className="leading-relaxed opacity-90" data-testid="limitation-description">
-              {t('sections.uncertainty.limitationDescription')}
-            </p>
+            <div
+              className="leading-relaxed opacity-90"
+              data-testid="limitation-description"
+            >
+              <GlossaryTerm definition={t("definitions.uncertaintyPrinciple")}>
+                {t("sections.uncertainty.limitationDescription_part1")}
+              </GlossaryTerm>
+              {t("sections.uncertainty.limitationDescription_part2")}
+              <GlossaryTerm definition={t("definitions.conjugateVariable")}>
+                {t("sections.uncertainty.limitationDescription_term1")}
+              </GlossaryTerm>
+              {t("sections.uncertainty.limitationDescription_part3")}
+            </div>
           </motion.div>
         </div>
       </div>

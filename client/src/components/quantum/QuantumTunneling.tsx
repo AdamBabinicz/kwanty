@@ -1,6 +1,7 @@
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import TunnelingAnimation from './visualizations/TunnelingAnimation';
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import TunnelingAnimation from "./visualizations/TunnelingAnimation";
+import GlossaryTerm from "@/components/ui/GlossaryTerm";
 
 export default function QuantumTunneling() {
   const { t } = useTranslation();
@@ -23,11 +24,17 @@ export default function QuantumTunneling() {
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl font-bold mb-6 quantum-glow" data-testid="tunneling-title">
-            {t('sections.tunneling.title')}
+          <h2
+            className="text-5xl font-bold mb-6 quantum-glow"
+            data-testid="tunneling-title"
+          >
+            {t("sections.tunneling.title")}
           </h2>
-          <p className="text-xl text-quantum-cyan mb-8" data-testid="tunneling-subtitle">
-            {t('sections.tunneling.subtitle')}
+          <p
+            className="text-xl text-quantum-cyan mb-8"
+            data-testid="tunneling-subtitle"
+          >
+            {t("sections.tunneling.subtitle")}
           </p>
         </motion.div>
 
@@ -40,28 +47,39 @@ export default function QuantumTunneling() {
             viewport={{ once: true }}
           >
             <p className="text-lg mb-8" data-testid="tunneling-instruction">
-              {t('sections.tunneling.instruction')}
+              {t("sections.tunneling.instruction")}
             </p>
           </motion.div>
 
-          {/* Contact Form with Quantum Barrier */}
           <TunnelingAnimation />
 
-          {/* Tunneling Explanation */}
           <motion.div
             className="mt-8 bg-card p-6 rounded-xl border border-quantum-cyan border-opacity-30"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0.3 }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.05 }}
           >
-            <h3 className="text-xl font-semibold mb-4 text-quantum-cyan" data-testid="tunneling-effect-title">
-              {t('sections.tunneling.tunnelingEffect')}
+            <h3
+              className="text-xl font-semibold mb-4 text-quantum-cyan"
+              data-testid="tunneling-effect-title"
+            >
+              {t("sections.tunneling.tunnelingEffect")}
             </h3>
-            <p className="leading-relaxed opacity-90" data-testid="tunneling-effect-description">
-              {t('sections.tunneling.tunnelingDescription')}
-            </p>
+            <div
+              className="leading-relaxed opacity-90"
+              data-testid="tunneling-effect-description"
+            >
+              <GlossaryTerm definition={t("definitions.quantumTunneling")}>
+                {t("sections.tunneling.tunnelingDescription_part1")}
+              </GlossaryTerm>
+              {t("sections.tunneling.tunnelingDescription_part2")}
+              <GlossaryTerm definition={t("definitions.potentialBarrier")}>
+                {t("sections.tunneling.tunnelingDescription_term1")}
+              </GlossaryTerm>
+              {t("sections.tunneling.tunnelingDescription_part3")}
+            </div>
           </motion.div>
         </div>
       </div>

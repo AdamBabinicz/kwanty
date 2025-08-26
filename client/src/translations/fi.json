@@ -4,6 +4,27 @@
     "subtitle": "Interaktiivinen Todellisuuden Tutkimus",
     "measureReality": "Mittaa Todellisuus"
   },
+  "seo": {
+    "defaultTitle": "Kvanttisivu: Interaktiivinen Todellisuuden Tutkimus",
+    "defaultDescription": "Mullistava verkkosivusto, joka ilmentää kvanttimekaniikan periaatteita interaktiivisten visualisointien ja dynaamisen käyttöliittymän kautta."
+  },
+  "definitions": {
+    "waveParticleDuality": "Kvanttimekaniikan periaate, jonka mukaan kvanttiobjektit, kuten fotonit ja elektronit, voivat ilmentää sekä hiukkasten että aaltojen ominaisuuksia.",
+    "waveFunction": "Hiukkasen kvanttitilan matemaattinen kuvaus. Se sisältää kaiken todennäköisyystiedon sen ominaisuuksista (sijainti, liikemäärä) ennen mittauksen tekemistä.",
+    "waveFunctionCollapse": "Hiukkasen aaltofunktion äkillinen siirtymä superpositiotilasta yhteen, määrättyyn tilaan mittauksen seurauksena.",
+    "qubit": "Kvanttitiedon perusyksikkö, klassisen bitin kvanttianalogi. Toisin kuin bitti, se voi olla superpositiossa tiloista 0 ja 1.",
+    "superposition": "Kvanttisysteemin (esim. kubitin) kyky olla olemassa useassa tilassa samanaikaisesti, kunnes mittaus suoritetaan.",
+    "quantumEntanglement": "Ilmiö, jossa kaksi tai useampi kvanttihiukkanen kytkeytyy toisiinsa siten, että niiden kohtalot ovat toisiinsa sidottuja niitä erottavasta etäisyydestä riippumatta.",
+    "spookyAction": "Albert Einsteinin ilmaus, joka kuvaa kietoutumisen paradoksaalista luonnetta, jossa yhden hiukkasen mittaaminen vaikuttaa välittömästi toiseen, jopa valtavan etäisyyden päästä.",
+    "uncertaintyPrinciple": "Perusperiaate, joka sanoo, että on olemassa raja tarkkuudelle, jolla tietyt hiukkasen fysikaalisten ominaisuuksien parit voidaan tietää samanaikaisesti.",
+    "momentum": "Fysikaalinen suure, joka kuvaa kappaleen liikettä ja on sen massan ja nopeuden tulo. Kvanttimekaniikassa se muodostaa epätarkkuusparin sijainnin kanssa.",
+    "conjugateVariable": "Fysikaalisten suureiden pari (esim. sijainti ja liikemäärä), joiden samanaikainen mittaaminen mielivaltaisella tarkkuudella on mahdotonta epätarkkuusperiaatteen vuoksi.",
+    "quantumTunneling": "Kvantti-ilmiö, jossa hiukkanen läpäisee potentiaalivallin, jota se ei klassisesti voisi ylittää.",
+    "potentialBarrier": "Alue avaruudessa, jossa hiukkasella on korkeampi potentiaalienergia, toimien kuin 'seinä' tai 'mäki', jonka ylittäminen on klassisesti vaikeaa.",
+    "quantumGate": "Yhdelle tai useammalle kubitille suoritettava perusoperaatio. Se on klassisen logiikkaportin (esim. NOT, AND) kvanttivastine.",
+    "quantumAdvantage": "Kvanttitietokoneen kyky ratkaista tietty laskennallinen ongelma merkittävästi nopeammin kuin nopein olemassa oleva klassinen supertietokone.",
+    "quantumComputing": "Laskennan tyyppi, joka hyödyntää kvanttimekaniikan periaatteita, kuten superpositiota ja kietoutumista, käsitelläkseen tietoa perustavanlaatuisesti uusilla tavoilla."
+  },
   "sections": {
     "observation": {
       "title": "Hyppy 1: Havainto",
@@ -28,8 +49,10 @@
       "superpositionDescription": "Qubit on kaikkien mahdollisten tilojen superpositiossa",
       "measured0": "Mitattu tila: |0⟩",
       "measured1": "Mitattu tila: |1⟩",
-      "collapse0": "Aaltofunktio romahti perustilaan",
-      "collapse1": "Aaltofunktio romahti virittyneeseen tilaan",
+      "collapse_part1": "Aaltofunktio",
+      "collapse_part2": " romahti ",
+      "collapse_state_base": "perustilaan",
+      "collapse_state_excited": "viritettyyn tilaan",
       "statistics": "Mittaustilastot",
       "state0": "Tila |0⟩",
       "state1": "Tila |1⟩"
@@ -42,14 +65,24 @@
       "particleB": "Hiukkanen B",
       "connection": "Kvanttikietoutuminen",
       "principle": "Kietoutumisperiaate",
-      "principleDescription": "Einstein kutsui sitä \"aavemaiseksi vaikutukseksi etäältä\". Kun kaksi hiukkasta on kvanttikietoutuneita, yhden tilan mittaaminen vaikuttaa välittömästi toisen tilaan riippumatta niitä erottavasta etäisyydestä.",
+      "principleDescription_part1": "Einstein kutsui sitä ",
+      "principleDescription_term1": "\"aavemaiseksi vaikutukseksi etäältä\"",
+      "principleDescription_part2": ". Kun kaksi hiukkasta on ",
+      "principleDescription_term2": "kvanttikietoutuneita",
+      "principleDescription_part3": ", yhden tilan mittaaminen vaikuttaa välittömästi toisen tilaan riippumatta niitä erottavasta etäisyydestä.",
       "applications": "Sovellukset",
-      "applicationsDescription": "Kvanttikietoutuminen on tulevaisuuden teknologioiden perusta: kvanttitietokoneet, kvanttisalaus ja kvanttiteleportaatio. Se on kvanttivallankumouksen perusta."
+      "applicationsDescription_part1": "Kvanttikietoutuminen",
+      "applicationsDescription_part2": " on tulevaisuuden teknologioiden perusta: ",
+      "applicationsDescription_term1": "kvanttitietokoneet",
+      "applicationsDescription_part3": ", kvanttisalaus ja kvanttiteleportaatio. Se on kvanttivallankumouksen perusta."
     },
     "uncertainty": {
       "title": "Hyppy 4: Epävarmuus",
       "subtitle": "Varmuuden Rajat",
-      "instruction": "Heisenbergin epävarmuusperiaate: Mitä tarkemmin tunnemme sijainnin, sitä epätarkemmin voimme määrittää liikemäärän!",
+      "instruction_part1": "Heisenbergin epävarmuusperiaate",
+      "instruction_part2": ": Mitä tarkemmin tunnemme sijainnin, sitä epätarkemmin voimme määrittää ",
+      "instruction_term1": "liikemäärän",
+      "instruction_part3": "!",
       "heisenbergMeter": "Heisenberg-mittari",
       "positionCertainty": "Sijainnin Varmuus:",
       "momentumCertainty": "Liikemäärän Varmuus:",
@@ -58,12 +91,15 @@
       "unknownMomentum": "Tuntematon",
       "preciseMomentum": "Tarkka",
       "limitation": "Perustavanlaatuinen Rajoitus",
-      "limitationDescription": "Epävarmuusperiaate ei johdu mittauslaitteidemme rajoituksista, vaan on luonnon perustavanlaatuinen ominaisuus. Mitä tarkemmin yritämme mitata yhtä suuretta, sitä epätarkemmin voimme samanaikaisesti mitata siihen konjugoitua suuretta. Tämä ei ole teknologian kysymys - näin maailmankaikkeus toimii kvanttitasolla."
+      "limitationDescription_part1": "Epävarmuusperiaate",
+      "limitationDescription_part2": " ei johdu mittauslaitteidemme rajoituksista, vaan on luonnon perustavanlaatuinen ominaisuus. Mitä tarkemmin yritämme mitata yhtä suuretta, sitä epätarkemmin voimme samanaikaisesti mitata ",
+      "limitationDescription_term1": "siihen konjugoitua suuretta",
+      "limitationDescription_part3": ". Tämä ei ole teknologian kysymys - näin maailmankaikkeus toimii kvanttitasolla."
     },
     "tunneling": {
       "title": "Hyppy 5: Tunnelointi",
       "subtitle": "Esteiden Ylittäminen",
-      "instruction": "Kvanttimaailmassa hiukkaset voivat \"tunneloida\" esteiden läpi, jotka olisivat klassisesti ylitsepääsemättömiä!",
+      "instruction": "Kwanttimaailmassa hiukkaset voivat \"tunneloida\" esteiden läpi, jotka olisivat klassisesti ylitsepääsemättömiä!",
       "contactForm": "Yhteydenottolomake",
       "name": "Nimi",
       "email": "Sähköposti",
@@ -76,35 +112,136 @@
       "successTitle": "Tunnelointi Onnistui!",
       "successMessage": "Viestisi ylitti kvanttiestereen",
       "tunnelingEffect": "Tunnelointiilmiö",
-      "tunnelingDescription": "Kvanttitunnelointi mahdollistaa hiukkasten kulkemisen energiaesteiden läpi, jotka olisivat klassisessa fysiikassa ylitsepääsemättömiä. Tämä ilmiö mahdollistaa monien nykyaikaisten teknologioiden toiminnan tunneliskannerista tähtien ydinfuusioon. Lomakkeessamme se symboloi viestinnän esteiden ylittämistä!"
+      "tunnelingDescription_part1": "Kvanttitunnelointi",
+      "tunnelingDescription_part2": " mahdollistaa hiukkasten kulkemisen ",
+      "tunnelingDescription_term1": "energiaesteiden",
+      "tunnelingDescription_part3": " läpi, jotka olisivat klassisessa fysiikassa ylitsepääsemättömiä. Tämä ilmiö mahdollistaa monien nykyaikaisten teknologioiden toiminnan tunneliskannerista tähtien ydinfuusioon. Lomakkeessamme se symboloi viestinnän esteiden ylittämistä!"
     },
     "schrodinger": {
-      "title": "Schrödingerin Koe",
-      "subtitle": "Superpositio Paradoksi", 
-      "instruction": "Avaa kvanttilaatikko ja tarkista onko kissa elossa vai kuollut!",
-      "superposition": "Superpositio",
-      "alive": "Kissa Elää!",
-      "dead": "Kissa on Kuollut",
-      "explanation": "Schrödingerin ajatuskoe havainnollistaa kvanttisuposition siirtämisen makroskooppiseen mittakaavaan liittyvää mielettömyyttä."
+      "title": "Schrödingerin Kissan Koe",
+      "subtitle": "Superposition Paradoksi",
+      "boxStateSuperposition": "Superpositio",
+      "boxStateDescription": "Kissa on sekä elävä JA kuollut",
+      "boxStateMeasuring": "Mittaus käynnissä...",
+      "boxStateAlive": "Kissa Elää!",
+      "boxStateDead": "Kissa on Kuollut",
+      "buttonOpen": "Avaa Laatikko (Mittaa)",
+      "buttonMeasuring": "Mitataan...",
+      "statsTitle": "Mittaustilastot",
+      "statsTotal": "yhteensä",
+      "statsAlive": "Elossa",
+      "statsDead": "Kuollut",
+      "paradoxTitle": "Schrödingerin Kissan Paradoksi",
+      "paradoxDescription_part1": "Schrödingerin ajatuskoe havainnollistaa ",
+      "paradoxDescription_term1": "kvanttisuperposition",
+      "paradoxDescription_part2": " soveltamisen mielettömyyttä makroskooppiseen mittakaavaan. Laatikossa oleva kissa on samanaikaisesti elossa ja kuollut, kunnes teemme mittauksen. Tämä osoittaa, kuinka havainnointi vaikuttaa kvanttitodellisuuteen."
     },
     "computing": {
       "title": "Hyppy 6: Kvanttitietokoneet",
       "subtitle": "Laskennan Tulevaisuus",
-      "quantumProcessor": "Interaktiivinen Kvanttiprosessori", 
-      "quantumGates": "Kvanttiportit",
-      "startComputation": "Aloita Laskenta",
+      "visualizationTitle": "Kvanttitietokoneen visualisointi",
+      "processorTitle": "Interaktiivinen kvanttiprosessori",
+      "gatesTitle": "Kvanttiportit",
+      "startComputation": "Aloita laskenta",
       "computing": "Kvanttilaskenta...",
       "quantumAdvantage": "Kvanttietu",
-      "advantageDescription": "Kvanttitietokoneet käyttävät superpositiota ja kietoutumista suorittaakseen laskutoimituksia, jotka olisivat käytännössä mahdottomia klassisille tietokoneille."
+      "advantageDescription_part1": "Kvanttitietokoneet käyttävät ",
+      "advantageDescription_term1": "superpositiota",
+      "advantageDescription_part2": " ja ",
+      "advantageDescription_term2": "kietoutumista",
+      "advantageDescription_part3": " suorittaakseen laskutoimituksia, jotka olisivat käytännössä mahdottomia klassisille tietokoneille. Yksi ",
+      "advantageDescription_term3": "kubitti",
+      "advantageDescription_part4": " voi olla samanaikaisesti tilassa |0⟩ ja |1⟩, mikä mahdollistaa eksponentiaalisen laskentatehon kasvun jokaisen lisäkubitin myötä."
     },
     "applications": {
       "title": "Hyppy 7: Kvanttisovellukset",
       "subtitle": "Kvanttivallankumous Käytännössä",
-      "cryptography": "Kvanttisalaus",
-      "teleportation": "Kvanttiteleportaatio",
-      "sensing": "Kvanttisensorit",
-      "learnMore": "Lue lisää", 
-      "hideDetails": "Piilota tiedot"
+      "cryptographyTitle": "Kvanttisalaus",
+      "cryptographyDescriptionShort": "Murtamaton viestintä kvanttifysiikan lakien ansiosta.",
+      "cryptographyDescriptionLong_part1": "Kvanttisalaus hyödyntää ",
+      "cryptographyDescriptionLong_term1": "Heisenbergin epätarkkuusperiaatetta",
+      "cryptographyDescriptionLong_part2": " luodakseen täysin turvallisia viestintäkanavia. Jokainen salakuunteluyritys havaitaan automaattisesti.",
+      "teleportationTitle": "Kvanttiteleportaatio",
+      "teleportationDescriptionShort": "Kvanttitilojen siirtäminen pitkien etäisyyksien päähän.",
+      "teleportationDescriptionLong": "Kvanttiteleportaatio mahdollistaa kvanttitilatietojen siirron ilman hiukkasen fyysistä siirtämistä. Se on tulevaisuuden kvantti-internetin perusta.",
+      "sensingTitle": "Kvanttisensorit",
+      "sensingDescriptionShort": "Mittaustarkkuus, jota ei aiemmin ollut mahdollista saavuttaa.",
+      "sensingDescriptionLong": "Kvanttisensorit käyttävät kvanttiefektejä saavuttaakseen ennennäkemättömän herkkyystason, mikä mullistaa lääketieteen, geologian ja navigoinnin.",
+      "learnMore": "Lue lisää",
+      "hideDetails": "Piilota tiedot",
+      "interactiveDemo": "Interaktiivinen demo:",
+      "cryptographyDemoText": "Reaaliajassa generoidut kvanttiavaimet",
+      "teleportationDemoText": "Hiukkasten välillä siirretyt kvanttitilat",
+      "sensingDemoText": "Tarkat kvanttimittaukset käynnissä"
     }
+  },
+  "panel": {
+    "lightMode": "Vaalea Tila",
+    "darkMode": "Tumma Tila",
+    "language": "Kieli",
+    "accessibilityOn": "Ota saavutettavuus käyttöön",
+    "accessibilityOff": "Poista saavutettavuus käytöstä",
+    "terms": "Käyttöehdot",
+    "privacy": "Tietosuojakäytäntö",
+    "github": "GitHub-profiili",
+    "twitter": "X (Twitter) -profiili",
+    "facebook": "Facebook-profiili",
+    "scrollToTop": "Vieritä ylös"
+  },
+  "termsPage": {
+    "backButton": "Takaisin",
+    "mainTitle": "Kvanttipalvelun Käyttöehdot",
+    "subtitle": "Viimeksi päivitetty: kvanttinen nykyhetki",
+    "sections": [
+      {
+        "title": "1. Superpositioehtojen Hyväksyminen",
+        "content": [
+          "Käyttämällä Kvanttiportaalia suostut olemaan olemassa kaikkien mahdollisten käyttäjätilojen superpositiossa. Vuorovaikutuksesi aiheuttaa aaltofunktion romahtamisen yhteen, määrättyyn tilaan, joka on sitova seuraavaan vuorovaikutukseen asti.",
+          "Pidätämme oikeuden kietoa nämä ehdot mihin tahansa muihin maailmankaikkeuden ehtoihin. Muutokset tulevat voimaan välittömästi kaikissa kietoutuneissa maailmankaikkeuksissa."
+        ]
+      },
+      {
+        "title": "2. Käyttäjän Havainnointi ja Mittaaminen",
+        "content": [
+          "Jokainen tekosi Portaalissa on mittauksen muoto. Suostut siihen, että havainnointisi voi peruuttamattomasti muuttaa havaitun järjestelmän tilaa. Emme ole vastuussa mahdollisista paradokseista, joita saatat vahingossa luoda.",
+          "Epävarmuusperiaatteen mukaisesti, mitä tarkemmin tiedämme sijaintisi Portaalissa, sitä vähemmän tiedämme liikemäärästäsi (ja aikeistasi). Ja päinvastoin."
+        ]
+      },
+      {
+        "title": "3. Vastuun Tunnelointi",
+        "content": [
+          "Kaikki vastuu kvanttiesteiden läpi matkustamisen mahdollisista sivuvaikutuksista (kuten spontaani olemassaolo kahdessa paikassa samanaikaisesti) tunneloidaan suoraan Käyttäjälle.",
+          "Todennäköisyys, että otamme vastuun, on kääntäen verrannollinen ongelman energiaesteen korkeuteen."
+        ]
+      }
+    ]
+  },
+  "privacyPage": {
+    "backButton": "Takaisin",
+    "mainTitle": "Alkeishiukkasten Tietosuojakäytäntö",
+    "subtitle": "Tietosi ovat turvassa ja samalla kaikkialla",
+    "sections": [
+      {
+        "title": "1. Kvanttidatan Kerääminen",
+        "content": [
+          "Keräämme tietoa kvanttitilastasi, mukaan lukien spin, liikemäärä ja sijainti Hilbertin avaruudessa. Henkilötietosi ovat olemassa todennäköisyyspilvenä, kunnes päätämme mitata ne.",
+          "Käytämme evästeitä, jotka saattavat olla olemassa tai olla olematta, kunnes tarkistat selaimesi evästekansion, mikä viimeistelee niiden tilan."
+        ]
+      },
+      {
+        "title": "2. Datan Kietoutuminen Kolmansien Osapuolten Kanssa",
+        "content": [
+          "Voimme kietoa tietosi luotettujen kumppaneidemme tietoihin. Tämä tarkoittaa, että heidän tietojensa mittaaminen vaikuttaa välittömästi sinun tietoihisi etäisyydestä riippumatta. Älä huoli, tämä 'aavemainen etävaikutus' on täysin fysiikan lakien mukainen.",
+          "Emme jaa romahtaneita tietojasi kolmansille osapuolille ilman nimenomaista, determinististä suostumustasi."
+        ]
+      },
+      {
+        "title": "3. Turvallisuus ja Mustan Aukun Paradoksi",
+        "content": [
+          "Tietosi tallennetaan tavalla, joka on analoginen mustan aukon informaatioparadoksin kanssa. Ne ovat sekä täysin saatavillamme että peruuttamattomasti ulkomaailman saavuttamattomissa.",
+          "Tietoturvaloukkauksen sattuessa tieto tapahtumasta saapuu sinulle aikadilataatiosta johtuvan viiveen kanssa."
+        ]
+      }
+    ]
   }
 }

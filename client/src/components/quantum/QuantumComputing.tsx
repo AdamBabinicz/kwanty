@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
-import quantumComputerImage from '@assets/generated_images/Futuristic_quantum_computer_visualization_59e7c532.png';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
+import quantumComputerImage from "@assets/generated_images/Futuristic_quantum_computer_visualization_59e7c532.png";
+import GlossaryTerm from "@/components/ui/GlossaryTerm";
 
 export default function QuantumComputing() {
   const { t } = useTranslation();
@@ -11,17 +12,21 @@ export default function QuantumComputing() {
 
   const toggleQubit = (index: number) => {
     const newState = [...qubitsState];
-    newState[index] = newState[index] === 0 ? 1 : newState[index] === 1 ? 2 : 0; // 0: |0⟩, 1: |1⟩, 2: superposition
+    newState[index] = newState[index] === 0 ? 1 : newState[index] === 1 ? 2 : 0;
     setQubitsState(newState);
   };
 
   const startQuantumComputation = () => {
     setIsComputing(true);
-    // Simulate quantum computation
     setTimeout(() => {
-      setQubitsState([2, 2, 2, 2]); // All in superposition
+      setQubitsState([2, 2, 2, 2]);
       setTimeout(() => {
-        setQubitsState([Math.floor(Math.random() * 2), Math.floor(Math.random() * 2), Math.floor(Math.random() * 2), Math.floor(Math.random() * 2)]);
+        setQubitsState([
+          Math.floor(Math.random() * 2),
+          Math.floor(Math.random() * 2),
+          Math.floor(Math.random() * 2),
+          Math.floor(Math.random() * 2),
+        ]);
         setIsComputing(false);
       }, 2000);
     }, 1000);
@@ -29,19 +34,27 @@ export default function QuantumComputing() {
 
   const getQubitColor = (state: number) => {
     switch (state) {
-      case 0: return 'from-blue-500 to-cyan-400';
-      case 1: return 'from-purple-500 to-pink-400';
-      case 2: return 'from-yellow-400 via-purple-500 to-cyan-400';
-      default: return 'from-gray-400 to-gray-600';
+      case 0:
+        return "from-blue-500 to-cyan-400";
+      case 1:
+        return "from-purple-500 to-pink-400";
+      case 2:
+        return "from-yellow-400 via-purple-500 to-cyan-400";
+      default:
+        return "from-gray-400 to-gray-600";
     }
   };
 
   const getQubitSymbol = (state: number) => {
     switch (state) {
-      case 0: return '|0⟩';
-      case 1: return '|1⟩';
-      case 2: return '|ψ⟩';
-      default: return '?';
+      case 0:
+        return "|0⟩";
+      case 1:
+        return "|1⟩";
+      case 2:
+        return "|ψ⟩";
+      default:
+        return "?";
     }
   };
 
@@ -63,16 +76,21 @@ export default function QuantumComputing() {
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl font-bold mb-6 quantum-glow" data-testid="quantum-computing-title">
-            Skok 6: Komputery Kwantowe
+          <h2
+            className="text-5xl font-bold mb-6 quantum-glow"
+            data-testid="quantum-computing-title"
+          >
+            {t("sections.computing.title")}
           </h2>
-          <p className="text-xl quantum-subtitle-light mb-8" data-testid="quantum-computing-subtitle">
-            Przyszłość Obliczeń
+          <p
+            className="text-xl quantum-subtitle-light mb-8"
+            data-testid="quantum-computing-subtitle"
+          >
+            {t("sections.computing.subtitle")}
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          {/* Quantum Computer Visualization */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, x: -50 }}
@@ -82,7 +100,7 @@ export default function QuantumComputing() {
           >
             <motion.img
               src={quantumComputerImage}
-              alt="Quantum Computer Visualization"
+              alt={t("sections.computing.visualizationTitle")}
               className="w-full rounded-xl shadow-2xl border border-quantum-cyan border-opacity-30"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
@@ -96,7 +114,6 @@ export default function QuantumComputing() {
             />
           </motion.div>
 
-          {/* Interactive Quantum Processor */}
           <motion.div
             className="space-y-8"
             initial={{ opacity: 0, x: 50 }}
@@ -105,26 +122,43 @@ export default function QuantumComputing() {
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="text-2xl font-semibold mb-6 text-center" data-testid="quantum-processor-title">
-                Interaktywny Procesor Kwantowy
+              <h3
+                className="text-2xl font-semibold mb-6 text-center"
+                data-testid="quantum-processor-title"
+              >
+                {t("sections.computing.processorTitle")}
               </h3>
-              
-              {/* Qubits */}
+
               <div className="grid grid-cols-4 gap-4 mb-8">
                 {qubitsState.map((state, index) => (
                   <motion.button
                     key={index}
                     onClick={() => !isComputing && toggleQubit(index)}
-                    className={`w-20 h-20 rounded-full bg-gradient-to-br ${getQubitColor(state)} flex items-center justify-center font-bold text-white text-lg shadow-lg hover:scale-110 transition-all duration-300 ${
-                      isComputing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+                    className={`w-20 h-20 rounded-full bg-gradient-to-br ${getQubitColor(
+                      state
+                    )} flex items-center justify-center font-bold text-white text-lg shadow-lg hover:scale-110 transition-all duration-300 ${
+                      isComputing
+                        ? "cursor-not-allowed opacity-50"
+                        : "cursor-pointer"
                     }`}
                     whileHover={!isComputing ? { scale: 1.1 } : {}}
-                    whileTap={!isComputing ? { scale: 0.95 } : {}}
-                    animate={state === 2 ? { 
-                      boxShadow: ["0 0 20px rgba(255, 255, 0, 0.5)", "0 0 40px rgba(255, 0, 255, 0.5)", "0 0 20px rgba(0, 255, 255, 0.5)"],
-                      scale: [1, 1.05, 1]
-                    } : {}}
-                    transition={{ duration: 1, repeat: state === 2 ? Infinity : 0 }}
+                    whileTap={!isComputing ? { scale: 1.2 } : {}}
+                    animate={
+                      state === 2
+                        ? {
+                            boxShadow: [
+                              "0 0 20px rgba(255, 255, 0, 0.5)",
+                              "0 0 40px rgba(255, 0, 255, 0.5)",
+                              "0 0 20px rgba(0, 255, 255, 0.5)",
+                            ],
+                            scale: [1, 1.1, 1],
+                          }
+                        : {}
+                    }
+                    transition={{
+                      duration: 1,
+                      repeat: state === 2 ? Infinity : 0,
+                    }}
                     data-testid={`qubit-${index}`}
                   >
                     {getQubitSymbol(state)}
@@ -132,16 +166,25 @@ export default function QuantumComputing() {
                 ))}
               </div>
 
-              {/* Quantum Gates */}
               <div className="bg-card p-6 rounded-xl border border-quantum-cyan border-opacity-30 mb-6">
-                <h4 className="text-lg font-semibold mb-4 text-quantum-cyan" data-testid="quantum-gates-title">
-                  Bramki Kwantowe
+                <h4
+                  className="text-lg font-semibold mb-4 text-quantum-cyan"
+                  data-testid="quantum-gates-title"
+                >
+                  <GlossaryTerm definition={t("definitions.quantumGate")}>
+                    {t("sections.computing.gatesTitle")}
+                  </GlossaryTerm>
                 </h4>
                 <div className="grid grid-cols-3 gap-3">
-                  {['H', 'X', 'Z'].map((gate) => (
+                  {["H", "X", "Z"].map((gate) => (
                     <Button
                       key={gate}
-                      onClick={() => !isComputing && setQubitsState(qubitsState.map(() => Math.floor(Math.random() * 3)))}
+                      onClick={() =>
+                        !isComputing &&
+                        setQubitsState(
+                          qubitsState.map(() => Math.floor(Math.random() * 3))
+                        )
+                      }
                       className="h-12 bg-gradient-to-br from-quantum-cyan to-purple-500 text-white font-bold hover:scale-105 transition-all duration-300"
                       disabled={isComputing}
                       data-testid={`gate-${gate}`}
@@ -152,7 +195,6 @@ export default function QuantumComputing() {
                 </div>
               </div>
 
-              {/* Quantum Computation Button */}
               <div className="text-center">
                 <Button
                   onClick={startQuantumComputation}
@@ -161,7 +203,9 @@ export default function QuantumComputing() {
                   data-testid="start-computation"
                 >
                   <span className="relative z-10">
-                    {isComputing ? 'Obliczanie Kwantowe...' : 'Uruchom Obliczenia'}
+                    {isComputing
+                      ? t("sections.computing.computing")
+                      : t("sections.computing.startComputation")}
                   </span>
                   {isComputing && (
                     <motion.div
@@ -174,18 +218,37 @@ export default function QuantumComputing() {
               </div>
             </div>
 
-            {/* Quantum Advantage */}
             <motion.div
               className="bg-card p-6 rounded-xl border border-quantum-cyan border-opacity-30"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <h4 className="text-lg font-semibold mb-3 text-quantum-cyan" data-testid="quantum-advantage-title">
-                Przewaga Kwantowa
+              <h4
+                className="text-lg font-semibold mb-3 text-quantum-cyan"
+                data-testid="quantum-advantage-title"
+              >
+                <GlossaryTerm definition={t("definitions.quantumAdvantage")}>
+                  {t("sections.computing.quantumAdvantage")}
+                </GlossaryTerm>
               </h4>
-              <p className="text-sm leading-relaxed opacity-90" data-testid="quantum-advantage-description">
-                Komputery kwantowe wykorzystują superpozycję i splątanie do wykonywania obliczeń, które byłyby praktycznie niemożliwe dla komputerów klasycznych. Jeden qubit może być jednocześnie w stanie |0⟩ i |1⟩, co pozwala na eksponencjalny wzrost mocy obliczeniowej z każdym dodatkowym qubitem.
-              </p>
+              <div
+                className="text-sm leading-relaxed opacity-90"
+                data-testid="quantum-advantage-description"
+              >
+                {t("sections.computing.advantageDescription_part1")}
+                <GlossaryTerm definition={t("definitions.superposition")}>
+                  {t("sections.computing.advantageDescription_term1")}
+                </GlossaryTerm>
+                {t("sections.computing.advantageDescription_part2")}
+                <GlossaryTerm definition={t("definitions.quantumEntanglement")}>
+                  {t("sections.computing.advantageDescription_term2")}
+                </GlossaryTerm>
+                {t("sections.computing.advantageDescription_part3")}
+                <GlossaryTerm definition={t("definitions.qubit")}>
+                  {t("sections.computing.advantageDescription_term3")}
+                </GlossaryTerm>
+                {t("sections.computing.advantageDescription_part4")}
+              </div>
             </motion.div>
           </motion.div>
         </div>

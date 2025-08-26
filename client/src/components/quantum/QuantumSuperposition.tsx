@@ -1,26 +1,34 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { useQuantumState } from '@/hooks/useQuantumState';
-import QubitVisualization from './visualizations/QubitVisualization';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { useQuantumState } from "@/hooks/useQuantumState";
+import QubitVisualization from "./visualizations/QubitVisualization";
+import GlossaryTerm from "@/components/ui/GlossaryTerm";
 
 export default function QuantumSuperposition() {
   const { t } = useTranslation();
   const { measurementCount, measureQubit } = useQuantumState();
-  const [currentState, setCurrentState] = useState<'superposition' | 0 | 1>('superposition');
-  
+  const [currentState, setCurrentState] = useState<"superposition" | 0 | 1>(
+    "superposition"
+  );
+
   const totalMeasurements = measurementCount.state0 + measurementCount.state1;
-  const state0Percent = totalMeasurements > 0 ? (measurementCount.state0 / totalMeasurements) * 100 : 0;
-  const state1Percent = totalMeasurements > 0 ? (measurementCount.state1 / totalMeasurements) * 100 : 0;
+  const state0Percent =
+    totalMeasurements > 0
+      ? (measurementCount.state0 / totalMeasurements) * 100
+      : 0;
+  const state1Percent =
+    totalMeasurements > 0
+      ? (measurementCount.state1 / totalMeasurements) * 100
+      : 0;
 
   const handleQubitMeasurement = () => {
     const measurement = Math.random() < 0.5 ? 0 : 1;
     setCurrentState(measurement);
     measureQubit(measurement);
 
-    // Reset to superposition after 3 seconds
     setTimeout(() => {
-      setCurrentState('superposition');
+      setCurrentState("superposition");
     }, 3000);
   };
 
@@ -42,11 +50,17 @@ export default function QuantumSuperposition() {
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl font-bold mb-6 quantum-glow" data-testid="superposition-title">
-            {t('sections.superposition.title')}
+          <h2
+            className="text-5xl font-bold mb-6 quantum-glow"
+            data-testid="superposition-title"
+          >
+            {t("sections.superposition.title")}
           </h2>
-          <p className="text-xl text-quantum-cyan mb-8" data-testid="superposition-subtitle">
-            {t('sections.superposition.subtitle')}
+          <p
+            className="text-xl text-quantum-cyan mb-8"
+            data-testid="superposition-subtitle"
+          >
+            {t("sections.superposition.subtitle")}
           </p>
         </motion.div>
 
@@ -59,38 +73,51 @@ export default function QuantumSuperposition() {
             viewport={{ once: true }}
           >
             <p className="text-lg mb-8" data-testid="qubit-instruction">
-              {t('sections.superposition.instruction')}
+              {t("sections.superposition.instruction")}
             </p>
 
-            {/* Interactive Qubit */}
             <QubitVisualization
               currentState={currentState}
               onMeasurement={handleQubitMeasurement}
             />
 
-            {/* State Display */}
             <motion.div
-              className="mt-8 p-6 bg-card rounded-xl border border-quantum-cyan border-opacity-30 inline-block"
-              whileHover={{ scale: 1.02 }}
+              className="mt-8 p-6 md:ml-10 bg-card rounded-xl border border-quantum-cyan border-opacity-30 inline-block"
+              whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <h4 className="text-lg font-semibold mb-3 text-quantum-cyan" data-testid="qubit-state-label">
-                {t('sections.superposition.qubitState')}
+              <h4
+                className="text-lg font-semibold mb-3 text-quantum-cyan"
+                data-testid="qubit-state-label"
+              >
+                {t("sections.superposition.qubitState")}
               </h4>
               <p className="text-2xl font-bold" data-testid="state-text">
-                {currentState === 'superposition' && t('sections.superposition.superpositionState')}
-                {currentState === 0 && t('sections.superposition.measured0')}
-                {currentState === 1 && t('sections.superposition.measured1')}
+                {currentState === "superposition" &&
+                  t("sections.superposition.superpositionState")}
+                {currentState === 0 && t("sections.superposition.measured0")}
+                {currentState === 1 && t("sections.superposition.measured1")}
               </p>
-              <p className="mt-2 text-sm opacity-80" data-testid="state-description">
-                {currentState === 'superposition' && t('sections.superposition.superpositionDescription')}
-                {currentState === 0 && t('sections.superposition.collapse0')}
-                {currentState === 1 && t('sections.superposition.collapse1')}
+              <p
+                className="mt-2 text-sm opacity-80"
+                data-testid="state-description"
+              >
+                {currentState === "superposition" &&
+                  t("sections.superposition.superpositionDescription")}
+                {currentState !== "superposition" && (
+                  <>
+                    {t("sections.superposition.collapse_part1")}
+                    {t("sections.superposition.collapse_part2")}
+                    {currentState === 0
+                      ? t("sections.superposition.collapse_state_base")
+                      : t("sections.superposition.collapse_state_excited")}
+                    .
+                  </>
+                )}
               </p>
             </motion.div>
           </motion.div>
 
-          {/* Measurement Statistics */}
           <motion.div
             className="bg-card p-8 rounded-xl border border-quantum-cyan border-opacity-30"
             initial={{ opacity: 0, y: 50 }}
@@ -98,20 +125,26 @@ export default function QuantumSuperposition() {
             transition={{ duration: 1, delay: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-semibold mb-6 text-center" data-testid="statistics-title">
-              {t('sections.superposition.statistics')}
+            <h3
+              className="text-2xl font-semibold mb-6 text-center"
+              data-testid="statistics-title"
+            >
+              {t("sections.superposition.statistics")}
             </h3>
             <div className="grid md:grid-cols-2 gap-8">
               <motion.div
                 className="text-center"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="text-4xl font-bold text-quantum-cyan mb-2" data-testid="state0-count">
+                <div
+                  className="text-4xl font-bold text-quantum-cyan mb-2"
+                  data-testid="state0-count"
+                >
                   {measurementCount.state0}
                 </div>
                 <div className="text-lg" data-testid="state0-label">
-                  {t('sections.superposition.state0')}
+                  {t("sections.superposition.state0")}
                 </div>
                 <div className="w-full bg-muted rounded-full h-4 mt-2">
                   <motion.div
@@ -124,17 +157,20 @@ export default function QuantumSuperposition() {
                   />
                 </div>
               </motion.div>
-              
+
               <motion.div
                 className="text-center"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="text-4xl font-bold text-purple-400 mb-2" data-testid="state1-count">
+                <div
+                  className="text-4xl font-bold text-purple-400 mb-2"
+                  data-testid="state1-count"
+                >
                   {measurementCount.state1}
                 </div>
                 <div className="text-lg" data-testid="state1-label">
-                  {t('sections.superposition.state1')}
+                  {t("sections.superposition.state1")}
                 </div>
                 <div className="w-full bg-muted rounded-full h-4 mt-2">
                   <motion.div

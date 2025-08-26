@@ -1,293 +1,472 @@
+import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "@/components/theme-provider";
+import { useQuantumContext } from "@/contexts/QuantumContext";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  FaEye,
+  FaLayerGroup,
+  FaLink,
+  FaQuestion,
+  FaPaperPlane,
+  FaCat,
+  FaMicrochip,
+  FaRocket,
+  FaSun,
+  FaMoon,
+  FaGithub,
+  FaTwitter,
+  FaFacebook,
+  FaFileContract,
+  FaShieldAlt,
+} from "react-icons/fa";
+import { MdAccessibility } from "react-icons/md";
+import { Languages, Menu, X, ChevronsRight, ChevronsLeft } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { RemoveScroll } from "react-remove-scroll";
 
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { useTheme } from '@/hooks/useTheme';
-import { useQuantumState } from '@/hooks/useQuantumState';
-import { Button } from '@/components/ui/button';
-import { 
-  FaAtom, 
-  FaEye, 
-  FaLayerGroup, 
-  FaLink, 
-  FaQuestion, 
-  FaPaperPlane, 
-  FaCat, 
-  FaMicrochip, 
-  FaRocket, 
-  FaSun, 
-  FaMoon 
-} from 'react-icons/fa';
-import { MdAccessibility } from 'react-icons/md';
+const navItems = [
+  { id: "observation", icon: FaEye, labelKey: "sections.observation.title" },
+  {
+    id: "superposition",
+    icon: FaLayerGroup,
+    labelKey: "sections.superposition.title",
+  },
+  { id: "schrodinger", icon: FaCat, labelKey: "sections.schrodinger.title" },
+  { id: "entanglement", icon: FaLink, labelKey: "sections.entanglement.title" },
+  {
+    id: "uncertainty",
+    icon: FaQuestion,
+    labelKey: "sections.uncertainty.title",
+  },
+  { id: "tunneling", icon: FaPaperPlane, labelKey: "sections.tunneling.title" },
+  {
+    id: "quantum-computing",
+    icon: FaMicrochip,
+    labelKey: "sections.computing.title",
+  },
+  {
+    id: "quantum-applications",
+    icon: FaRocket,
+    labelKey: "sections.applications.title",
+  },
+];
+
+const legalLinks = [
+  { href: "/terms", icon: FaFileContract, labelKey: "panel.terms" },
+  { href: "/privacy", icon: FaShieldAlt, labelKey: "panel.privacy" },
+];
 
 export default function QuantumControlPanel() {
   const { t, i18n } = useTranslation();
-  const { isDarkMode, toggleTheme } = useTheme();
-  const { currentLanguage, setLanguage, toggleAccessibility, isAccessibilityMode, mousePosition } = useQuantumState();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const orbButtonRef = useRef<HTMLButtonElement>(null);
+  const { theme, setTheme } = useTheme();
+  const { state, dispatch } = useQuantumContext();
+  const { currentLanguage, isAccessibilityMode } = state;
+
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeSection, setActiveSection] = useState("observation");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLangPopoverOpen, setIsLangPopoverOpen] = useState(false);
+
+  const togglePanel = () => setIsExpanded((prev) => !prev);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentSection = navItems.find((item) => {
+        const element = document.getElementById(item.id);
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top <= window.innerHeight / 2 &&
+          rect.bottom >= window.innerHeight / 2
+        );
+      });
+      if (currentSection) setActiveSection(currentSection.id);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navigateToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-      
-      setIsMenuOpen(false);
-      setTimeout(() => {
-        orbButtonRef.current?.focus();
-      }, 300);
+    if (sectionId === "observation") {
+      dispatch({ type: "COLLAPSE_WAVE" });
     }
+    setTimeout(() => {
+      document
+        .getElementById(sectionId)
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+    setIsMobileMenuOpen(false);
   };
 
-  // Handle escape key to close menu
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isMenuOpen) {
-        setIsMenuOpen(false);
-        orbButtonRef.current?.focus();
-      }
-    };
-
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [isMenuOpen]);
-
-  // Focus management when menu opens
-  useEffect(() => {
-    if (isMenuOpen && menuRef.current) {
-      const firstFocusableElement = menuRef.current.querySelector('button');
-      (firstFocusableElement as HTMLElement)?.focus();
-    }
-  }, [isMenuOpen]);
-
-  const getLanguageName = (lang: string) => {
-    const names = {
-      pl: 'Polski',
-      en: 'English', 
-      fi: 'Suomi'
-    };
-    return names[lang as keyof typeof names] || lang;
+  const handleLanguageChange = (lang: "pl" | "en" | "fi") => {
+    dispatch({ type: "SET_LANGUAGE", payload: lang });
+    i18n.changeLanguage(lang);
+    setIsLangPopoverOpen(false);
   };
 
-  // Handle language change
-  const handleLanguageChange = (lang: 'pl' | 'en' | 'fi') => {
-    if (currentLanguage === lang) return;
-    setLanguage(lang);
-    if (i18n && i18n.changeLanguage) {
-      i18n.changeLanguage(lang);
-    }
-  };
+  const handleThemeToggle = () => setTheme(theme === "dark" ? "light" : "dark");
 
-  // Mouse following effect
-  const orbStyle = {
-    transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
-  };
+  const toggleAccessibility = () => dispatch({ type: "TOGGLE_ACCESSIBILITY" });
 
-  return (
-    <div className="fixed top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8 z-50 touch-none" style={orbStyle}>
-      {/* Main Orb - Responsive sizes */}
-      <motion.div
-        className="relative"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+  const NavButton = ({
+    item,
+    isMobile = false,
+  }: {
+    item: (typeof navItems)[0];
+    isMobile?: boolean;
+  }) => (
+    <Button
+      onClick={() => navigateToSection(item.id)}
+      className={cn(
+        "w-full flex items-center justify-start space-x-4 p-3 h-auto transition-colors duration-200 rounded-lg",
+        activeSection === item.id
+          ? "bg-blue-500 text-white"
+          : "bg-transparent text-slate-800 dark:text-slate-200 hover:bg-blue-500/10 dark:hover:bg-blue-500/20",
+        isMobile ? "" : "justify-center lg:justify-start"
+      )}
+    >
+      <item.icon className="h-6 w-6 flex-shrink-0" />
+      <span
+        className={cn(
+          "font-medium transition-opacity duration-300",
+          isMobile
+            ? "whitespace-normal text-left"
+            : "whitespace-nowrap hidden lg:inline-block",
+          isExpanded ? "lg:opacity-100" : "lg:opacity-0"
+        )}
       >
-        <Button
-          ref={orbButtonRef}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br from-blue-500 via-purple-600 to-indigo-600 hover:from-blue-600 hover:via-purple-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 p-0 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-opacity-50"
-          aria-label={isMenuOpen ? 
-            (currentLanguage === 'pl' ? 'Zamknij menu kwantowe' : 
-             currentLanguage === 'en' ? 'Close quantum menu' : 
-             'Sulje kvanttivalikko') : 
-            (currentLanguage === 'pl' ? 'Otwórz menu kwantowe' : 
-             currentLanguage === 'en' ? 'Open quantum menu' : 
-             'Avaa kvanttivalikko')}
-          aria-expanded={isMenuOpen}
-          aria-haspopup="true"
-          data-testid="quantum-orb-button"
-        >
-          <motion.div
-            animate={{ rotate: isMenuOpen ? 180 : 0 }}
-            transition={{ duration: 0.5 }}
+        {t(item.labelKey)}
+      </span>
+    </Button>
+  );
+
+  const desktopPanel = (
+    <div
+      className={cn(
+        "hidden lg:flex flex-col fixed top-1/2 -translate-y-1/2 left-4 z-50",
+        "h-full max-h-[90vh] bg-white/60 dark:bg-gray-900/60 backdrop-blur-md rounded-2xl border border-blue-400/20 shadow-lg overflow-hidden",
+        "transition-all duration-300 ease-in-out",
+        isExpanded ? "w-80" : "w-[5.5rem]"
+      )}
+    >
+      <div className="p-4 border-b border-blue-400/20 flex items-center justify-between flex-shrink-0">
+        <div className="flex items-center space-x-4 overflow-hidden">
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex-shrink-0"></div>
+          <span
+            className={cn(
+              "font-bold text-lg whitespace-nowrap transition-opacity duration-200",
+              isExpanded ? "opacity-100" : "opacity-0"
+            )}
           >
-            <FaAtom className="text-sm sm:text-lg lg:text-xl text-white" />
-          </motion.div>
+            Quantum Portal
+          </span>
+        </div>
+        <Button
+          onClick={togglePanel}
+          variant="ghost"
+          size="icon"
+          className="flex-shrink-0 text-slate-800 dark:text-slate-200"
+        >
+          {isExpanded ? <ChevronsLeft /> : <ChevronsRight />}
         </Button>
-
-        {/* Expanded Menu - Responsive */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              ref={menuRef}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
-              transition={{ duration: 0.5, type: "spring" }}
-              className="absolute top-0 right-0 w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full bg-white dark:bg-gray-900 bg-opacity-95 dark:bg-opacity-95 backdrop-blur-lg border-2 border-blue-400 border-opacity-50 flex items-center justify-center shadow-2xl"
-              role="menu"
-              aria-label="Menu nawigacji kwantowej"
-              data-testid="quantum-menu"
+      </div>
+      <nav className="flex-1 p-3 space-y-2 overflow-y-auto no-scrollbar min-h-0">
+        {navItems.map((item) => (
+          <NavButton key={item.id} item={item} />
+        ))}
+      </nav>
+      <div className="p-3 border-t border-blue-400/20 space-y-2 flex-shrink-0">
+        <Button
+          onClick={handleThemeToggle}
+          variant="ghost"
+          className={cn(
+            "w-full flex items-center space-x-4 p-3 h-auto rounded-lg text-slate-800 dark:text-slate-200",
+            isExpanded ? "justify-start" : "justify-center"
+          )}
+        >
+          <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
+            {theme === "dark" ? (
+              <FaSun className="h-6 w-6 text-yellow-400" />
+            ) : (
+              <FaMoon className="h-6 w-6 text-indigo-500" />
+            )}
+          </div>
+          <span
+            className={cn(
+              "font-medium transition-opacity duration-300",
+              isExpanded ? "opacity-100" : "opacity-0",
+              !isExpanded && "hidden"
+            )}
+          >
+            {theme === "dark" ? t("panel.lightMode") : t("panel.darkMode")}
+          </span>
+        </Button>
+        <Popover open={isLangPopoverOpen} onOpenChange={setIsLangPopoverOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="ghost"
+              className={cn(
+                "w-full flex items-center space-x-4 p-3 h-auto rounded-lg text-slate-800 dark:text-slate-200",
+                isExpanded ? "justify-start" : "justify-center"
+              )}
             >
-              <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72">
-                {/* Navigation Icons - positioned around the circle with better visibility */}
+              <Languages className="h-6 w-6 flex-shrink-0 text-green-500" />
+              <span
+                className={cn(
+                  "font-medium transition-opacity duration-300",
+                  isExpanded ? "opacity-100" : "opacity-0",
+                  !isExpanded && "hidden"
+                )}
+              >
+                {t("panel.language")}
+              </span>
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent
+            side="top"
+            align="center"
+            sideOffset={8}
+            className="w-40 p-1"
+          >
+            <div className="flex flex-col space-y-1">
+              {(["pl", "en", "fi"] as const).map((lang) => (
                 <Button
-                  onClick={() => navigateToSection('observation')}
-                  className="absolute top-2 left-1/2 transform -translate-x-1/2 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-blue-500 hover:bg-blue-600 text-white transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center justify-center shadow-md"
-                  aria-label={`${t('sections.observation.title')} - ${t('sections.observation.subtitle')}`}
-                  role="menuitem"
-                  data-testid="nav-observation"
+                  key={lang}
+                  onClick={() => handleLanguageChange(lang)}
+                  variant={currentLanguage === lang ? "default" : "ghost"}
+                  className={`w-full justify-center text-sm h-8 ${
+                    currentLanguage === lang ? "bg-green-500" : ""
+                  }`}
                 >
-                  <FaEye className="text-white text-xs sm:text-sm lg:text-base" aria-hidden="true" />
+                  {lang.toUpperCase()}
                 </Button>
+              ))}
+            </div>
+          </PopoverContent>
+        </Popover>
+        <Button
+          onClick={toggleAccessibility}
+          variant="ghost"
+          className={cn(
+            "w-full flex items-center space-x-4 p-3 h-auto rounded-lg text-slate-800 dark:text-slate-200",
+            isExpanded ? "justify-start" : "justify-center"
+          )}
+        >
+          <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
+            <MdAccessibility
+              className={cn(
+                "h-6 w-6",
+                isAccessibilityMode ? "text-purple-500" : "text-gray-500"
+              )}
+            />
+          </div>
+          <span
+            className={cn(
+              "font-medium transition-opacity duration-300",
+              isExpanded ? "opacity-100" : "opacity-0",
+              !isExpanded && "hidden"
+            )}
+          >
+            {isAccessibilityMode
+              ? t("panel.accessibilityOff")
+              : t("panel.accessibilityOn")}
+          </span>
+        </Button>
+      </div>
+      <div className="p-3 border-t border-blue-400/20 space-y-1 flex-shrink-0">
+        {/* --- OSTATECZNA POPRAWKA BŁĘDU ZAGNIEŻDŻENIA --- */}
+        {legalLinks.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={cn(
+              "w-full flex items-center space-x-4 p-3 h-auto transition-colors duration-200 rounded-lg text-slate-800 dark:text-slate-200 hover:bg-blue-500/10 dark:hover:bg-blue-500/20",
+              isExpanded ? "justify-start" : "justify-center"
+            )}
+          >
+            <link.icon className="h-6 w-6 flex-shrink-0" />
+            <span
+              className={cn(
+                "font-medium transition-opacity duration-300",
+                isExpanded ? "opacity-100" : "opacity-0",
+                !isExpanded && "hidden"
+              )}
+            >
+              {t(link.labelKey)}
+            </span>
+          </Link>
+        ))}
+      </div>
+      <div className="p-4 border-t border-blue-400/20 flex-shrink-0">
+        <div
+          className={cn(
+            "flex items-center justify-around",
+            isExpanded ? "opacity-100" : "opacity-0 pointer-events-none"
+          )}
+        >
+          <a
+            href="https://github.com/AdamBabinicz"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("panel.github")}
+            className="text-slate-800 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400"
+          >
+            <FaGithub className="h-6 w-6" />
+          </a>
+          <a
+            href="https://x.com/AdamBabinicz"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("panel.twitter")}
+            className="text-slate-800 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400"
+          >
+            <FaTwitter className="h-6 w-6" />
+          </a>
+          <a
+            href="https://www.facebook.com/adam.gierczak.334"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("panel.facebook")}
+            className="text-slate-800 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400"
+          >
+            <FaFacebook className="h-6 w-6" />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
 
-                <Button
-                  onClick={() => navigateToSection('superposition')}
-                  className="absolute top-4 sm:top-6 lg:top-8 right-2 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-purple-500 hover:bg-purple-600 text-white transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-purple-400 flex items-center justify-center shadow-md"
-                  aria-label={`${t('sections.superposition.title')} - ${t('sections.superposition.subtitle')}`}
-                  role="menuitem"
-                  data-testid="nav-superposition"
-                >
-                  <FaLayerGroup className="text-white text-xs sm:text-sm lg:text-base" aria-hidden="true" />
-                </Button>
-
-                <Button
-                  onClick={() => navigateToSection('entanglement')}
-                  className="absolute top-1/2 right-2 transform -translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-indigo-400 flex items-center justify-center shadow-md"
-                  aria-label={`${t('sections.entanglement.title')} - ${t('sections.entanglement.subtitle')}`}
-                  role="menuitem"
-                  data-testid="nav-entanglement"
-                >
-                  <FaLink className="text-white text-xs sm:text-sm lg:text-base" aria-hidden="true" />
-                </Button>
-
-                <Button
-                  onClick={() => navigateToSection('uncertainty')}
-                  className="absolute bottom-4 sm:bottom-6 lg:bottom-8 right-2 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-red-500 hover:bg-red-600 text-white transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-red-400 flex items-center justify-center shadow-md"
-                  aria-label={`${t('sections.uncertainty.title')} - ${t('sections.uncertainty.subtitle')}`}
-                  role="menuitem"
-                  data-testid="nav-uncertainty"
-                >
-                  <FaQuestion className="text-white text-xs sm:text-sm lg:text-base" aria-hidden="true" />
-                </Button>
-
-                <Button
-                  onClick={() => navigateToSection('tunneling')}
-                  className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-orange-500 hover:bg-orange-600 text-white transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-orange-400 flex items-center justify-center shadow-md"
-                  aria-label={`${t('sections.tunneling.title')} - ${t('sections.tunneling.subtitle')}`}
-                  role="menuitem"
-                  data-testid="nav-tunneling"
-                >
-                  <FaPaperPlane className="text-white text-xs sm:text-sm lg:text-base" aria-hidden="true" />
-                </Button>
-
-                <Button
-                  onClick={() => navigateToSection('schrodinger')}
-                  className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-2 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-green-500 hover:bg-green-600 text-white transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-green-400 flex items-center justify-center shadow-md"
-                  aria-label={`${t('sections.schrodinger.title')} - ${t('sections.schrodinger.subtitle')}`}
-                  role="menuitem"
-                  data-testid="nav-schrodinger"
-                >
-                  <FaCat className="text-white text-xs sm:text-sm lg:text-base" aria-hidden="true" />
-                </Button>
-
-                <Button
-                  onClick={() => navigateToSection('quantum-computing')}
-                  className="absolute top-1/2 left-2 transform -translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-teal-500 hover:bg-teal-600 text-white transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-teal-400 flex items-center justify-center shadow-md"
-                  aria-label={`${t('sections.computing.title')} - ${t('sections.computing.subtitle')}`}
-                  role="menuitem"
-                  data-testid="nav-quantum-computing"
-                >
-                  <FaMicrochip className="text-white text-xs sm:text-sm lg:text-base" aria-hidden="true" />
-                </Button>
-
-                <Button
-                  onClick={() => navigateToSection('quantum-applications')}
-                  className="absolute top-4 sm:top-6 lg:top-8 left-2 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full bg-pink-500 hover:bg-pink-600 text-white transition-all duration-300 hover:scale-110 p-0 focus:outline-none focus:ring-2 focus:ring-pink-400 flex items-center justify-center shadow-md"
-                  aria-label={`${t('sections.applications.title')} - ${t('sections.applications.subtitle')}`}
-                  role="menuitem"
-                  data-testid="nav-quantum-applications"
-                >
-                  <FaRocket className="text-white text-xs sm:text-sm lg:text-base" aria-hidden="true" />
-                </Button>
-
-                {/* Center Controls with Labels - Responsive */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2 sm:gap-3 lg:gap-4">
-                  {/* Theme Toggle with Label */}
-                  <div className="flex flex-col items-center gap-1">
-                    <Button
-                      onClick={toggleTheme}
-                      className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 hover:scale-110 transition-all duration-300 p-0 shadow-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                      aria-label={`Przełącz na motyw ${isDarkMode ? 'jasny' : 'ciemny'}`}
-                      data-testid="theme-toggle"
-                    >
-                      {isDarkMode ? (
-                        <FaSun className="text-white text-xs sm:text-sm lg:text-lg" aria-hidden="true" />
+  const mobilePanel = (
+    <div className="lg:hidden">
+      <Button
+        onClick={() => setIsMobileMenuOpen(true)}
+        className="fixed top-4 right-4 z-50 p-3 h-12 w-12 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md shadow-lg border border-blue-400/20 text-slate-800 dark:text-slate-200"
+      >
+        <Menu />
+      </Button>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <RemoveScroll>
+            <motion.div
+              className="fixed inset-0 z-[100] bg-black/50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <motion.div
+                className="absolute left-0 top-0 h-full w-72 bg-white dark:bg-gray-900 shadow-2xl flex flex-col"
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "-100%" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="p-4 border-b border-blue-400/20 flex items-center justify-between flex-shrink-0">
+                  <span className="font-bold text-lg">Quantum Portal</span>
+                  <Button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    variant="ghost"
+                    className="p-2 h-auto"
+                  >
+                    <X />
+                  </Button>
+                </div>
+                <nav className="flex-1 p-3 space-y-2 overflow-y-auto min-h-0">
+                  {navItems.map((item) => (
+                    <NavButton key={item.id} item={item} isMobile />
+                  ))}
+                </nav>
+                <div className="p-3 border-t border-blue-400/20 space-y-2 flex-shrink-0">
+                  <div className="p-3 flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      {theme === "dark" ? (
+                        <FaSun className="h-6 w-6 text-yellow-400" />
                       ) : (
-                        <FaMoon className="text-white text-xs sm:text-sm lg:text-lg" aria-hidden="true" />
+                        <FaMoon className="h-6 w-6 text-indigo-500" />
                       )}
-                    </Button>
-                    <span className="text-xs text-gray-800 dark:text-gray-200 font-medium">
-                      {currentLanguage === 'pl' ? 'Motyw' : currentLanguage === 'en' ? 'Theme' : 'Teema'}
-                    </span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        handleThemeToggle();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="font-medium text-left"
+                    >
+                      {theme === "dark"
+                        ? t("panel.lightMode")
+                        : t("panel.darkMode")}
+                    </button>
                   </div>
-
-                  {/* Language Toggle with Label - Improved contrast and responsiveness */}
-                  <div className="flex flex-col items-center gap-1 sm:gap-2">
-                    <div className="bg-gray-100 dark:bg-gray-800 p-2 rounded-lg border border-gray-300 dark:border-gray-600">
-                      <div className="text-xs text-center mb-1 sm:mb-2 font-semibold text-gray-800 dark:text-gray-200">
-                        {currentLanguage === 'pl' ? 'Język' : currentLanguage === 'en' ? 'Language' : 'Kieli'}
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        {(['pl', 'en', 'fi'] as const).map((lang) => (
-                          <Button
-                            key={lang}
-                            onClick={() => handleLanguageChange(lang)}
-                            className={`w-12 sm:w-16 lg:w-20 h-5 sm:h-6 lg:h-8 text-xs font-bold rounded transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
-                              currentLanguage === lang 
-                                ? 'bg-blue-600 text-white shadow-lg border-2 border-blue-600' 
-                                : 'bg-gray-200 text-gray-800 hover:bg-blue-500 hover:text-white border border-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-blue-600'
-                            }`}
-                            aria-label={`Zmień język na ${getLanguageName(lang)}`}
-                            aria-pressed={currentLanguage === lang}
-                            role="radio"
-                            data-testid={`language-${lang}`}
-                          >
-                            {getLanguageName(lang)}
-                          </Button>
-                        ))}
-                      </div>
+                  <div className="p-3 flex flex-col space-y-2">
+                    <div className="flex items-center space-x-4">
+                      <Languages className="h-6 w-6 text-green-500" />
+                      <span className="font-medium">{t("panel.language")}</span>
+                    </div>
+                    <div className="flex justify-around">
+                      {(["pl", "en", "fi"] as const).map((lang) => (
+                        <Button
+                          key={lang}
+                          onClick={() => {
+                            handleLanguageChange(lang);
+                            setIsMobileMenuOpen(false);
+                          }}
+                          variant={
+                            currentLanguage === lang ? "default" : "ghost"
+                          }
+                          className={`flex-1 ${
+                            currentLanguage === lang ? "bg-green-500" : ""
+                          }`}
+                        >
+                          {lang.toUpperCase()}
+                        </Button>
+                      ))}
                     </div>
                   </div>
-
-                  {/* Accessibility with Label */}
-                  <div className="flex flex-col items-center gap-1">
-                    <Button
-                      onClick={toggleAccessibility}
-                      className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400 ${
-                        isAccessibilityMode 
-                          ? 'bg-green-600 text-white transform scale-110' 
-                          : 'bg-gray-300 text-gray-700 hover:bg-green-500 hover:text-white hover:scale-105 dark:bg-gray-700 dark:text-gray-300'
-                      }`}
-                      aria-label={`${isAccessibilityMode ? 'Wyłącz' : 'Włącz'} tryb wysokiej dostępności`}
-                      aria-pressed={isAccessibilityMode}
-                      data-testid="accessibility-toggle"
+                  <div className="p-3 flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      <MdAccessibility
+                        className={cn(
+                          "h-6 w-6",
+                          isAccessibilityMode
+                            ? "text-purple-500"
+                            : "text-gray-500"
+                        )}
+                      />
+                    </div>
+                    <button
+                      onClick={() => {
+                        toggleAccessibility();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="font-medium text-left"
                     >
-                      <MdAccessibility className="text-xs sm:text-sm" aria-hidden="true" />
-                    </Button>
-                    <span className="text-xs text-gray-800 dark:text-gray-200 font-medium">
-                      {currentLanguage === 'pl' ? 'Dostępność' : currentLanguage === 'en' ? 'Accessibility' : 'Saavutettavuus'}
-                    </span>
+                      {isAccessibilityMode
+                        ? t("panel.accessibilityOff")
+                        : t("panel.accessibilityOn")}
+                    </button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+          </RemoveScroll>
+        )}
+      </AnimatePresence>
     </div>
+  );
+
+  return (
+    <>
+      {desktopPanel}
+      {mobilePanel}
+    </>
   );
 }

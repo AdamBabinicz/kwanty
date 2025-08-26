@@ -1,10 +1,12 @@
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { useQuantumState } from '@/hooks/useQuantumState';
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { useQuantumContext } from "@/contexts/QuantumContext";
+import GlossaryTerm from "@/components/ui/GlossaryTerm";
 
 export default function QuantumObservation() {
   const { t } = useTranslation();
-  const { isWaveCollapsed } = useQuantumState();
+  const { state } = useQuantumContext();
+  const { isWaveCollapsed } = state;
 
   if (!isWaveCollapsed) return null;
 
@@ -18,7 +20,7 @@ export default function QuantumObservation() {
       viewport={{ once: true }}
       data-testid="observation-section"
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0 }}
@@ -26,11 +28,17 @@ export default function QuantumObservation() {
           transition={{ duration: 1, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl font-bold mb-6 quantum-glow" data-testid="observation-title">
-            {t('sections.observation.title')}
+          <h2
+            className="text-5xl font-bold mb-6 quantum-glow"
+            data-testid="observation-title"
+          >
+            {t("sections.observation.title")}
           </h2>
-          <p className="text-xl text-quantum-cyan mb-8" data-testid="observation-subtitle">
-            {t('sections.observation.subtitle')}
+          <p
+            className="text-xl text-quantum-cyan mb-8"
+            data-testid="observation-subtitle"
+          >
+            {t("sections.observation.subtitle")}
           </p>
         </motion.div>
 
@@ -42,38 +50,58 @@ export default function QuantumObservation() {
             transition={{ duration: 1, delay: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-semibold mb-4" data-testid="duality-title">
-              {t('sections.observation.content.title')}
+            <h3
+              className="text-2xl font-semibold mb-4"
+              data-testid="duality-title"
+            >
+              <GlossaryTerm definition={t("definitions.waveParticleDuality")}>
+                {t("sections.observation.content.title")}
+              </GlossaryTerm>
             </h3>
-            
-            <p className="text-lg leading-relaxed opacity-90" data-testid="description-1">
-              {t('sections.observation.content.description1')}
-            </p>
-            
-            <p className="text-lg leading-relaxed opacity-90" data-testid="description-2">
-              {t('sections.observation.content.description2')}
-            </p>
+
+            <div
+              className="text-lg leading-relaxed opacity-90"
+              data-testid="description-1"
+            >
+              {t("sections.observation.content.description1")}
+            </div>
+
+            <div
+              className="text-lg leading-relaxed opacity-90"
+              data-testid="description-2"
+            >
+              {t("sections.observation.content.description2")}
+            </div>
 
             <motion.div
               className="bg-quantum-dark-700 p-6 rounded-xl border border-quantum-cyan border-opacity-30"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <h4 className="text-lg font-semibold mb-3 text-quantum-cyan" data-testid="concepts-title">
-                {t('sections.observation.content.concepts')}
+              <h4
+                className="text-lg font-semibold mb-3 text-quantum-cyan"
+                data-testid="concepts-title"
+              >
+                {t("sections.observation.content.concepts")}
               </h4>
               <ul className="space-y-2">
                 <li data-testid="concept-1">
                   <i className="fas fa-chevron-right text-quantum-cyan mr-2" />
-                  {t('sections.observation.content.concept1')}
+                  <GlossaryTerm definition={t("definitions.waveFunction")}>
+                    {t("sections.observation.content.concept1")}
+                  </GlossaryTerm>
                 </li>
                 <li data-testid="concept-2">
                   <i className="fas fa-chevron-right text-quantum-cyan mr-2" />
-                  {t('sections.observation.content.concept2')}
+                  <GlossaryTerm
+                    definition={t("definitions.waveFunctionCollapse")}
+                  >
+                    {t("sections.observation.content.concept2")}
+                  </GlossaryTerm>
                 </li>
                 <li data-testid="concept-3">
                   <i className="fas fa-chevron-right text-quantum-cyan mr-2" />
-                  {t('sections.observation.content.concept3')}
+                  {t("sections.observation.content.concept3")}
                 </li>
               </ul>
             </motion.div>
@@ -97,20 +125,27 @@ export default function QuantumObservation() {
                 >
                   <motion.div
                     className="w-32 h-32 mx-auto mb-4 relative"
-                    animate={{ scale: [1, 1.1, 1] }}
+                    animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
                     <motion.div
                       className="absolute inset-0 rounded-full border-2 border-dashed border-quantum-cyan opacity-60"
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <i className="fas fa-eye text-4xl text-quantum-cyan" />
                     </div>
                   </motion.div>
-                  <p className="text-quantum-cyan font-medium" data-testid="collapsed-state">
-                    {t('sections.observation.content.afterCollapse')}
+                  <p
+                    className="text-quantum-cyan font-medium"
+                    data-testid="collapsed-state"
+                  >
+                    {t("sections.observation.content.afterCollapse")}
                   </p>
                 </motion.div>
               </div>

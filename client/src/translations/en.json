@@ -4,6 +4,27 @@
     "subtitle": "Interactive Reality Exploration",
     "measureReality": "Measure Reality"
   },
+  "seo": {
+    "defaultTitle": "Quantum Portal: Interactive Reality Exploration",
+    "defaultDescription": "A groundbreaking website manifesting the principles of quantum mechanics through interactive visualizations and a dynamic interface."
+  },
+  "definitions": {
+    "waveParticleDuality": "A principle of quantum mechanics stating that quantum objects, such as photons and electrons, can exhibit the properties of both particles and waves.",
+    "waveFunction": "A mathematical description of the quantum state of a particle. It contains all the probabilistic information about its properties (position, momentum) before a measurement is made.",
+    "waveFunctionCollapse": "The sudden transition of a particle's wave function from a state of superposition to a single, definite state as a result of a measurement.",
+    "qubit": "The basic unit of quantum information, the quantum analogue of a classical bit. Unlike a bit, it can exist in a superposition of states 0 and 1.",
+    "superposition": "The ability of a quantum system (e.g., a qubit) to exist in multiple states simultaneously until a measurement is made.",
+    "quantumEntanglement": "A phenomenon where two or more quantum particles become linked in such a way that their fates are intertwined, regardless of the distance separating them.",
+    "spookyAction": "A phrase by Albert Einstein describing the paradoxical nature of entanglement, where measuring one particle instantly affects the other, even at a vast distance.",
+    "uncertaintyPrinciple": "A fundamental principle stating that there is a limit to the precision with which certain pairs of physical properties of a particle can be known simultaneously.",
+    "momentum": "A physical quantity describing an object's motion, being the product of its mass and velocity. In quantum mechanics, it forms an uncertainty pair with position.",
+    "conjugateVariable": "A pair of physical quantities (e.g., position and momentum) whose simultaneous measurement to arbitrary precision is impossible due to the uncertainty principle.",
+    "quantumTunneling": "A quantum effect where a particle passes through a potential barrier that it classically could not surmount.",
+    "potentialBarrier": "A region in space where a particle has higher potential energy, acting like a 'wall' or 'hill' that is classically difficult to cross.",
+    "quantumGate": "A basic operation performed on one or more qubits. It is the quantum equivalent of a classical logic gate (e.g., NOT, AND).",
+    "quantumAdvantage": "The ability of a quantum computer to solve a specific computational problem significantly faster than the fastest existing classical supercomputer.",
+    "quantumComputing": "A type of computation that uses the principles of quantum mechanics, such as superposition and entanglement, to process information in fundamentally new ways."
+  },
   "sections": {
     "observation": {
       "title": "Leap 1: Observation",
@@ -28,8 +49,10 @@
       "superpositionDescription": "Qubit exists in superposition of all possible states",
       "measured0": "Measured state: |0⟩",
       "measured1": "Measured state: |1⟩",
-      "collapse0": "Wave function collapsed to ground state",
-      "collapse1": "Wave function collapsed to excited state",
+      "collapse_part1": "Wave function",
+      "collapse_part2": " collapsed to ",
+      "collapse_state_base": "ground state",
+      "collapse_state_excited": "excited state",
       "statistics": "Measurement Statistics",
       "state0": "State |0⟩",
       "state1": "State |1⟩"
@@ -42,14 +65,24 @@
       "particleB": "Particle B",
       "connection": "Quantum Entanglement",
       "principle": "Entanglement Principle",
-      "principleDescription": "Einstein called it \"spooky action at a distance\". When two particles are quantum entangled, measuring the state of one instantly affects the state of the other, regardless of the distance separating them.",
+      "principleDescription_part1": "Einstein called it ",
+      "principleDescription_term1": "\"spooky action at a distance\"",
+      "principleDescription_part2": ". When two particles are ",
+      "principleDescription_term2": "quantum entangled",
+      "principleDescription_part3": ", measuring the state of one instantly affects the state of the other, regardless of the distance separating them.",
       "applications": "Applications",
-      "applicationsDescription": "Quantum entanglement is the foundation for future technologies: quantum computers, quantum cryptography, and quantum teleportation. It's the basis of the quantum revolution."
+      "applicationsDescription_part1": "Quantum entanglement",
+      "applicationsDescription_part2": " is the foundation for future technologies: ",
+      "applicationsDescription_term1": "quantum computers",
+      "applicationsDescription_part3": ", quantum cryptography, and quantum teleportation. It's the basis of the quantum revolution."
     },
     "uncertainty": {
       "title": "Leap 4: Uncertainty",
       "subtitle": "Limits of Certainty",
-      "instruction": "Heisenberg's uncertainty principle: The more precisely we know position, the less precisely we can determine momentum!",
+      "instruction_part1": "Heisenberg's uncertainty principle",
+      "instruction_part2": ": The more precisely we know position, the less precisely we can determine ",
+      "instruction_term1": "momentum",
+      "instruction_part3": "!",
       "heisenbergMeter": "Heisenberg Meter",
       "positionCertainty": "Position Certainty:",
       "momentumCertainty": "Momentum Certainty:",
@@ -58,7 +91,10 @@
       "unknownMomentum": "Unknown",
       "preciseMomentum": "Precise",
       "limitation": "Fundamental Limitation",
-      "limitationDescription": "The uncertainty principle does not result from limitations of our measuring instruments, but is a fundamental property of nature. The more precisely we try to measure one quantity, the less precisely we can simultaneously measure a quantity conjugate to it. This is not a matter of technology - this is how the universe works at the quantum level."
+      "limitationDescription_part1": "The uncertainty principle",
+      "limitationDescription_part2": " does not result from limitations of our measuring instruments, but is a fundamental property of nature. The more precisely we try to measure one quantity, the less precisely we can simultaneously measure a ",
+      "limitationDescription_term1": "quantity conjugate to it",
+      "limitationDescription_part3": ". This is not a matter of technology - this is how the universe works at the quantum level."
     },
     "tunneling": {
       "title": "Leap 5: Tunneling",
@@ -76,35 +112,136 @@
       "successTitle": "Tunneling Completed Successfully!",
       "successMessage": "Your message crossed the quantum barrier",
       "tunnelingEffect": "Tunneling Effect",
-      "tunnelingDescription": "Quantum tunneling allows particles to pass through energy barriers that would be insurmountable in classical physics. This phenomenon enables the operation of many modern technologies, from tunnel scanners to nuclear fusion in stars. In our form, it symbolizes overcoming communication barriers!"
+      "tunnelingDescription_part1": "Quantum tunneling",
+      "tunnelingDescription_part2": " allows particles to pass through ",
+      "tunnelingDescription_term1": "energy barriers",
+      "tunnelingDescription_part3": " that would be insurmountable in classical physics. This phenomenon enables the operation of many modern technologies, from tunnel scanners to nuclear fusion in stars. In our form, it symbolizes overcoming communication barriers!"
     },
     "schrodinger": {
-      "title": "Schrödinger's Experiment",
-      "subtitle": "Superposition Paradox",
-      "instruction": "Open the quantum box and check if the cat is alive or dead!",
-      "superposition": "Superposition",
-      "alive": "Cat is Alive!",
-      "dead": "Cat is Dead",
-      "explanation": "Schrödinger's thought experiment illustrates the absurdity of transferring quantum superposition to the macroscopic scale."
+      "title": "Schrödinger's Cat Experiment",
+      "subtitle": "The Superposition Paradox",
+      "boxStateSuperposition": "Superposition",
+      "boxStateDescription": "The cat is both alive AND dead",
+      "boxStateMeasuring": "Measurement in progress...",
+      "boxStateAlive": "Cat is Alive!",
+      "boxStateDead": "Cat is Dead",
+      "buttonOpen": "Open the Box (Measure)",
+      "buttonMeasuring": "Measuring...",
+      "statsTitle": "Measurement Statistics",
+      "statsTotal": "Total",
+      "statsAlive": "Alive",
+      "statsDead": "Dead",
+      "paradoxTitle": "The Schrödinger's Cat Paradox",
+      "paradoxDescription_part1": "Schrödinger's thought experiment illustrates the absurdity of applying ",
+      "paradoxDescription_term1": "quantum superposition",
+      "paradoxDescription_part2": " to the macroscopic scale. The cat in the box is simultaneously alive and dead until we make a measurement. This shows how the act of observation affects quantum reality."
     },
     "computing": {
       "title": "Leap 6: Quantum Computers",
-      "subtitle": "Future of Computing", 
-      "quantumProcessor": "Interactive Quantum Processor",
-      "quantumGates": "Quantum Gates",
+      "subtitle": "Future of Computing",
+      "visualizationTitle": "Quantum Computer Visualization",
+      "processorTitle": "Interactive Quantum Processor",
+      "gatesTitle": "Quantum Gates",
       "startComputation": "Start Computation",
       "computing": "Quantum Computing...",
       "quantumAdvantage": "Quantum Advantage",
-      "advantageDescription": "Quantum computers use superposition and entanglement to perform calculations that would be practically impossible for classical computers."
+      "advantageDescription_part1": "Quantum computers use ",
+      "advantageDescription_term1": "superposition",
+      "advantageDescription_part2": " and ",
+      "advantageDescription_term2": "entanglement",
+      "advantageDescription_part3": " to perform calculations that would be practically impossible for classical computers. One ",
+      "advantageDescription_term3": "qubit",
+      "advantageDescription_part4": " can be in state |0⟩ and |1⟩ simultaneously, which allows for an exponential increase in computing power with each additional qubit."
     },
     "applications": {
       "title": "Leap 7: Quantum Applications",
       "subtitle": "Quantum Revolution in Practice",
-      "cryptography": "Quantum Cryptography",
-      "teleportation": "Quantum Teleportation",
-      "sensing": "Quantum Sensors", 
-      "learnMore": "Learn more",
-      "hideDetails": "Hide details"
+      "cryptographyTitle": "Quantum Cryptography",
+      "cryptographyDescriptionShort": "Unbreakable communication thanks to the laws of quantum physics.",
+      "cryptographyDescriptionLong_part1": "Quantum cryptography uses ",
+      "cryptographyDescriptionLong_term1": "Heisenberg's uncertainty principle",
+      "cryptographyDescriptionLong_part2": " to create absolutely secure communication channels. Any attempt to eavesdrop is automatically detected.",
+      "teleportationTitle": "Quantum Teleportation",
+      "teleportationDescriptionShort": "Transferring quantum states over long distances.",
+      "teleportationDescriptionLong": "Quantum teleportation allows for the transmission of quantum state information without physically moving the particle. It is the basis for the future quantum internet.",
+      "sensingTitle": "Quantum Sensors",
+      "sensingDescriptionShort": "Measurements with previously unattainable precision.",
+      "sensingDescriptionLong": "Quantum sensors use quantum effects to achieve unprecedented levels of sensitivity, revolutionizing medicine, geology, and navigation.",
+      "learnMore": "Learn More",
+      "hideDetails": "Hide Details",
+      "interactiveDemo": "Interactive Demo:",
+      "cryptographyDemoText": "Quantum keys generated in real-time",
+      "teleportationDemoText": "Quantum states transmitted between particles",
+      "sensingDemoText": "Precise quantum measurements in progress"
     }
+  },
+  "panel": {
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "language": "Language",
+    "accessibilityOn": "Enable Accessibility",
+    "accessibilityOff": "Disable Accessibility",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "github": "GitHub Profile",
+    "twitter": "X (Twitter) Profile",
+    "facebook": "Facebook Profile",
+    "scrollToTop": "Scroll to top"
+  },
+  "termsPage": {
+    "backButton": "Back",
+    "mainTitle": "Quantum Terms of Service",
+    "subtitle": "Last Updated: The Quantum Present",
+    "sections": [
+      {
+        "title": "1. Acceptance of Superposition Terms",
+        "content": [
+          "By using the Quantum Portal, you agree to exist in a superposition of all possible User states. Your interaction causes a wave function collapse into a single, definite state, which is binding until the next interaction.",
+          "We reserve the right to entangle these terms with any other terms in the universe. Changes become effective instantaneously across all entangled universes."
+        ]
+      },
+      {
+        "title": "2. User Observation and Measurement",
+        "content": [
+          "Every action you take within the Portal is a form of measurement. You agree that the act of your observation may irreversibly alter the state of the observed system. We are not responsible for any paradoxes you might accidentally create.",
+          "In accordance with the uncertainty principle, the more precisely we know your position in the Portal, the less we will know about your momentum (and intentions). And vice versa."
+        ]
+      },
+      {
+        "title": "3. Tunneling of Liability",
+        "content": [
+          "Any liability for potential side effects of traveling through quantum barriers (such as spontaneously existing in two places at once) is tunneled directly to the User.",
+          "The probability of us assuming liability is inversely proportional to the energy barrier of the problem."
+        ]
+      }
+    ]
+  },
+  "privacyPage": {
+    "backButton": "Back",
+    "mainTitle": "Elementary Particle Privacy Policy",
+    "subtitle": "Your data is both secure and everywhere at once",
+    "sections": [
+      {
+        "title": "1. Quantum Data Collection",
+        "content": [
+          "We collect information about your quantum state, including spin, momentum, and position in Hilbert space. Your personal data exists as a probability cloud until we decide to measure it.",
+          "We use cookies that may or may not exist until you check your browser's cookie folder, which finalizes their state."
+        ]
+      },
+      {
+        "title": "2. Data Entanglement with Third Parties",
+        "content": [
+          "We may entangle your data with that of our trusted partners. This means that measuring their data will instantly affect yours, regardless of the distance. Don't worry, this 'spooky action at a distance' is fully compliant with the laws of physics.",
+          "We do not share your collapsed data with third parties without your explicit, deterministic consent."
+        ]
+      },
+      {
+        "title": "3. Security and the Black Hole Paradox",
+        "content": [
+          "Your data is stored in a manner analogous to the black hole information paradox. It is both fully accessible to us and irreversibly inaccessible to the outside world.",
+          "In the event of a security breach, information about the event will reach you with a delay due to time dilation."
+        ]
+      }
+    ]
   }
 }
