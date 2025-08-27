@@ -4,32 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    font-size: 14px;
-  }
-  @media (min-width: 640px) {
-    html {
-      font-size: 15px;
-    }
-  }
-  @media (min-width: 768px) {
-    html {
-      font-size: 16px;
-    }
-  }
-  @media (min-width: 1024px) {
-    html {
-      font-size: 17px;
-    }
-  }
-  @media (min-width: 1280px) {
-    html {
-      font-size: 18px;
-    }
-  }
-}
-
 :root {
   --background: hsl(0, 0%, 100%);
   --foreground: hsl(210, 100%, 8%);
@@ -83,11 +57,7 @@
   --border: hsl(215, 25%, 15%);
   --input: hsl(215, 30%, 18%);
   --ring: hsl(174, 100%, 70%);
-  --tooltip-background-dark: hsl(
-    210,
-    67%,
-    15%
-  ); /* Zmieniamy tło na nieco jaśniejsze */
+  --tooltip-background-dark: hsl(210, 67%, 15%);
   --quantum-dark-900: hsl(210, 67%, 10%);
   --quantum-dark-800: hsl(215, 50%, 13%);
   --quantum-dark-700: hsl(215, 35%, 18%);
@@ -104,9 +74,30 @@
     padding: 0;
   }
   html {
+    font-size: 14px;
     scroll-behavior: smooth;
     overflow-x: hidden;
     scrollbar-gutter: stable;
+  }
+  @media (min-width: 640px) {
+    html {
+      font-size: 15px;
+    }
+  }
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 1024px) {
+    html {
+      font-size: 17px;
+    }
+  }
+  @media (min-width: 1280px) {
+    html {
+      font-size: 18px;
+    }
   }
   body {
     @apply font-sans antialiased bg-background text-foreground transition-colors duration-500;
@@ -118,7 +109,6 @@
   h2 {
     font-size: 2.9rem !important;
   }
-
   .container {
     width: 100%;
     margin-left: auto;
@@ -126,14 +116,12 @@
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
-
   @media (min-width: 768px) {
     .container {
       padding-left: 10rem !important;
       padding-right: 10rem !important;
     }
   }
-
   @media (min-width: 1280px) {
     .container {
       padding-left: 5rem;
@@ -392,35 +380,29 @@ html.accessibility-mode .border {
   scrollbar-width: none;
 }
 
-/* Poprawione style dla tooltipów i popoverów w trybie ciemnym */
 .dark .radix-tooltip-content,
 .dark .radix-popover-content,
 .dark .TooltipContent,
 .dark .PopoverContent {
-  /* Używamy zmiennej, która jest ustawiona na jaśniejsze tło */
   background-color: var(--tooltip-background-dark) !important;
-  /* Biała ramka */
-  border: 1px solid hsl(0, 0%, 90%) !important; /* Jaśniejszy odcień bieli */
-  /* Subtelne cieniowanie dla kontrastu */
+  border: 1px solid hsl(0, 0%, 90%) !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.1) !important;
-  color: hsl(0, 0%, 90%) !important; /* Jaśniejszy tekst */
+  color: hsl(0, 0%, 90%) !important;
 }
-/* Mobile: max-width 640px */
+
 @media (max-width: 640px) {
   [data-radix-popper-content-wrapper] > [data-state="open"] {
-    background-color: #f3f4f6 !important; /* mobilne tło */
+    background-color: #f3f4f6 !important;
     border: 1px solid rgba(0, 0, 0, 0.2) !important;
     color: #111 !important;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25) !important;
     border-radius: 0.5rem;
     padding: 0.375rem 0.75rem;
   }
-
   [data-radix-popper-content-wrapper] > [data-state="open"].animate-in {
     opacity: 1 !important;
     transform: scale(1) translateY(0) !important;
   }
-
   [data-radix-popper-content-wrapper] > [data-state="open"].animate-out {
     opacity: 0 !important;
     transform: scale(0.95) translateY(4px) !important;
