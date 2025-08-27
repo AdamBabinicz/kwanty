@@ -405,3 +405,20 @@ html.accessibility-mode .border {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.1) !important;
   color: hsl(0, 0%, 90%) !important; /* Jaśniejszy tekst */
 }
+/* Mobile: max-width 640px */
+@media (max-width: 640px) {
+  [data-radix-popper-content-wrapper] > [data-state="open"] {
+    background-color: #f3f4f6 !important; /* przykładowe jasnoszare tło */
+    border: 1px solid #fff !important;
+    color: #000 !important; /* tekst kontrastowy do tła */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  }
+}
+
+/* Desktop: pozostaje normalne tło i ramka */
+@media (min-width: 641px) {
+  [data-radix-popper-content-wrapper] > [data-state="open"] {
+    background-color: var(--popover-bg, #fff);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+}
