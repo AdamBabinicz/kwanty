@@ -226,10 +226,10 @@ export default function SchrodingerSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <h4 className="text-lg font-semibold mb-4 text-center text-quantum-cyan">
+                <h3 className="text-lg font-semibold mb-4 text-center text-quantum-cyan">
                   {t("sections.schrodinger.statsTitle")} ({totalMeasurements}{" "}
                   {t("sections.schrodinger.statsTotal")})
-                </h4>
+                </h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
                     <div
@@ -274,9 +274,9 @@ export default function SchrodingerSection() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <h4 className="text-lg font-semibold mb-3 text-quantum-cyan">
+              <h3 className="text-lg font-semibold mb-3 text-quantum-cyan">
                 {t("sections.schrodinger.paradoxTitle")}
-              </h4>
+              </h3>
               <div className="text-sm leading-relaxed opacity-90">
                 {t("sections.schrodinger.paradoxDescription_part1")}
                 <GlossaryTerm definition={t("definitions.superposition")}>
