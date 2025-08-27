@@ -4,6 +4,9 @@
     "subtitle": "Interaktiivinen Todellisuuden Tutkimus",
     "measureReality": "Mittaa Todellisuus"
   },
+  "sidebar": {
+    "toggle": "Vaihda sivupalkkia"
+  },
   "seo": {
     "defaultTitle": "Kvanttisivu: Interaktiivinen Todellisuuden Tutkimus",
     "defaultDescription": "Mullistava verkkosivusto, joka ilmentää kvanttimekaniikan periaatteita interaktiivisten visualisointien ja dynaamisen käyttöliittymän kautta."

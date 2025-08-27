@@ -4,6 +4,9 @@
     "subtitle": "Interactive Reality Exploration",
     "measureReality": "Measure Reality"
   },
+  "sidebar": {
+    "toggle": "Toggle sidebar"
+  },
   "seo": {
     "defaultTitle": "Quantum Portal: Interactive Reality Exploration",
     "defaultDescription": "A groundbreaking website manifesting the principles of quantum mechanics through interactive visualizations and a dynamic interface."

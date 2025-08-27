@@ -4,6 +4,9 @@
     "subtitle": "Interaktywna Eksploracja Rzeczywistości",
     "measureReality": "Zmierz Rzeczywistość"
   },
+  "sidebar": {
+    "toggle": "Przełącz pasek boczny"
+  },
   "seo": {
     "defaultTitle": "Kwantowy Portal: Interaktywna Eksploracja Rzeczywistości",
     "defaultDescription": "Przełomowa strona internetowa manifestująca zasady mechaniki kwantowej przez interaktywne wizualizacje i dynamiczny interfejs."
