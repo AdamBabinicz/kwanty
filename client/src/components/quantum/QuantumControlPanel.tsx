@@ -22,11 +22,11 @@ import {
   FaSun,
   FaMoon,
   FaGithub,
-  FaTwitter,
   FaFacebook,
   FaFileContract,
   FaShieldAlt,
 } from "react-icons/fa";
+import { SiX } from "react-icons/si";
 import { MdAccessibility } from "react-icons/md";
 import { Languages, Menu, X, ChevronsRight, ChevronsLeft } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -340,7 +340,7 @@ export default function QuantumControlPanel() {
             aria-label={t("panel.twitter")}
             className="text-slate-800 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400"
           >
-            <FaTwitter className="h-6 w-6" />
+            <SiX className="h-6 w-6" /> {/* Zmienione na FaXTwitter */}
           </a>
           <a
             href="https://www.facebook.com/adam.gierczak.334"
@@ -522,7 +522,8 @@ export default function QuantumControlPanel() {
                         aria-label={t("panel.twitter")}
                         className="text-slate-800 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400"
                       >
-                        <FaTwitter className="h-6 w-6" />
+                        <SiX className="h-6 w-6" />{" "}
+                        {/* Zmienione na FaXTwitter */}
                       </a>
                       <a
                         href="https://www.facebook.com/adam.gierczak.334"
