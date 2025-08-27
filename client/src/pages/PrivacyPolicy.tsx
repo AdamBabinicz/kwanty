@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/SEO";
+import ScrollToTopButton from "@/components/ScrollToTop";
 
 export default function PrivacyPolicy() {
   const { t } = useTranslation();
@@ -82,6 +83,7 @@ export default function PrivacyPolicy() {
           </div>
         </motion.div>
       </main>
+      <ScrollToTopButton />
     </div>
   );
 }

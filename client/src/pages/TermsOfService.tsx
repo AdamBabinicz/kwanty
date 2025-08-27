@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import SEO from "@/components/SEO";
+import ScrollToTopButton from "@/components/ScrollToTop";
 
 export default function TermsOfService() {
   const { t } = useTranslation();
@@ -82,6 +83,7 @@ export default function TermsOfService() {
           </div>
         </motion.div>
       </main>
+      <ScrollToTopButton />
     </div>
   );
 }
