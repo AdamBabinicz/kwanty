@@ -400,31 +400,35 @@ export default function QuantumControlPanel() {
                   ))}
                 </nav>
                 <div className="p-3 border-t border-blue-400/20 space-y-2 flex-shrink-0">
-                  <div className="p-3 flex items-center space-x-4">
-                    <div className="flex-shrink-0">
+                  {/* Theme Toggle */}
+                  <Button
+                    onClick={() => {
+                      handleThemeToggle();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    variant="ghost"
+                    aria-label={
+                      theme === "dark"
+                        ? t("panel.lightMode")
+                        : t("panel.darkMode")
+                    }
+                    className="w-full flex items-center space-x-4 p-3 h-auto rounded-lg justify-start"
+                  >
+                    <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
                       {theme === "dark" ? (
                         <FaSun className="h-6 w-6 text-yellow-400" />
                       ) : (
                         <FaMoon className="h-6 w-6 text-indigo-500" />
                       )}
                     </div>
-                    <button
-                      onClick={() => {
-                        handleThemeToggle();
-                        setIsMobileMenuOpen(false);
-                      }}
-                      aria-label={
-                        theme === "dark"
-                          ? t("panel.lightMode")
-                          : t("panel.darkMode")
-                      }
-                      className="font-medium text-left"
-                    >
+                    <span className="font-medium">
                       {theme === "dark"
                         ? t("panel.lightMode")
                         : t("panel.darkMode")}
-                    </button>
-                  </div>
+                    </span>
+                  </Button>
+
+                  {/* Language Selector */}
                   <div className="p-3 flex flex-col space-y-2">
                     <div className="flex items-center space-x-4">
                       <Languages className="h-6 w-6 text-green-500" />
@@ -451,8 +455,22 @@ export default function QuantumControlPanel() {
                       ))}
                     </div>
                   </div>
-                  <div className="p-3 flex items-center space-x-4">
-                    <div className="flex-shrink-0">
+
+                  {/* Accessibility Toggle */}
+                  <Button
+                    onClick={() => {
+                      toggleAccessibility();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    variant="ghost"
+                    aria-label={
+                      isAccessibilityMode
+                        ? t("panel.accessibilityOff")
+                        : t("panel.accessibilityOn")
+                    }
+                    className="w-full flex items-center space-x-4 p-3 h-auto rounded-lg justify-start"
+                  >
+                    <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
                       <MdAccessibility
                         className={cn(
                           "h-6 w-6",
@@ -462,22 +480,60 @@ export default function QuantumControlPanel() {
                         )}
                       />
                     </div>
-                    <button
-                      onClick={() => {
-                        toggleAccessibility();
-                        setIsMobileMenuOpen(false);
-                      }}
-                      aria-label={
-                        isAccessibilityMode
-                          ? t("panel.accessibilityOff")
-                          : t("panel.accessibilityOn")
-                      }
-                      className="font-medium text-left"
-                    >
+                    <span className="font-medium">
                       {isAccessibilityMode
                         ? t("panel.accessibilityOff")
                         : t("panel.accessibilityOn")}
-                    </button>
+                    </span>
+                  </Button>
+
+                  {/* Legal Links */}
+                  <div className="border-t border-blue-400/20 pt-2 mt-2 space-y-1">
+                    {legalLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)} // Close menu on link click
+                        aria-label={t(link.labelKey)}
+                        className="w-full flex items-center space-x-4 p-3 h-auto transition-colors duration-200 rounded-lg text-slate-800 dark:text-slate-200 hover:bg-blue-500/10 dark:hover:bg-blue-500/20 justify-start"
+                      >
+                        <link.icon className="h-6 w-6 flex-shrink-0" />
+                        <span className="font-medium">{t(link.labelKey)}</span>
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* Social Media Links */}
+                  <div className="border-t border-blue-400/20 pt-2 mt-2">
+                    <div className="flex items-center justify-around p-3">
+                      <a
+                        href="https://github.com/AdamBabinicz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={t("panel.github")}
+                        className="text-slate-800 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400"
+                      >
+                        <FaGithub className="h-6 w-6" />
+                      </a>
+                      <a
+                        href="https://x.com/AdamBabinicz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={t("panel.twitter")}
+                        className="text-slate-800 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400"
+                      >
+                        <FaTwitter className="h-6 w-6" />
+                      </a>
+                      <a
+                        href="https://www.facebook.com/adam.gierczak.334"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={t("panel.facebook")}
+                        className="text-slate-800 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400"
+                      >
+                        <FaFacebook className="h-6 w-6" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </motion.div>
