@@ -348,9 +348,11 @@ export default function QuantumControlPanel() {
     <div className="lg:hidden">
       <Button
         onClick={() => setIsMobileMenuOpen(true)}
+        aria-label={t("panel.openMenu") || "Otwórz menu"}
         className="fixed top-4 right-4 z-50 p-3 h-12 w-12 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md shadow-lg border border-blue-400/20 text-slate-800 dark:text-slate-200"
       >
         <Menu />
+        <span className="sr-only">{t("panel.openMenu") || "Otwórz menu"}</span>
       </Button>
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -375,9 +377,13 @@ export default function QuantumControlPanel() {
                   <Button
                     onClick={() => setIsMobileMenuOpen(false)}
                     variant="ghost"
+                    aria-label={t("panel.closeMenu") || "Zamknij menu"}
                     className="p-2 h-auto"
                   >
                     <X />
+                    <span className="sr-only">
+                      {t("panel.closeMenu") || "Zamknij menu"}
+                    </span>
                   </Button>
                 </div>
                 <nav className="flex-1 p-3 space-y-2 overflow-y-auto min-h-0">
