@@ -86,12 +86,12 @@ export default function QuantumSuperposition() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <h4
+              <h3
                 className="text-lg font-semibold mb-3 text-quantum-cyan"
                 data-testid="qubit-state-label"
               >
                 {t("sections.superposition.qubitState")}
-              </h4>
+              </h3>
               <p className="text-2xl font-bold" data-testid="state-text">
                 {currentState === "superposition" &&
                   t("sections.superposition.superpositionState")}
