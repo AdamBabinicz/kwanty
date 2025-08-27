@@ -125,6 +125,7 @@ export default function QuantumControlPanel() {
   }) => (
     <Button
       onClick={() => navigateToSection(item.id)}
+      aria-label={t(item.labelKey)}
       className={cn(
         "w-full flex items-center justify-start space-x-4 p-3 h-auto transition-colors duration-200 rounded-lg",
         activeSection === item.id
@@ -173,6 +174,7 @@ export default function QuantumControlPanel() {
           onClick={togglePanel}
           variant="ghost"
           size="icon"
+          aria-label={isExpanded ? t("panel.collapse") : t("panel.expand")}
           className="flex-shrink-0 text-slate-800 dark:text-slate-200"
         >
           {isExpanded ? <ChevronsLeft /> : <ChevronsRight />}
@@ -187,6 +189,9 @@ export default function QuantumControlPanel() {
         <Button
           onClick={handleThemeToggle}
           variant="ghost"
+          aria-label={
+            theme === "dark" ? t("panel.lightMode") : t("panel.darkMode")
+          }
           className={cn(
             "w-full flex items-center space-x-4 p-3 h-auto rounded-lg text-slate-800 dark:text-slate-200",
             isExpanded ? "justify-start" : "justify-center"
@@ -213,6 +218,7 @@ export default function QuantumControlPanel() {
           <PopoverTrigger asChild>
             <Button
               variant="ghost"
+              aria-label={t("panel.language")}
               className={cn(
                 "w-full flex items-center space-x-4 p-3 h-auto rounded-lg text-slate-800 dark:text-slate-200",
                 isExpanded ? "justify-start" : "justify-center"
@@ -242,6 +248,7 @@ export default function QuantumControlPanel() {
                   key={lang}
                   onClick={() => handleLanguageChange(lang)}
                   variant={currentLanguage === lang ? "default" : "ghost"}
+                  aria-label={lang.toUpperCase()}
                   className={`w-full justify-center text-sm h-8 ${
                     currentLanguage === lang ? "bg-green-500" : ""
                   }`}
@@ -255,6 +262,11 @@ export default function QuantumControlPanel() {
         <Button
           onClick={toggleAccessibility}
           variant="ghost"
+          aria-label={
+            isAccessibilityMode
+              ? t("panel.accessibilityOff")
+              : t("panel.accessibilityOn")
+          }
           className={cn(
             "w-full flex items-center space-x-4 p-3 h-auto rounded-lg text-slate-800 dark:text-slate-200",
             isExpanded ? "justify-start" : "justify-center"
@@ -282,11 +294,11 @@ export default function QuantumControlPanel() {
         </Button>
       </div>
       <div className="p-3 border-t border-blue-400/20 space-y-1 flex-shrink-0">
-        {/* --- OSTATECZNA POPRAWKA BŁĘDU ZAGNIEŻDŻENIA --- */}
         {legalLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
+            aria-label={t(link.labelKey)}
             className={cn(
               "w-full flex items-center space-x-4 p-3 h-auto transition-colors duration-200 rounded-lg text-slate-800 dark:text-slate-200 hover:bg-blue-500/10 dark:hover:bg-blue-500/20",
               isExpanded ? "justify-start" : "justify-center"
@@ -352,7 +364,6 @@ export default function QuantumControlPanel() {
         className="fixed top-4 right-4 z-50 p-3 h-12 w-12 rounded-full bg-white/60 dark:bg-gray-900/60 backdrop-blur-md shadow-lg border border-blue-400/20 text-slate-800 dark:text-slate-200"
       >
         <Menu />
-        <span className="sr-only">{t("panel.openMenu") || "Otwórz menu"}</span>
       </Button>
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -381,9 +392,6 @@ export default function QuantumControlPanel() {
                     className="p-2 h-auto"
                   >
                     <X />
-                    <span className="sr-only">
-                      {t("panel.closeMenu") || "Zamknij menu"}
-                    </span>
                   </Button>
                 </div>
                 <nav className="flex-1 p-3 space-y-2 overflow-y-auto min-h-0">
@@ -405,6 +413,11 @@ export default function QuantumControlPanel() {
                         handleThemeToggle();
                         setIsMobileMenuOpen(false);
                       }}
+                      aria-label={
+                        theme === "dark"
+                          ? t("panel.lightMode")
+                          : t("panel.darkMode")
+                      }
                       className="font-medium text-left"
                     >
                       {theme === "dark"
@@ -428,6 +441,7 @@ export default function QuantumControlPanel() {
                           variant={
                             currentLanguage === lang ? "default" : "ghost"
                           }
+                          aria-label={lang.toUpperCase()}
                           className={`flex-1 ${
                             currentLanguage === lang ? "bg-green-500" : ""
                           }`}
@@ -453,6 +467,11 @@ export default function QuantumControlPanel() {
                         toggleAccessibility();
                         setIsMobileMenuOpen(false);
                       }}
+                      aria-label={
+                        isAccessibilityMode
+                          ? t("panel.accessibilityOff")
+                          : t("panel.accessibilityOn")
+                      }
                       className="font-medium text-left"
                     >
                       {isAccessibilityMode
