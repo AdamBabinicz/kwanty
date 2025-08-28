@@ -29,7 +29,7 @@ export default function QuantumObservation() {
           viewport={{ once: true }}
         >
           <h2
-            className="text-4xl md:text-5xl font-bold mb-6 quantum-glow"
+            className="text-5xl font-bold mb-6 quantum-glow"
             data-testid="observation-title"
           >
             {t("sections.observation.title")}
