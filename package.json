@@ -111,6 +111,7 @@
     "inlineCss": true,
     "puppeteerArgs": [
       "--no-sandbox"
-    ]
+    ],
+    "puppeteerWaitFor": 3000
   }
 }
