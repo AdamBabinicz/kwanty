@@ -108,6 +108,7 @@
     "bufferutil": "^4.0.8"
   },
   "reactSnap": {
+    "source": "dist/public",
     "inlineCss": true,
     "puppeteerArgs": [
       "--no-sandbox"
