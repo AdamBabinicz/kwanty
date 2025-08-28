@@ -59,79 +59,117 @@ export default function SEO({
   };
 
   const generateSchema = () => {
-    if (!schema) return null;
+    const schemasToGenerate: any[] = [];
 
-    let schemaData: any = null;
-    const { type, data } = schema;
-
-    switch (type) {
-      case "website":
-        schemaData = {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: siteName,
-          url: siteUrl,
-          potentialAction: {
-            "@type": "SearchAction",
-            target: `${siteUrl}/?q={search_term_string}`,
-            "query-input": "required name=search_term_string",
-          },
-        };
-        break;
-
-      case "article":
-        schemaData = {
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: data.title || "",
-          description: data.description || "",
-          image: {
-            "@type": "ImageObject",
-            url: fullImageUrl,
-            width: 1200,
-            height: 630,
-          },
-          datePublished: data.date,
-          dateModified: data.date,
-          author: {
-            "@type": "Person",
-            name: authorName,
-            url: authorProfileUrl,
-          },
-          publisher: {
-            "@type": "Organization",
-            name: siteName,
-            logo: {
-              "@type": "ImageObject",
-              url: `${siteUrl}/favicon-96x96.png`,
-            },
-          },
-          mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": canonicalUrl,
-          },
-        };
-        break;
-
-      case "organization":
-        schemaData = {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: siteName,
-          url: siteUrl,
-          logo: `${siteUrl}/favicon-96x96.png`,
-          sameAs: [
-            "https://github.com/AdamBabinicz",
-            "https://twitter.com/AdamBabinicz",
-          ],
-        };
-        break;
+    if (isHomePage || !schema) {
+      schemasToGenerate.push({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: siteName,
+        url: siteUrl,
+        description: defaultDescription,
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${siteUrl}/?q={search_term_string}`,
+          "query-input": "required name=search_term_string",
+        },
+      });
     }
 
-    if (!schemaData) return null;
+    schemasToGenerate.push({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: siteName,
+      url: siteUrl,
+      logo: `${siteUrl}/favicon-96x96.png`,
+      sameAs: ["https://github.com/AdamBabinicz"],
+      description: defaultDescription,
+    });
+
+    if (schema) {
+      const { type, data } = schema;
+      let specificSchemaData: any = null;
+
+      switch (type) {
+        case "article":
+          specificSchemaData = {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: data.title || "",
+            description: data.description || "",
+            image: {
+              "@type": "ImageObject",
+              url: fullImageUrl,
+              width: 1200,
+              height: 630,
+            },
+            datePublished: data.date,
+            dateModified: data.date,
+            author: {
+              "@type": "Person",
+              name: authorName,
+              url: authorProfileUrl,
+            },
+            publisher: {
+              "@type": "Organization",
+              name: siteName,
+              logo: {
+                "@type": "ImageObject",
+                url: `${siteUrl}/favicon-96x96.png`,
+              },
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": canonicalUrl,
+            },
+          };
+          break;
+        case "organization":
+          specificSchemaData = {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: siteName,
+            url: siteUrl,
+            logo: `${siteUrl}/favicon-96x96.png`,
+            sameAs: [
+              "https://github.com/AdamBabinicz",
+              "https://twitter.com/AdamBabinicz",
+            ],
+            ...data,
+          };
+          break;
+        case "website":
+          specificSchemaData = {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: siteName,
+            url: siteUrl,
+            potentialAction: {
+              "@type": "SearchAction",
+              target: `${siteUrl}/?q={search_term_string}`,
+              "query-input": "required name=search_term_string",
+            },
+            ...data,
+          };
+          break;
+      }
+      if (specificSchemaData) {
+        schemasToGenerate.push(specificSchemaData);
+      }
+    }
+
+    if (schemasToGenerate.length === 0) return null;
 
     return (
-      <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
+      <>
+        {schemasToGenerate.map((s, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
+          />
+        ))}
+      </>
     );
   };
 
@@ -150,6 +188,8 @@ export default function SEO({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content={getOgLocale()} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={twitterHandle} />
@@ -157,6 +197,7 @@ export default function SEO({
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={pageDescription} />
       <meta name="twitter:image" content={fullImageUrl} />
+      <meta name="twitter:site" content={twitterHandle} />
 
       {generateSchema()}
     </Helmet>
