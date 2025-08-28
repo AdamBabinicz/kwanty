@@ -2,8 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 
-// Typy schematów odpowiednie dla tej strony.
-type SchemaType = "website" | "article";
+type SchemaType = "website" | "article" | "organization";
 
 interface SEOProps {
   title?: string;
@@ -16,13 +15,12 @@ interface SEOProps {
   isHomePage?: boolean;
 }
 
-// Stałe dopasowane do projektu "Kwantowy Portal"
-const siteUrl = "https://kwanty.netlify.app"; // Zmień na swój docelowy URL
+const siteUrl = "https://kwanty.netlify.app";
 const siteName = "Kwantowy Portal: Interaktywna Eksploracja Rzeczywistości";
-const defaultImage = `${siteUrl}/2.png`; // Ważne: Stwórz ten plik i umieść go w folderze /public
+const defaultImage = `${siteUrl}/2.png`;
 const authorName = "Adam Babinicz";
 const authorProfileUrl = "https://github.com/AdamBabinicz";
-const twitterHandle = "@AdamBabinicz"; // Opcjonalnie: Twój uchwyt na Twitterze/X
+const twitterHandle = "@AdamBabinicz";
 
 export default function SEO({
   title,
@@ -34,7 +32,6 @@ export default function SEO({
   const { i18n, t } = useTranslation();
   const [location] = useLocation();
 
-  // Te klucze muszą istnieć w plikach z tłumaczeniami (patrz Krok 3 wdrożenia).
   const defaultTitle = t("seo.defaultTitle");
   const defaultDescription = t("seo.defaultDescription");
 
@@ -88,8 +85,13 @@ export default function SEO({
           "@type": "Article",
           headline: data.title || "",
           description: data.description || "",
-          image: fullImageUrl,
-          datePublished: data.date, // np. "2024-08-25"
+          image: {
+            "@type": "ImageObject",
+            url: fullImageUrl,
+            width: 1200,
+            height: 630,
+          },
+          datePublished: data.date,
           dateModified: data.date,
           author: {
             "@type": "Person",
@@ -101,13 +103,27 @@ export default function SEO({
             name: siteName,
             logo: {
               "@type": "ImageObject",
-              url: `${siteUrl}/favicon-96x96.png`, // Używamy istniejącego favikona
+              url: `${siteUrl}/favicon-96x96.png`,
             },
           },
           mainEntityOfPage: {
             "@type": "WebPage",
             "@id": canonicalUrl,
           },
+        };
+        break;
+
+      case "organization":
+        schemaData = {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: siteName,
+          url: siteUrl,
+          logo: `${siteUrl}/favicon-96x96.png`,
+          sameAs: [
+            "https://github.com/AdamBabinicz",
+            "https://twitter.com/AdamBabinicz",
+          ],
         };
         break;
     }
@@ -121,14 +137,12 @@ export default function SEO({
 
   return (
     <Helmet>
-      {/* --- Podstawowe Tagi --- */}
       <html lang={i18n.language} />
       <title>{pageTitle}</title>
       <meta name="description" content={pageDescription} />
       <meta name="author" content={authorName} />
       <link rel="canonical" href={canonicalUrl} />
 
-      {/* --- Open Graph (Facebook, etc.) --- */}
       <meta property="og:type" content={isHomePage ? "website" : "article"} />
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={pageDescription} />
@@ -137,7 +151,6 @@ export default function SEO({
       <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content={getOgLocale()} />
 
-      {/* --- Twitter --- */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={twitterHandle} />
       <meta property="twitter:url" content={canonicalUrl} />
@@ -145,7 +158,6 @@ export default function SEO({
       <meta name="twitter:description" content={pageDescription} />
       <meta name="twitter:image" content={fullImageUrl} />
 
-      {/* --- Schema.org (JSON-LD) --- */}
       {generateSchema()}
     </Helmet>
   );
