@@ -8,8 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
 const contactSchema = z.object({
@@ -36,34 +34,9 @@ export default function TunnelingAnimation() {
     },
   });
 
-  const submitMutation = useMutation({
-    mutationFn: async (data: ContactForm) => {
-      return apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
-      setShowSuccess(true);
-      form.reset();
-      setTimeout(() => {
-        setShowSuccess(false);
-        setIsSubmitting(false);
-        setTunnelingProgress(0);
-      }, 5000);
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      setTunnelingProgress(0);
-    },
-  });
-
   const onSubmit = async (data: ContactForm) => {
     setIsSubmitting(true);
 
-    // Animate tunneling progress
     const interval = setInterval(() => {
       setTunnelingProgress((prev) => {
         const increment = Math.random() * 10 + 5;
@@ -71,7 +44,35 @@ export default function TunnelingAnimation() {
 
         if (newProgress >= 100) {
           clearInterval(interval);
-          submitMutation.mutate(data);
+          // --- Formspree submission ---
+          fetch("https://formspree.io/f/xldwdqda", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to submit form");
+              }
+              setShowSuccess(true);
+              form.reset();
+              setTimeout(() => {
+                setShowSuccess(false);
+                setIsSubmitting(false);
+                setTunnelingProgress(0);
+              }, 5000);
+            })
+            .catch((error) => {
+              toast({
+                title: "Error",
+                description: error.message,
+                variant: "destructive",
+              });
+              setIsSubmitting(false);
+              setTunnelingProgress(0);
+            });
         }
 
         return newProgress;
