@@ -51,7 +51,7 @@ export default function QuantumSuperposition() {
           viewport={{ once: true }}
         >
           <h2
-            className="text-4xl md:text-5xl font-bold mb-6 quantum-glow"
+            className="text-3xl md:text-5xl font-bold mb-6 quantum-glow"
             data-testid="superposition-title"
           >
             {t("sections.superposition.title")}
@@ -138,7 +138,7 @@ export default function QuantumSuperposition() {
                 transition={{ duration: 0.3 }}
               >
                 <div
-                  className="text-4xl font-bold text-quantum-cyan mb-2"
+                  className="text-3xl font-bold text-quantum-cyan mb-2"
                   data-testid="state0-count"
                 >
                   {measurementCount.state0}

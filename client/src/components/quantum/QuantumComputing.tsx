@@ -77,7 +77,7 @@ export default function QuantumComputing() {
           viewport={{ once: true }}
         >
           <h2
-            className="text-4xl md:text-5xl font-bold mb-6 quantum-glow"
+            className="text-3xl md:text-5xl font-bold mb-6 quantum-glow"
             data-testid="quantum-computing-title"
           >
             {t("sections.computing.title")}
