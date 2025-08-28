@@ -1,7 +1,6 @@
 // SEO.tsx
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
 
 type SchemaType = "website" | "article" | "organization";
@@ -31,35 +30,27 @@ export default function SEO({
   schema,
   isHomePage = false,
 }: SEOProps) {
-  const { i18n, t } = useTranslation();
   const [location] = useLocation();
 
-  const defaultTitle = t("seo.defaultTitle");
-  const defaultDescription = t("seo.defaultDescription");
+  // --- Twarde wartości dla prerender ---
+  const defaultTitle =
+    "Kwantowy Portal: Interaktywna Eksploracja Rzeczywistości";
+  const defaultDescription =
+    "Portal o fizyce kwantowej, nauce i interaktywnych eksploracjach rzeczywistości.";
 
   const pageTitle = title
     ? isHomePage
       ? title
       : `${title} - ${siteName}`
     : defaultTitle;
+
   const pageDescription = description || defaultDescription;
   const canonicalUrl = `${siteUrl}${location}`;
   const fullImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 
-  const getOgLocale = () => {
-    switch (i18n.language) {
-      case "pl":
-        return "pl_PL";
-      case "en":
-        return "en_US";
-      case "fi":
-        return "fi_FI";
-      default:
-        return "pl_PL";
-    }
-  };
+  const getOgLocale = () => "pl_PL"; // prosty statyczny język dla prerender
 
-  // --- Generowanie kompletnych danych schema.org ---
+  // --- Generowanie JSON-LD ---
   const generateSchemaJSON = () => {
     const schemas: any[] = [];
 
@@ -108,16 +99,16 @@ export default function SEO({
           specificSchema = {
             "@context": "https://schema.org",
             "@type": "Article",
-            headline: data.title || "",
-            description: data.description || "",
+            headline: data.title || pageTitle,
+            description: data.description || pageDescription,
             image: {
               "@type": "ImageObject",
               url: fullImageUrl,
               width: 1200,
               height: 630,
             },
-            datePublished: data.date,
-            dateModified: data.date,
+            datePublished: data.date || new Date().toISOString(),
+            dateModified: data.date || new Date().toISOString(),
             author: {
               "@type": "Person",
               name: authorName,
@@ -184,7 +175,7 @@ export default function SEO({
 
   return (
     <Helmet>
-      <html lang={i18n.language} />
+      <html lang="pl" />
       <title>{pageTitle}</title>
       <meta name="description" content={pageDescription} />
       <meta name="author" content={authorName} />
