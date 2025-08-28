@@ -87,7 +87,7 @@ export default function QuantumApplications() {
           viewport={{ once: true }}
         >
           <h2
-            className="text-5xl font-bold mb-6 quantum-glow"
+            className="text-4xl md:text-5xl font-bold mb-6 quantum-glow"
             data-testid="applications-title"
           >
             {t("sections.applications.title")}
