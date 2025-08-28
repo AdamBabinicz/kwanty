@@ -106,9 +106,9 @@
     max-width: 100vw;
     overflow-x: hidden;
   }
-  /* h2 {
-    font-size: 2.9rem !important;
-  } */
+  h2 {
+    font-size: 2.8rem !important;
+  }
   .container {
     width: 100%;
     margin-left: auto;
