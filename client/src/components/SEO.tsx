@@ -1,3 +1,5 @@
+// SEO.tsx
+import React from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "wouter";
@@ -42,7 +44,6 @@ export default function SEO({
     : defaultTitle;
   const pageDescription = description || defaultDescription;
   const canonicalUrl = `${siteUrl}${location}`;
-
   const fullImageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 
   const getOgLocale = () => {
@@ -58,11 +59,13 @@ export default function SEO({
     }
   };
 
-  const generateSchema = () => {
-    const schemasToGenerate: any[] = [];
+  // --- Generowanie kompletnych danych schema.org ---
+  const generateSchemaJSON = () => {
+    const schemas: any[] = [];
 
+    // WebSite schema
     if (isHomePage || !schema) {
-      schemasToGenerate.push({
+      schemas.push({
         "@context": "https://schema.org",
         "@type": "WebSite",
         name: siteName,
@@ -76,23 +79,33 @@ export default function SEO({
       });
     }
 
-    schemasToGenerate.push({
+    // Organization schema
+    schemas.push({
       "@context": "https://schema.org",
       "@type": "Organization",
       name: siteName,
       url: siteUrl,
-      logo: `${siteUrl}/favicon-96x96.png`,
-      sameAs: ["https://github.com/AdamBabinicz"],
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/favicon-96x96.png`,
+        width: 96,
+        height: 96,
+      },
+      sameAs: [
+        "https://github.com/AdamBabinicz",
+        "https://twitter.com/AdamBabinicz",
+      ],
       description: defaultDescription,
     });
 
+    // Specyficzne schema dla strony
     if (schema) {
       const { type, data } = schema;
-      let specificSchemaData: any = null;
+      let specificSchema: any = null;
 
       switch (type) {
         case "article":
-          specificSchemaData = {
+          specificSchema = {
             "@context": "https://schema.org",
             "@type": "Article",
             headline: data.title || "",
@@ -116,6 +129,8 @@ export default function SEO({
               logo: {
                 "@type": "ImageObject",
                 url: `${siteUrl}/favicon-96x96.png`,
+                width: 96,
+                height: 96,
               },
             },
             mainEntityOfPage: {
@@ -124,13 +139,19 @@ export default function SEO({
             },
           };
           break;
+
         case "organization":
-          specificSchemaData = {
+          specificSchema = {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: siteName,
             url: siteUrl,
-            logo: `${siteUrl}/favicon-96x96.png`,
+            logo: {
+              "@type": "ImageObject",
+              url: `${siteUrl}/favicon-96x96.png`,
+              width: 96,
+              height: 96,
+            },
             sameAs: [
               "https://github.com/AdamBabinicz",
               "https://twitter.com/AdamBabinicz",
@@ -138,8 +159,9 @@ export default function SEO({
             ...data,
           };
           break;
+
         case "website":
-          specificSchemaData = {
+          specificSchema = {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: siteName,
@@ -153,24 +175,11 @@ export default function SEO({
           };
           break;
       }
-      if (specificSchemaData) {
-        schemasToGenerate.push(specificSchemaData);
-      }
+
+      if (specificSchema) schemas.push(specificSchema);
     }
 
-    if (schemasToGenerate.length === 0) return null;
-
-    return (
-      <>
-        {schemasToGenerate.map((s, index) => (
-          <script
-            key={index}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }}
-          />
-        ))}
-      </>
-    );
+    return JSON.stringify(schemas, null, 2);
   };
 
   return (
@@ -181,6 +190,7 @@ export default function SEO({
       <meta name="author" content={authorName} />
       <link rel="canonical" href={canonicalUrl} />
 
+      {/* Open Graph */}
       <meta property="og:type" content={isHomePage ? "website" : "article"} />
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={pageDescription} />
@@ -191,6 +201,7 @@ export default function SEO({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
 
+      {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={twitterHandle} />
       <meta property="twitter:url" content={canonicalUrl} />
@@ -199,7 +210,11 @@ export default function SEO({
       <meta name="twitter:image" content={fullImageUrl} />
       <meta name="twitter:site" content={twitterHandle} />
 
-      {generateSchema()}
+      {/* JSON-LD schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: generateSchemaJSON() }}
+      />
     </Helmet>
   );
 }
