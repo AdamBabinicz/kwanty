@@ -1,34 +1,37 @@
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 
 interface QubitVisualizationProps {
-  currentState: 'superposition' | 0 | 1;
+  currentState: "superposition" | 0 | 1;
   onMeasurement: () => void;
 }
 
-export default function QubitVisualization({ currentState, onMeasurement }: QubitVisualizationProps) {
+export default function QubitVisualization({
+  currentState,
+  onMeasurement,
+}: QubitVisualizationProps) {
   const { t } = useTranslation();
 
   const getQubitBackground = () => {
     switch (currentState) {
       case 0:
-        return 'linear-gradient(135deg, #3B82F6, #64FFDA)';
+        return "linear-gradient(135deg, #3B82F6, #64FFDA)";
       case 1:
-        return 'linear-gradient(135deg, #A855F7, #EC4899)';
+        return "linear-gradient(135deg, #A855F7, #EC4899)";
       default:
-        return 'linear-gradient(135deg, #A855F7, #3B82F6, #64FFDA)';
+        return "linear-gradient(135deg, #A855F7, #3B82F6, #64FFDA)";
     }
   };
 
   const getStateDisplay = () => {
     switch (currentState) {
       case 0:
-        return '|0⟩';
+        return "|0⟩";
       case 1:
-        return '|1⟩';
+        return "|1⟩";
       default:
-        return '|ψ⟩';
+        return "|ψ⟩";
     }
   };
 
@@ -51,7 +54,7 @@ export default function QubitVisualization({ currentState, onMeasurement }: Qubi
           animate={{ rotate: -360 }}
           transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
         />
-        
+
         {/* State Display */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.span
@@ -69,10 +72,14 @@ export default function QubitVisualization({ currentState, onMeasurement }: Qubi
         {/* Measurement Effect */}
         <motion.div
           className="absolute inset-0 rounded-full border-4 border-quantum-cyan opacity-0 scale-150"
-          animate={currentState !== 'superposition' ? {
-            opacity: [0, 1, 0],
-            scale: [1.5, 1, 1.5]
-          } : {}}
+          animate={
+            currentState !== "superposition"
+              ? {
+                  opacity: [0, 1, 0],
+                  scale: [1.5, 1, 1.5],
+                }
+              : {}
+          }
           transition={{ duration: 0.5 }}
           data-testid="measurement-ring"
         />

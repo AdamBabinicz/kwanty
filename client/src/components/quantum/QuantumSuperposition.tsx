@@ -51,7 +51,7 @@ export default function QuantumSuperposition() {
           viewport={{ once: true }}
         >
           <h2
-            className="text-3xl md:text-5xl font-bold mb-6 quantum-glow"
+            className="text-4xl md:text-5xl font-bold mb-6 quantum-glow"
             data-testid="superposition-title"
           >
             {t("sections.superposition.title")}

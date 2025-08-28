@@ -25,7 +25,7 @@ export default function QuantumUncertainty() {
           viewport={{ once: true }}
         >
           <h2
-            className="text-3xl md:text-5xl font-bold mb-6 quantum-glow text-center leading-tight break-words tracking-tight"
+            className="text-4xl md:text-5xl font-bold mb-6 quantum-glow text-center leading-tight break-words tracking-tight"
             data-testid="uncertainty-title"
           >
             {t("sections.uncertainty.title")}
