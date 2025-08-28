@@ -64,6 +64,7 @@
       "title": "Hyppy 3: Kietoutuminen",
       "subtitle": "Kosminen Yhteys",
       "instruction": "Vie hiiri yhden kietoutuneen hiukkasen päälle ja katso kuinka toinen reagoi välittömästi!",
+      "particle": "Hiukkanen",
       "particleA": "Hiukkanen A",
       "particleB": "Hiukkanen B",
       "connection": "Kvanttikietoutuminen",

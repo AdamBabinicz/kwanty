@@ -64,6 +64,7 @@
       "title": "Skok 3: Splątanie",
       "subtitle": "Kosmiczne Połączenie",
       "instruction": "Najedź kursorem na jedną z splątanych cząstek i obserwuj jak druga reaguje natychmiastowo!",
+      "particle": "Cząstka",
       "particleA": "Cząstka A",
       "particleB": "Cząstka B",
       "connection": "Splątanie Kwantowe",

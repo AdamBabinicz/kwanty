@@ -64,6 +64,7 @@
       "title": "Leap 3: Entanglement",
       "subtitle": "Cosmic Connection",
       "instruction": "Hover over one of the entangled particles and observe how the other reacts instantly!",
+      "particle": "Particle",
       "particleA": "Particle A",
       "particleB": "Particle B",
       "connection": "Quantum Entanglement",

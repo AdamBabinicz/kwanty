@@ -16,7 +16,6 @@ export default function EntangledParticles() {
       viewport={{ once: true }}
     >
       <div className="absolute inset-0 flex items-center justify-between px-12">
-        {/* Particle A */}
         <motion.div
           className="relative group cursor-pointer"
           onMouseEnter={() => {
@@ -43,15 +42,16 @@ export default function EntangledParticles() {
             }
             transition={{ duration: 0.3 }}
           />
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+          <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
             <span
-              className="text-sm font-medium text-quantum-cyan"
+              className="text-sm font-medium text-quantum-cyan leading-tight"
               data-testid="particle-a-label"
             >
-              {t("sections.entanglement.particleA")}
+              {t("sections.entanglement.particle")}
             </span>
+            <span className="text-base font-bold text-quantum-cyan">A</span>
           </div>
-          {/* Spin Indicator */}
+
           <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
             <motion.i
               className="fas fa-arrow-up text-quantum-cyan text-2xl transition-transform duration-300"
@@ -61,10 +61,11 @@ export default function EntangledParticles() {
           </div>
         </motion.div>
 
-        {/* Connection Line */}
+        {/* Zmieniona linia tutaj */}
         <div className="flex-1 relative mx-8">
+          {/* Ukrywamy linię na mobilnych */}
           <motion.div
-            className="h-px bg-gradient-to-r from-quantum-cyan via-purple-500 to-quantum-cyan relative overflow-hidden"
+            className="hidden sm:block h-px bg-gradient-to-r from-quantum-cyan via-purple-500 to-quantum-cyan relative overflow-hidden"
             animate={
               particleAHovered || particleBHovered
                 ? {
@@ -80,6 +81,8 @@ export default function EntangledParticles() {
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
             />
           </motion.div>
+
+          {/* Tekst "splątanie kwantowe" zawsze widoczny */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <motion.span
               className="bg-background px-3 py-1 text-sm font-medium text-quantum-cyan border border-quantum-cyan border-opacity-30 rounded-full"
@@ -98,7 +101,6 @@ export default function EntangledParticles() {
           </div>
         </div>
 
-        {/* Particle B */}
         <motion.div
           className="relative group cursor-pointer"
           onMouseEnter={() => {
@@ -125,15 +127,16 @@ export default function EntangledParticles() {
             }
             transition={{ duration: 0.3 }}
           />
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
+          <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
             <span
-              className="text-sm font-medium text-quantum-cyan"
+              className="text-sm font-medium text-quantum-cyan leading-tight"
               data-testid="particle-b-label"
             >
-              {t("sections.entanglement.particleB")}
+              {t("sections.entanglement.particle")}
             </span>
+            <span className="text-base font-bold text-quantum-cyan">B</span>
           </div>
-          {/* Spin Indicator */}
+
           <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
             <motion.i
               className="fas fa-arrow-down text-purple-400 text-2xl transition-transform duration-300"
@@ -144,7 +147,6 @@ export default function EntangledParticles() {
         </motion.div>
       </div>
 
-      {/* Entanglement Effect */}
       {(particleAHovered || particleBHovered) && (
         <motion.div
           className="absolute inset-0 pointer-events-none"
