@@ -82,10 +82,7 @@ export default function SEO({
         width: 96,
         height: 96,
       },
-      sameAs: [
-        "https://github.com/AdamBabinicz",
-        "https://twitter.com/AdamBabinicz",
-      ],
+      sameAs: ["https://github.com/AdamBabinicz", "https://x.com/AdamBabinicz"],
       description: defaultDescription,
     });
 
@@ -145,7 +142,7 @@ export default function SEO({
             },
             sameAs: [
               "https://github.com/AdamBabinicz",
-              "https://twitter.com/AdamBabinicz",
+              "https://x.com/AdamBabinicz",
             ],
             ...data,
           };
