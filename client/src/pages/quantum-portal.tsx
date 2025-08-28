@@ -1,3 +1,4 @@
+// quantum-portal.tsx
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/components/theme-provider";
@@ -69,7 +70,7 @@ export default function QuantumPortal() {
         theme === "dark" ? "dark" : ""
       }`}
     >
-      <SEO isHomePage={true} schema={{ type: "website" }} />
+      <SEO isHomePage={true} />
       <SkipLink />
       <QuantumParticleField />
       <QuantumControlPanel />
